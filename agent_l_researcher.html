@@ -39,10 +39,10 @@
         <div class="flex items-center gap-2">
           <h1 class="text-base md:text-lg font-black tracking-wide text-white">AGENT 1: "L"</h1>
           <span class="text-[9px] px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30 font-bold uppercase tracking-wider">
-            Top 0.1% Global Forensics
+            Universal Global Intel
           </span>
         </div>
-        <p class="text-[11px] text-slate-400 font-mono-code">Autonomous Trend Scout & Retention Architect</p>
+        <p class="text-[11px] text-slate-400 font-mono-code">Shorts to 90-min Documentaries • Any Country • Any Channel</p>
       </div>
     </div>
 
@@ -65,53 +65,79 @@
     <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-xl space-y-4">
       <div class="flex justify-between items-center border-b border-slate-800 pb-3">
         <div class="flex items-center gap-2 text-xs font-bold text-amber-400 uppercase tracking-wider font-mono-code">
-          <i class="fa-solid fa-sliders"></i> Target Mission Parameters
+          <i class="fa-solid fa-sliders"></i> Universal Mission Parameters
         </div>
         <div class="flex gap-2">
-          <button onclick="setNichePreset('Billionaire Underground Bunkers', 'USA', 'CH_01_LUXURY')" class="text-[10px] bg-slate-800 hover:bg-slate-700 px-2 py-1 rounded-lg text-amber-300 transition">
-            💎 Luxury Demo
+          <button onclick="setNichePreset('Billionaire Underground Bunkers', 'USA', 'CH_01_LUXURY', 'Documentary (45-60 mins)')" class="text-[10px] bg-slate-800 hover:bg-slate-700 px-2 py-1 rounded-lg text-amber-300 transition">
+            💎 Luxury Doc
           </button>
-          <button onclick="setNichePreset('The Disappearance of Flight 370 New Evidence', 'USA', 'CH_02_MYSTERY')" class="text-[10px] bg-slate-800 hover:bg-slate-700 px-2 py-1 rounded-lg text-purple-300 transition">
-            👁️ Mystery Demo
+          <button onclick="setNichePreset('The Disappearance of Flight 370', 'Global', 'CH_02_MYSTERY', 'Deep Dive (20-30 mins)')" class="text-[10px] bg-slate-800 hover:bg-slate-700 px-2 py-1 rounded-lg text-purple-300 transition">
+            👁️ Mystery Deep-Dive
           </button>
         </div>
       </div>
 
-      <!-- Input Grids -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-        <div class="md:col-span-2 space-y-1">
-          <label class="text-xs font-semibold text-slate-300">Investigative Lead / Niche Focus</label>
-          <input id="nicheInput" type="text" value="Billionaire Underground Bunkers" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-400 rounded-xl px-3 py-2.5 text-xs md:text-sm text-white outline-none font-mono-code transition">
-        </div>
+      <!-- Row 1: Topic -->
+      <div class="space-y-1">
+        <label class="text-xs font-semibold text-slate-300">Investigative Lead / Topic</label>
+        <input id="nicheInput" type="text" value="Billionaire Underground Bunkers" placeholder="e.g. Dark History of Silk Road / Silicon Valley Scandals" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-400 rounded-xl px-3 py-2.5 text-xs md:text-sm text-white outline-none font-mono-code transition">
+      </div>
 
-        <div class="space-y-1">
-          <label class="text-xs font-semibold text-slate-300">Channel Node Destination</label>
-          <select id="channelSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none transition">
+      <!-- Row 2: Channel Node (Customizable Open Input + Quick Presets) -->
+      <div class="space-y-1">
+        <div class="flex justify-between items-center">
+          <label class="text-xs font-semibold text-slate-300">Channel Node Destination (Type or Select)</label>
+          <span class="text-[10px] text-slate-500 font-mono-code">Custom channels 100% supported</span>
+        </div>
+        <div class="flex gap-2">
+          <input id="channelInput" type="text" value="CH_01_LUXURY" placeholder="Type custom (e.g. CH_TRUE_CRIME_DOCS)" class="flex-1 bg-slate-950 border border-slate-800 focus:border-amber-400 rounded-xl px-3 py-2 text-xs text-amber-300 font-mono-code outline-none">
+          <select onchange="document.getElementById('channelInput').value = this.value" class="bg-slate-800 border border-slate-700 rounded-xl px-2.5 py-2 text-xs text-slate-200 outline-none">
+            <option value="">Quick Presets ▾</option>
             <option value="CH_01_LUXURY">CH_01: Luxury & Wealth</option>
             <option value="CH_02_MYSTERY">CH_02: Mystery & Anomalies</option>
             <option value="CH_03_FUNNY">CH_03: Funny Commentary</option>
             <option value="CH_04_BUSINESS">CH_04: Business Secrets</option>
+            <option value="CH_DOCUMENTARIES">CH_DOCS: Investigative Docs</option>
+            <option value="CH_TECH_SCANDALS">CH_TECH: Tech Scandals</option>
           </select>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-        <div class="space-y-1">
-          <label class="text-xs font-semibold text-slate-300">Geographic Demographic Target (Economics)</label>
-          <select id="countrySelect" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none transition">
-            <option value="USA">United States (Tier-1 | High CPM $18-$45)</option>
-            <option value="UK">United Kingdom (Tier-1 | $14-$32)</option>
-            <option value="Canada">Canada (Tier-1 | $15-$34)</option>
-            <option value="Australia">Australia (Tier-1 | $16-$38)</option>
-            <option value="Global">Worldwide Tier-1 Synthesis ($12-$25)</option>
+      <!-- Row 3: Target Country (Any Country in the World) -->
+      <div class="space-y-1">
+        <div class="flex justify-between items-center">
+          <label class="text-xs font-semibold text-slate-300">Target Demographic / Country (Type Any Country)</label>
+          <span class="text-[10px] text-slate-500 font-mono-code">Global, USA, Germany, Japan, etc.</span>
+        </div>
+        <div class="flex gap-2">
+          <input id="countryInput" type="text" value="USA" placeholder="e.g. United States, United Kingdom, Japan, Germany, Worldwide" class="flex-1 bg-slate-950 border border-slate-800 focus:border-amber-400 rounded-xl px-3 py-2 text-xs text-white outline-none">
+          <select onchange="document.getElementById('countryInput').value = this.value" class="bg-slate-800 border border-slate-700 rounded-xl px-2.5 py-2 text-xs text-slate-200 outline-none">
+            <option value="">Popular ▾</option>
+            <option value="USA">USA (Highest CPM)</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="Canada">Canada</option>
+            <option value="Australia">Australia</option>
+            <option value="Germany">Germany</option>
+            <option value="Japan">Japan</option>
+            <option value="Global Worldwide">Global Worldwide</option>
           </select>
         </div>
+      </div>
 
-        <div class="space-y-1">
-          <label class="text-xs font-semibold text-slate-300">Forensic Algorithm Scrape Depth</label>
-          <select id="depthSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none transition">
-            <option value="Maximum">Maximum (Search Intents + 5 Titles + 30s Retention + Competitor Defect)</option>
-            <option value="Rapid">Rapid Tactical (Titles + Hook Only)</option>
+      <!-- Row 4: Video Format & Duration Architecture (Shorts to Mega Documentaries) -->
+      <div class="space-y-1">
+        <div class="flex justify-between items-center">
+          <label class="text-xs font-semibold text-slate-300">Video Format & Narrative Duration</label>
+          <span class="text-[10px] text-amber-400 font-mono-code">Controls Retention Curve Scale</span>
+        </div>
+        <div class="flex gap-2">
+          <input id="formatInput" type="text" value="Standard Long-form (8-15 mins)" placeholder="e.g. 60-min Documentary or 60s Short" class="flex-1 bg-slate-950 border border-slate-800 focus:border-amber-400 rounded-xl px-3 py-2 text-xs text-emerald-300 font-mono-code outline-none">
+          <select onchange="document.getElementById('formatInput').value = this.value" class="bg-slate-800 border border-slate-700 rounded-xl px-2.5 py-2 text-xs text-slate-200 outline-none">
+            <option value="">Select Format ▾</option>
+            <option value="YouTube Shorts (30-60 secs)">⚡ YouTube Shorts (30-60s)</option>
+            <option value="Standard Long-form (8-15 mins)">📹 Standard Video (8-15 mins)</option>
+            <option value="Deep-Dive Investigation (20-35 mins)">🕵️ Deep-Dive (20-35 mins)</option>
+            <option value="Feature Length Documentary (45-90+ mins)">🎬 Full Documentary (45-90+ mins)</option>
           </select>
         </div>
       </div>
@@ -159,47 +185,54 @@
         <!-- Navigation Tabs -->
         <div class="flex gap-1.5 overflow-x-auto pb-1 custom-scrollbar text-xs">
           <button onclick="switchTab('tabTitles')" id="btnTabTitles" class="px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold transition">5-Angle Titles</button>
-          <button onclick="switchTab('tabRetention')" id="btnTabRetention" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition">0-30s Retention Lock</button>
+          <button onclick="switchTab('tabRetention')" id="btnTabRetention" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition">Retention Architecture</button>
+          <button onclick="switchTab('tabStructure')" id="btnTabStructure" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition">Doc / Narrative Acts</button>
           <button onclick="switchTab('tabCompetitors')" id="btnTabCompetitors" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition">Competitor Flaws</button>
           <button onclick="switchTab('tabSeo')" id="btnTabSeo" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition">SEO & Keywords</button>
-          <button onclick="switchTab('tabJson')" id="btnTabJson" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition font-mono-code">Rohan's Payload (JSON)</button>
+          <button onclick="switchTab('tabJson')" id="btnTabJson" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition font-mono-code">Rohan Payload (JSON)</button>
         </div>
 
         <!-- TAB 1: 5-Angle Psychological Titles -->
         <div id="tabTitles" class="space-y-2 pt-2">
-          <span class="text-[11px] text-slate-400 font-mono-code">Psychologically engineered for click curiosity without policy violation:</span>
+          <span class="text-[11px] text-slate-400 font-mono-code">Engineered for click curiosity without policy violation:</span>
           <div id="titlesList" class="space-y-2"></div>
         </div>
 
-        <!-- TAB 2: 0-30s Retention Lock Blueprint -->
+        <!-- TAB 2: Retention Architecture Adapted to Duration -->
         <div id="tabRetention" class="hidden space-y-3 pt-2">
           <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-1">
-            <span class="text-[10px] text-amber-400 font-mono-code uppercase font-bold">0-5s: Visual Pattern Interrupt & Opening Words</span>
-            <p id="ret0to5Visual" class="text-xs text-slate-300 font-mono-code"></p>
-            <p id="ret0to5Speech" class="text-xs text-amber-200 bg-slate-900 p-2.5 rounded-lg border border-slate-800 italic mt-1"></p>
+            <span class="text-[10px] text-amber-400 font-mono-code uppercase font-bold">Visual Opening Hook & Spoken Words</span>
+            <p id="retOpeningVisual" class="text-xs text-slate-300 font-mono-code"></p>
+            <p id="retOpeningSpeech" class="text-xs text-amber-200 bg-slate-900 p-2.5 rounded-lg border border-slate-800 italic mt-1"></p>
           </div>
           <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-1">
-            <span class="text-[10px] text-purple-400 font-mono-code uppercase font-bold">5-15s: Micro-Stakes Escalation</span>
-            <p id="ret5to15" class="text-xs text-slate-300"></p>
+            <span class="text-[10px] text-purple-400 font-mono-code uppercase font-bold">Mid-Video Drop-off Defense</span>
+            <p id="retMidStakes" class="text-xs text-slate-300"></p>
           </div>
           <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-1">
-            <span class="text-[10px] text-rose-400 font-mono-code uppercase font-bold">15-30s: The Unsolvable Open Loop (Min 8+ Lock)</span>
-            <p id="ret15to30" class="text-xs text-slate-300"></p>
+            <span class="text-[10px] text-rose-400 font-mono-code uppercase font-bold">The Narrative Open Loop (End Climax Lock)</span>
+            <p id="retOpenLoop" class="text-xs text-slate-300"></p>
           </div>
         </div>
 
-        <!-- TAB 3: Competitor Flaws & Counter-Attack -->
+        <!-- TAB 3: Documentary / Narrative Acts Breakdown -->
+        <div id="tabStructure" class="hidden space-y-2 pt-2">
+          <span class="text-[11px] text-slate-400 font-mono-code">Full narrative roadmap tailored to chosen video length:</span>
+          <div id="narrativeActsList" class="space-y-2"></div>
+        </div>
+
+        <!-- TAB 4: Competitor Flaws & Counter-Attack -->
         <div id="tabCompetitors" class="hidden space-y-2 pt-2">
           <div id="competitorList" class="space-y-2"></div>
         </div>
 
-        <!-- TAB 4: High-CPM SEO Keywords -->
+        <!-- TAB 5: High-CPM SEO Keywords -->
         <div id="tabSeo" class="hidden space-y-3 pt-2">
           <div class="flex flex-wrap gap-1.5" id="keywordsPills"></div>
           <p id="briefingText" class="text-xs text-slate-300 bg-slate-950 p-3 rounded-xl border border-slate-800 leading-relaxed font-mono-code"></p>
         </div>
 
-        <!-- TAB 5: Raw JSON Payload for Agent 2 (Rohan) -->
+        <!-- TAB 6: Raw JSON Payload for Agent 2 (Rohan) -->
         <div id="tabJson" class="hidden space-y-2 pt-2">
           <div class="flex justify-between items-center">
             <span class="text-[10px] text-slate-400 font-mono-code">Handover format for Agent 2: Rohan (Scriptwriter)</span>
@@ -275,15 +308,16 @@
       alert("✅ API Key successfully stored!");
     }
 
-    function setNichePreset(niche, country, channel) {
+    function setNichePreset(niche, country, channel, format) {
       document.getElementById('nicheInput').value = niche;
-      document.getElementById('countrySelect').value = country;
-      document.getElementById('channelSelect').value = channel;
+      document.getElementById('countryInput').value = country;
+      document.getElementById('channelInput').value = channel;
+      document.getElementById('formatInput').value = format;
     }
 
     function switchTab(tabId) {
-      const tabs = ['tabTitles', 'tabRetention', 'tabCompetitors', 'tabSeo', 'tabJson'];
-      const buttons = ['btnTabTitles', 'btnTabRetention', 'btnTabCompetitors', 'btnTabSeo', 'btnTabJson'];
+      const tabs = ['tabTitles', 'tabRetention', 'tabStructure', 'tabCompetitors', 'tabSeo', 'tabJson'];
+      const buttons = ['btnTabTitles', 'btnTabRetention', 'btnTabStructure', 'btnTabCompetitors', 'btnTabSeo', 'btnTabJson'];
 
       tabs.forEach((t, i) => {
         document.getElementById(t).classList.add('hidden');
@@ -302,9 +336,9 @@
       }
 
       const niche = document.getElementById('nicheInput').value.trim();
-      const country = document.getElementById('countrySelect').value;
-      const channel = document.getElementById('channelSelect').value;
-      const depth = document.getElementById('depthSelect').value;
+      const country = document.getElementById('countryInput').value.trim() || 'USA';
+      const channel = document.getElementById('channelInput').value.trim() || 'CH_CUSTOM';
+      const format = document.getElementById('formatInput').value.trim() || 'Standard Long-form (8-15 mins)';
 
       if (!niche) {
         alert("Kripya topic enter karein!");
@@ -319,11 +353,11 @@
       const cockpitArea = document.getElementById('cockpitArea');
 
       launchBtn.disabled = true;
-      launchBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Investigating Algorithmic Patterns...';
+      launchBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Investigating Worldwide Algorithmic Patterns...';
       telemetryBox.classList.remove('hidden');
       cockpitArea.classList.add('hidden');
 
-      telemetryStatus.innerText = "Extracting audience search volume & curiosity gaps...";
+      telemetryStatus.innerText = `Analyzing ${country} audience psychology & ${format} pace...`;
       telemetryProgress.style.width = "30%";
       telemetryPct.innerText = "30%";
 
@@ -331,7 +365,10 @@
 Benchmark: Global Top 0.1% YouTube packaging agencies.
 
 CRUCIAL TASK:
-Analyze the niche, target market economics, viewer drop-off psychology, and competitor defects.
+Analyze the niche for the target country (economic CPM, regional viewer psychology) and specifically format the strategy for the chosen Video Length/Format (${format}).
+If format is Shorts: focus on ultra-dense 0-3s pattern interrupt, continuous loops, and punchlines.
+If format is Documentary / Long-form: structure deep investigative acts, narrative pacing, cliffhangers, and multi-act retention loops.
+
 Output STRICT VALID JSON ONLY. Zero markdown outside JSON.
 
 JSON SCHEMA:
@@ -339,6 +376,7 @@ JSON SCHEMA:
   "projected_cpm": "$XX - $XX",
   "virality_score_out_of_100": 95,
   "working_title": "Primary viral title under 55 characters",
+  "chosen_format": "${format}",
   "title_matrix_5_angles": {
     "curiosity_gap": "Title withholding the key answer",
     "high_stakes": "Title with massive consequence or financial loss",
@@ -346,40 +384,52 @@ JSON SCHEMA:
     "insider_whistleblower": "Confession or leak by an authoritative insider",
     "counter_intuitive_paradox": "Contradictory fact that forces a click"
   },
-  "retention_architecture_0_to_30s": {
-    "visual_pattern_interrupt_0_to_5s": "Detailed visual cue description",
-    "verbatim_spoken_script_0_to_5s": "Exact first 2 spoken sentences with extreme hook density",
-    "micro_stakes_escalation_5_to_15s": "Why this affects the viewer directly",
-    "open_loop_hook_15_to_30s": "The mystery that won't be revealed until the final act"
+  "retention_architecture": {
+    "visual_opening_cue": "Detailed visual cue description tailored to ${format}",
+    "verbatim_spoken_opening": "Exact spoken sentences with extreme hook density",
+    "mid_video_dropoff_defense": "How to retain audience through the middle of this ${format}",
+    "narrative_open_loop": "The overarching mystery resolved only at the climax"
   },
-  "competitor_defects": [
+  "narrative_acts_structure": [
     {
-      "competitor_flaw": "What standard videos do wrong",
-      "our_counter_strike": "How our video captures their audience"
+      "act_title": "Act 1 / Section 1 Name",
+      "pacing_notes": "Timing & mood directives for this segment",
+      "core_revelation": "Key information unlocked"
     },
     {
-      "competitor_flaw": "Generic pacing or obvious stock clips",
-      "our_counter_strike": "Cinematic tension and exclusive case evidence"
+      "act_title": "Act 2 / Section 2 Name",
+      "pacing_notes": "Escalation of stakes",
+      "core_revelation": "The smoking gun or turning point"
+    },
+    {
+      "act_title": "Act 3 / Climax",
+      "pacing_notes": "Payoff & emotional resolution",
+      "core_revelation": "The ultimate takeaway"
+    }
+  ],
+  "competitor_defects": [
+    {
+      "competitor_flaw": "What standard videos/channels do wrong in ${country}",
+      "our_counter_strike": "How our video captures their audience"
     }
   ],
   "high_cpm_keywords": ["keyword1", "keyword2", "keyword3", "keyword4", "keyword5", "keyword6"],
-  "erwin_briefing": "Crisp 3-sentence summary for Commander Erwin explaining why this topic will dominate the algorithm."
+  "erwin_briefing": "Crisp 3-sentence summary for Commander Erwin explaining why this topic will dominate the algorithm in ${country}."
 }`;
 
       const userMessage = `Perform exhaustive YouTube algorithmic research:
 Niche: ${niche}
-Target Country: ${country}
+Target Country/Region: ${country}
 Channel ID: ${channel}
-Scrape Depth: ${depth}`;
+Target Video Format & Duration: ${format}`;
 
       try {
         setTimeout(() => {
-          telemetryStatus.innerText = "Calculating 5-angle psychological titles & 0-30s retention lock...";
+          telemetryStatus.innerText = "Constructing narrative acts & retention defense...";
           telemetryProgress.style.width = "65%";
           telemetryPct.innerText = "65%";
         }, 1200);
 
-        // Updated models to avoid 404 deprecation errors
         const models = ['gemini-3.8-flash', 'gemini-3.5-flash-lite'];
         let rawText = null;
         let lastError = null;
@@ -429,6 +479,7 @@ Scrape Depth: ${depth}`;
         document.getElementById('dispCpm').innerText = data.projected_cpm || "$20 - $45";
         document.getElementById('dispScore').innerText = `${data.virality_score_out_of_100 || 94} / 100`;
 
+        // 5-Angle Titles Render
         const titlesBox = document.getElementById('titlesList');
         titlesBox.innerHTML = '';
         const angles = [
@@ -455,18 +506,37 @@ Scrape Depth: ${depth}`;
           titlesBox.appendChild(card);
         });
 
-        document.getElementById('ret0to5Visual').innerText = "Scene: " + (data.retention_architecture_0_to_30s?.visual_pattern_interrupt_0_to_5s || '');
-        document.getElementById('ret0to5Speech').innerText = '"' + (data.retention_architecture_0_to_30s?.verbatim_spoken_script_0_to_5s || '') + '"';
-        document.getElementById('ret5to15').innerText = data.retention_architecture_0_to_30s?.micro_stakes_escalation_5_to_15s || '';
-        document.getElementById('ret15to30').innerText = data.retention_architecture_0_to_30s?.open_loop_hook_15_to_30s || '';
+        // Retention Render
+        document.getElementById('retOpeningVisual').innerText = "Visual Hook: " + (data.retention_architecture?.visual_opening_cue || '');
+        document.getElementById('retOpeningSpeech').innerText = '"' + (data.retention_architecture?.verbatim_spoken_opening || '') + '"';
+        document.getElementById('retMidStakes').innerText = data.retention_architecture?.mid_video_dropoff_defense || '';
+        document.getElementById('retOpenLoop').innerText = data.retention_architecture?.narrative_open_loop || '';
 
+        // Narrative Acts Render (Doc / Story Structure)
+        const actsBox = document.getElementById('narrativeActsList');
+        actsBox.innerHTML = '';
+        (data.narrative_acts_structure || []).forEach((act, idx) => {
+          const actDiv = document.createElement('div');
+          actDiv.className = "p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-1";
+          actDiv.innerHTML = `
+            <div class="flex justify-between items-center">
+              <span class="text-[11px] font-bold text-amber-300 font-mono-code">${act.act_title}</span>
+              <span class="text-[9px] px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-400">Act ${idx+1}</span>
+            </div>
+            <p class="text-xs text-slate-300"><b class="text-slate-400">Pacing:</b> ${act.pacing_notes}</p>
+            <p class="text-xs text-emerald-400/90"><b class="text-slate-400">Key Revelation:</b> ${act.core_revelation}</p>
+          `;
+          actsBox.appendChild(actDiv);
+        });
+
+        // Competitor Flaws Render
         const compBox = document.getElementById('competitorList');
         compBox.innerHTML = '';
         (data.competitor_defects || []).forEach(c => {
           const cDiv = document.createElement('div');
           cDiv.className = "p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-1";
           cDiv.innerHTML = `
-            <span class="text-[10px] text-rose-400 font-bold uppercase font-mono-code">Competitor Defect:</span>
+            <span class="text-[10px] text-rose-400 font-bold uppercase font-mono-code">Competitor Defect in ${country}:</span>
             <p class="text-xs text-slate-300">${c.competitor_flaw}</p>
             <span class="text-[10px] text-emerald-400 font-bold uppercase font-mono-code mt-1 inline-block">L's Counter-Attack:</span>
             <p class="text-xs text-slate-200">${c.our_counter_strike}</p>
@@ -474,6 +544,7 @@ Scrape Depth: ${depth}`;
           compBox.appendChild(cDiv);
         });
 
+        // Keywords & Briefing
         const kwBox = document.getElementById('keywordsPills');
         kwBox.innerHTML = '';
         (data.high_cpm_keywords || []).forEach(k => {
@@ -484,6 +555,7 @@ Scrape Depth: ${depth}`;
         });
         document.getElementById('briefingText').innerText = "Erwin Briefing: " + (data.erwin_briefing || 'Complete.');
 
+        // Raw JSON Render
         document.getElementById('rawJsonBox').innerText = JSON.stringify(data, null, 2);
 
         cockpitArea.classList.remove('hidden');

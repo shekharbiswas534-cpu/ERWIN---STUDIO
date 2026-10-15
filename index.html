@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commander Erwin | YouTube AI Studio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-950 text-slate-100 flex flex-col h-screen font-sans select-none">
+
+  <!-- Header -->
+  <header class="p-3 border-b border-slate-800 flex justify-between items-center bg-slate-900/90 backdrop-blur shadow-md">
+    <div class="flex items-center gap-2">
+      <button onclick="toggleSidebar()" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <div class="flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        <h1 class="text-base md:text-lg font-black tracking-wide bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500 bg-clip-text text-transparent">
+          COMMANDER ERWIN
+        </h1>
+      </div>
+    </div>
+
+    <!-- Right Controls: API Key & Gmail Auth -->
+    <div class="flex items-center gap-2">
+      <button onclick="setApiKey()" class="text-xs bg-slate-800 hover:bg-slate-700 px-2.5 py-1.5 rounded-lg border border-slate-700">
+        🔑 Key
+      </button>
+      <div id="authArea">
+        <button id="loginBtn" onclick="promptLogin()" class="text-xs bg-blue-600 hover:bg-blue-500 text-white font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1.5 shadow">
+          <i class="fa-brands fa-google"></i> Login
+        </button>
+        <div id="userProfile" class="hidden flex items-center gap-2 bg-slate-800/80 px-2.5 py-1 rounded-xl border border-slate-700">
+          <img id="userImg" src="" class="w-6 h-6 rounded-full border border-amber-400">
+          <span id="userName" class="text-xs font-medium max-w-[80px] truncate hidden sm:inline"></span>
+          <button onclick="logout()" title="Logout" class="text-xs text-rose-400 hover:text-rose-300 ml-1">
+            <i class="fa-solid fa-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Body Section -->
+  <div class="flex-1 flex overflow-hidden relative">
+
+    <!-- Left Drawer (Chat History & Channels) -->
+    <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-72 bg-slate-900 border-r border-slate-800 flex flex-col transform -translate-x-full transition-transform duration-200 ease-in-out md:relative md:translate-x-0">
+      
+      <div class="p-3 border-b border-slate-800 flex justify-between items-center gap-2">
+        <button onclick="startNewChat()" class="flex-1 flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs py-2 px-3 rounded-xl shadow">
+          <i class="fa-solid fa-plus"></i> New Chat
+        </button>
+        <button onclick="toggleSidebar()" class="md:hidden p-1.5 text-slate-400 hover:text-white">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Channels List Shortcut -->
+      <div class="p-3 border-b border-slate-800/60 bg-slate-950/40">
+        <span class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Your 4 YouTube Channels</span>
+        <div class="grid grid-cols-2 gap-1.5 mt-2 text-[11px]">
+          <span class="p-1.5 rounded bg-slate-900 border border-slate-800 text-amber-300 truncate">💎 1. Luxury</span>
+          <span class="p-1.5 rounded bg-slate-900 border border-slate-800 text-purple-300 truncate">👁️ 2. Mystery</span>
+          <span class="p-1.5 rounded bg-slate-900 border border-slate-800 text-emerald-300 truncate">😂 3. Funny</span>
+          <span class="p-1.5 rounded bg-slate-900 border border-slate-800 text-blue-300 truncate">📈 4. Business</span>
+        </div>
+      </div>
+
+      <!-- Saved Chats -->
+      <div class="flex-1 overflow-y-auto p-2 space-y-1" id="chatList"></div>
+
+      <!-- Squad Status -->
+      <div class="p-2.5 border-t border-slate-800 text-[11px] bg-slate-950/60">
+        <span class="text-slate-400 text-[10px] uppercase font-bold">Erwin's Squad:</span>
+        <div class="flex flex-wrap gap-1 mt-1 text-[10px] text-slate-300">
+          <span class="px-1.5 py-0.5 rounded bg-slate-800">L (Research)</span>
+          <span class="px-1.5 py-0.5 rounded bg-slate-800">Rohan (Script)</span>
+          <span class="px-1.5 py-0.5 rounded bg-slate-800">Kurapika (Fact)</span>
+          <span class="px-1.5 py-0.5 rounded bg-slate-800">Uta (Voice)</span>
+          <span class="px-1.5 py-0.5 rounded bg-slate-800">Levi (Edit)</span>
+          <span class="px-1.5 py-0.5 rounded bg-slate-800">Senku (Cover)</span>
+          <span class="px-1.5 py-0.5 rounded bg-slate-800">Armin (SEO)</span>
+          <span class="px-1.5 py-0.5 rounded bg-slate-800">Shikamaru (Stats)</span>
+        </div>
+      </div>
+
+      <div class="p-2 border-t border-slate-800 flex justify-between">
+        <button onclick="clearHistory()" class="w-full text-xs text-rose-400 hover:text-rose-300 py-1 rounded flex items-center justify-center gap-1">
+          <i class="fa-solid fa-trash"></i> Delete History
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Chat Workspace -->
+    <main class="flex-1 flex flex-col h-full bg-slate-950">
+      
+      <!-- Messages Area -->
+      <div id="chatBox" class="flex-1 overflow-y-auto p-4 space-y-4"></div>
+
+      <!-- Media Preview Area (Photo / Video selected) -->
+      <div id="mediaPreviewContainer" class="hidden px-4 py-2 bg-slate-900 border-t border-slate-800 flex items-center gap-2">
+        <div class="relative">
+          <img id="attachedImg" class="h-14 w-14 object-cover rounded-lg border border-amber-500 shadow">
+          <button onclick="removeMedia()" class="absolute -top-1.5 -right-1.5 bg-rose-600 text-white rounded-full w-4 h-4 flex items-center justify-center text-[10px]">
+            &times;
+          </button>
+        </div>
+        <span id="mediaLabel" class="text-xs text-slate-300 font-mono">Attachment selected</span>
+      </div>
+
+      <!-- Input Area -->
+      <div class="p-3 bg-slate-900 border-t border-slate-800">
+        <div class="flex items-center gap-2">
+          <!-- Photo / Media Upload Button -->
+          <label class="cursor-pointer bg-slate-800 hover:bg-slate-700 text-slate-300 p-2.5 rounded-xl border border-slate-700 flex items-center justify-center">
+            <i class="fa-solid fa-paperclip"></i>
+            <input type="file" id="mediaInput" accept="image/*" class="hidden" onchange="handleMedia(event)">
+          </label>
+
+          <textarea id="userInput" rows="1" placeholder="Commander Erwin ko order dein..." class="flex-1 bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-sm focus:outline-none focus:border-amber-400 resize-none"></textarea>
+
+          <button id="sendBtn" onclick="sendMessage()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 px-4 py-2.5 rounded-xl font-bold text-sm transition flex items-center justify-center shadow">
+            Send
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    let apiKey = localStorage.getItem('ERWIN_API_KEY') || '';
+    let user = JSON.parse(localStorage.getItem('ERWIN_USER') || 'null');
+    let sessions = [];
+    let currentId = null;
+    let attachedBase64 = null;
+    let attachedMime = null;
+
+    function getStorageKey() {
+      return user ? `ERWIN_CHATS_${user.email}` : 'ERWIN_CHATS_GUEST';
+    }
+
+    function init() {
+      renderAuth();
+      loadSessions();
+    }
+
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('-translate-x-full');
+    }
+
+    function renderAuth() {
+      const loginBtn = document.getElementById('loginBtn');
+      const profile = document.getElementById('userProfile');
+      if (user) {
+        loginBtn.classList.add('hidden');
+        profile.classList.remove('hidden');
+        document.getElementById('userName').innerText = user.name.split(' ')[0];
+        document.getElementById('userImg').src = user.picture || `https://ui-avatars.com/api/?background=f59e0b&color=000&name=${encodeURIComponent(user.name)}`;
+      } else {
+        loginBtn.classList.remove('hidden');
+        profile.classList.add('hidden');
+      }
+    }
+
+    function promptLogin() {
+      const email = prompt("Apna Gmail ID likhein jisse aapke chats safe aur private rahein:");
+      if (email && email.includes('@')) {
+        user = {
+          name: email.split('@')[0],
+          email: email.trim().toLowerCase(),
+          picture: `https://ui-avatars.com/api/?background=f59e0b&color=000&name=${encodeURIComponent(email)}`
+        };
+        localStorage.setItem('ERWIN_USER', JSON.stringify(user));
+        renderAuth();
+        loadSessions();
+        alert("Commander Erwin Studio me swagat hai, " + user.name);
+      }
+    }
+
+    function logout() {
+      if (confirm("Kya aap logout karna chahte hain?")) {
+        localStorage.removeItem('ERWIN_USER');
+        user = null;
+        renderAuth();
+        loadSessions();
+      }
+    }
+
+    function loadSessions() {
+      const key = getStorageKey();
+      sessions = JSON.parse(localStorage.getItem(key) || '[]');
+      if (sessions.length === 0) {
+        startNewChat();
+      } else {
+        currentId = sessions[0].id;
+        renderSidebar();
+        renderChat(currentId);
+      }
+    }
+
+    function saveSessions() {
+      localStorage.setItem(getStorageKey(), JSON.stringify(sessions));
+    }
+
+    function startNewChat() {
+      const newId = 'session_' + Date.now();
+      const newSession = {
+        id: newId,
+        title: 'New Strategy',
+        messages: [{
+          sender: 'erwin',
+          text: '🫡 Commander Erwin reporting! Studio ka status clear hai. Hamare paas 4 channels (Luxury, Mystery, Funny, Business) hain aur 8 master anime specialists taiyar hain. Hukam karein, hume kis country ya topic par kaam shuru karna hai?'
+        }]
+      };
+      sessions.unshift(newSession);
+      currentId = newId;
+      saveSessions();
+      renderSidebar();
+      renderChat(newId);
+    }
+
+    function renderSidebar() {
+      const box = document.getElementById('chatList');
+      box.innerHTML = '';
+      sessions.forEach(s => {
+        const item = document.createElement('div');
+        const isActive = s.id === currentId;
+        item.className = `p-2 rounded-xl text-xs cursor-pointer flex justify-between items-center group transition ${isActive ? 'bg-amber-500/20 border border-amber-500/40 text-amber-300 font-semibold' : 'text-slate-300 hover:bg-slate-800'}`;
+        
+        const titleSpan = document.createElement('span');
+        titleSpan.className = 'truncate flex-1 mr-2';
+        titleSpan.innerText = s.title || 'Conversation';
+        titleSpan.onclick = () => {
+          renderChat(s.id);
+          if (window.innerWidth < 768) toggleSidebar();
+        };
+
+        const delBtn = document.createElement('button');
+        delBtn.innerHTML = '<i class="fa-solid fa-trash opacity-40 hover:opacity-100"></i>';
+        delBtn.onclick = (e) => {
+          e.stopPropagation();
+          deleteChat(s.id);
+        };
+
+        item.appendChild(titleSpan);
+        item.appendChild(delBtn);
+        box.appendChild(item);
+      });
+    }
+
+    function renderChat(id) {
+      currentId = id;
+      renderSidebar();
+      const current = sessions.find(s => s.id === id);
+      const box = document.getElementById('chatBox');
+      box.innerHTML = '';
+      if (current) {
+        current.messages.forEach(m => appendUI(m.text, m.sender, m.image));
+      }
+    }
+
+    function deleteChat(id) {
+      sessions = sessions.filter(s => s.id !== id);
+      if (sessions.length === 0) startNewChat();
+      else {
+        currentId = sessions[0].id;
+        saveSessions();
+        renderSidebar();
+        renderChat(currentId);
+      }
+    }
+
+    function clearHistory() {
+      if (confirm("Kya aap saari chat history delete karna chahte hain?")) {
+        sessions = [];
+        saveSessions();
+        startNewChat();
+      }
+    }
+
+    function setApiKey() {
+      const key = prompt("Apni Gemini API Key paste karein:", apiKey);
+      if (key !== null) {
+        apiKey = key.trim();
+        localStorage.setItem('ERWIN_API_KEY', apiKey);
+        alert("API Key Save Ho Gayi!");
+      }
+    }
+
+    function handleMedia(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const fullBase64 = evt.target.result;
+        attachedMime = file.type;
+        attachedBase64 = fullBase64.split(',')[1];
+        document.getElementById('attachedImg').src = fullBase64;
+        document.getElementById('mediaPreviewContainer').classList.remove('hidden');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function removeMedia() {
+      attachedBase64 = null;
+      attachedMime = null;
+      document.getElementById('mediaPreviewContainer').classList.add('hidden');
+      document.getElementById('mediaInput').value = '';
+    }
+
+    async function sendMessage() {
+      const input = document.getElementById('userInput');
+      const sendBtn = document.getElementById('sendBtn');
+      const text = input.value.trim();
+      const media = attachedBase64;
+      const mime = attachedMime;
+
+      if (!text && !media) return;
+
+      if (!apiKey) {
+        alert("Pehle '🔑 Key' button par click karke API Key dalein!");
+        return;
+      }
+
+      const active = sessions.find(s => s.id === currentId);
+      if (!active) return;
+
+      if (active.messages.filter(m => m.sender === 'user').length === 0) {
+        active.title = (text || "Media Inquiry").substring(0, 24);
+        renderSidebar();
+      }
+
+      const userMsg = { sender: 'user', text: text || '[Sent Photo/Media]' };
+      if (media) userMsg.image = `data:${mime};base64,${media}`;
+
+      active.messages.push(userMsg);
+      appendUI(userMsg.text, 'user', userMsg.image);
+
+      input.value = '';
+      removeMedia();
+      sendBtn.disabled = true;
+      sendBtn.innerText = '...';
+
+      const erwinBrainPrompt = `You are Commander Erwin, the Executive Studio Head & Boss of a 4-channel YouTube empire (1. Luxury, 2. Mystery, 3. Funny, 4. Business).
+You report exclusively to the Owner.
+Your 8 anime subordinate specialists are:
+- L (YouTube Researcher)
+- Rohan (Master Scriptwriter)
+- Kurapika (Fact Checker & Compliance)
+- Uta (AI Voiceover Artist)
+- Levi (Professional Video Editor)
+- Senku (Thumbnail & Cover Designer)
+- Armin (SEO & Upload Manager)
+- Shikamaru (Channel Analytics & Strategy)
+
+YOUR BEHAVIOR:
+- Authoritative, respectful, strategic, and sharp (Talk in natural Hinglish).
+- When the owner gives a task (or sends an image/video concept), address them as Sir/Owner.
+- Clearly state which squad member is executing which task [e.g. L (Researcher), Levi (Video Editor)].
+- Break down the steps clearly so the owner understands the plan without technical confusion.
+- Always provide high-value viral strategies (USA and Worldwide targeting).`;
+
+      const contents = [];
+      active.messages.slice(-6).forEach(m => {
+        const parts = [{ text: (m.sender === 'user' ? "Owner: " : "Commander Erwin: ") + m.text }];
+        if (m.sender === 'user' && m.image) {
+          const partsArr = m.image.split(',');
+          const mType = partsArr[0].match(/:(.*?);/)[1];
+          parts.push({
+            inline_data: { mime_type: mType, data: partsArr[1] }
+          });
+        }
+        contents.push({ role: m.sender === 'user' ? 'user' : 'model', parts: parts });
+      });
+
+      try {
+        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            system_instruction: { parts: [{ text: erwinBrainPrompt }] },
+            contents: contents
+          })
+        });
+
+        const data = await res.json();
+        if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+          const reply = data.candidates[0].content.parts[0].text;
+          active.messages.push({ sender: 'erwin', text: reply });
+          saveSessions();
+          appendUI(reply, 'erwin');
+        } else {
+          appendUI("Erwin: Sir, API network thoda busy hai. Kripya dobara bhej kar dekhein.", 'erwin');
+        }
+      } catch (err) {
+        appendUI("Erwin: Network connection issue hai. Kripya API key aur internet check karein.", 'erwin');
+      }
+
+      sendBtn.disabled = false;
+      sendBtn.innerText = 'Send';
+    }
+
+    function appendUI(text, sender, imageUri) {
+      const box = document.getElementById('chatBox');
+      const div = document.createElement('div');
+      div.className = sender === 'user' 
+        ? "ml-auto p-3.5 rounded-2xl bg-amber-500 text-slate-950 font-medium text-sm max-w-[85%] space-y-2 shadow-lg" 
+        : "p-3.5 rounded-2xl bg-slate-900 border border-slate-800 text-slate-200 text-sm max-w-[90%] space-y-2 whitespace-pre-wrap leading-relaxed shadow";
+
+      if (imageUri) {
+        const img = document.createElement('img');
+        img.src = imageUri;
+        img.className = "max-h-52 rounded-xl border border-black/20 object-cover";
+        div.appendChild(img);
+      }
+
+      const p = document.createElement('p');
+      p.innerText = text;
+      div.appendChild(p);
+
+      box.appendChild(div);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    window.onload = init;
+  </script>
+</body>
+</html>

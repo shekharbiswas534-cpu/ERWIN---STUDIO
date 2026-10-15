@@ -2,40 +2,51 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>Commander Erwin | YouTube AI Studio</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    html, body {
+      height: 100%;
+      height: 100dvh;
+      overflow: hidden;
+      overscroll-behavior: none;
+    }
+    .safe-bottom {
+      padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+    }
+  </style>
 </head>
-<body class="bg-slate-950 text-slate-100 flex flex-col h-screen font-sans select-none">
+<body class="bg-slate-950 text-slate-100 flex flex-col h-[100dvh] font-sans select-none overflow-hidden">
 
   <!-- Header -->
-  <header class="p-3 border-b border-slate-800 flex justify-between items-center bg-slate-900/90 backdrop-blur shadow-md">
+  <header class="p-3 border-b border-slate-800 flex justify-between items-center bg-slate-900/95 backdrop-blur shadow-md flex-shrink-0 z-30">
     <div class="flex items-center gap-2">
-      <button onclick="toggleSidebar()" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300">
+      <button onclick="toggleSidebar()" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 active:scale-95 text-slate-300 transition">
         <i class="fa-solid fa-bars"></i>
       </button>
       <div class="flex items-center gap-2">
         <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-        <h1 class="text-base md:text-lg font-black tracking-wide bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500 bg-clip-text text-transparent">
+        <h1 class="text-sm md:text-lg font-black tracking-wide bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500 bg-clip-text text-transparent">
           COMMANDER ERWIN
         </h1>
       </div>
     </div>
 
-    <!-- Right Controls: API Key & Gmail Auth -->
+    <!-- Right Controls -->
     <div class="flex items-center gap-2">
-      <button onclick="setApiKey()" class="text-xs bg-slate-800 hover:bg-slate-700 px-2.5 py-1.5 rounded-lg border border-slate-700">
+      <button onclick="setApiKey()" class="text-xs bg-slate-800 hover:bg-slate-700 px-2.5 py-1.5 rounded-lg border border-slate-700 text-slate-200">
         🔑 Key
       </button>
       <div id="authArea">
-        <button id="loginBtn" onclick="promptLogin()" class="text-xs bg-blue-600 hover:bg-blue-500 text-white font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1.5 shadow">
+        <button id="loginBtn" onclick="promptLogin()" class="text-xs bg-blue-600 hover:bg-blue-500 text-white font-semibold px-2.5 py-1.5 rounded-lg flex items-center gap-1 shadow">
           <i class="fa-brands fa-google"></i> Login
         </button>
-        <div id="userProfile" class="hidden flex items-center gap-2 bg-slate-800/80 px-2.5 py-1 rounded-xl border border-slate-700">
-          <img id="userImg" src="" class="w-6 h-6 rounded-full border border-amber-400">
-          <span id="userName" class="text-xs font-medium max-w-[80px] truncate hidden sm:inline"></span>
-          <button onclick="logout()" title="Logout" class="text-xs text-rose-400 hover:text-rose-300 ml-1">
+        <div id="userProfile" class="hidden flex items-center gap-2 bg-slate-800 px-2 py-1 rounded-xl border border-slate-700">
+          <img id="userImg" src="" class="w-5 h-5 rounded-full border border-amber-400">
+          <span id="userName" class="text-xs font-medium max-w-[70px] truncate hidden sm:inline"></span>
+          <button onclick="logout()" title="Logout" class="text-xs text-rose-400 ml-1">
             <i class="fa-solid fa-right-from-bracket"></i>
           </button>
         </div>
@@ -43,30 +54,29 @@
     </div>
   </header>
 
-  <!-- Body Section -->
-  <div class="flex-1 flex overflow-hidden relative">
+  <!-- Main Container -->
+  <div class="flex-1 flex overflow-hidden relative w-full">
 
-    <!-- Left Drawer (Chat History & Channels) -->
-    <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-72 bg-slate-900 border-r border-slate-800 flex flex-col transform -translate-x-full transition-transform duration-200 ease-in-out md:relative md:translate-x-0">
-      
+    <!-- Left Drawer (History & Channel Incubation) -->
+    <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-72 bg-slate-900 border-r border-slate-800 flex flex-col transform -translate-x-full transition-transform duration-200 ease-in-out md:relative md:translate-x-0 shadow-2xl">
       <div class="p-3 border-b border-slate-800 flex justify-between items-center gap-2">
-        <button onclick="startNewChat()" class="flex-1 flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs py-2 px-3 rounded-xl shadow">
-          <i class="fa-solid fa-plus"></i> New Chat
+        <button onclick="startNewChat()" class="flex-1 flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 active:scale-95 text-slate-950 font-bold text-xs py-2 px-3 rounded-xl shadow transition">
+          <i class="fa-solid fa-plus"></i> New Strategy
         </button>
-        <button onclick="toggleSidebar()" class="md:hidden p-1.5 text-slate-400 hover:text-white">
-          <i class="fa-solid fa-xmark"></i>
+        <button onclick="toggleSidebar()" class="md:hidden p-2 text-slate-400 hover:text-white">
+          <i class="fa-solid fa-xmark text-base"></i>
         </button>
       </div>
 
-      <!-- Channels List Shortcut -->
+      <!-- Strategy & Channel Setup Stage -->
       <div class="p-3 border-b border-slate-800/60 bg-slate-950/40">
-        <span class="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Your 4 YouTube Channels</span>
-        <div class="grid grid-cols-2 gap-1.5 mt-2 text-[11px]">
-          <span class="p-1.5 rounded bg-slate-900 border border-slate-800 text-amber-300 truncate">💎 1. Luxury</span>
-          <span class="p-1.5 rounded bg-slate-900 border border-slate-800 text-purple-300 truncate">👁️ 2. Mystery</span>
-          <span class="p-1.5 rounded bg-slate-900 border border-slate-800 text-emerald-300 truncate">😂 3. Funny</span>
-          <span class="p-1.5 rounded bg-slate-900 border border-slate-800 text-blue-300 truncate">📈 4. Business</span>
+        <div class="flex items-center justify-between">
+          <span class="text-[10px] uppercase font-bold text-amber-400 tracking-wider">🎯 Channel Incubation Hub</span>
+          <span class="text-[9px] px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">Planning</span>
         </div>
+        <p class="text-[11px] text-slate-400 mt-1">
+          Abhi channels finalize karne hain. Erwin aur L market research ke sath best high-CPM channels select karwayenge.
+        </p>
       </div>
 
       <!-- Saved Chats -->
@@ -74,7 +84,7 @@
 
       <!-- Squad Status -->
       <div class="p-2.5 border-t border-slate-800 text-[11px] bg-slate-950/60">
-        <span class="text-slate-400 text-[10px] uppercase font-bold">Erwin's Squad:</span>
+        <span class="text-slate-400 text-[10px] uppercase font-bold">Erwin's 8 Specialists:</span>
         <div class="flex flex-wrap gap-1 mt-1 text-[10px] text-slate-300">
           <span class="px-1.5 py-0.5 rounded bg-slate-800">L (Research)</span>
           <span class="px-1.5 py-0.5 rounded bg-slate-800">Rohan (Script)</span>
@@ -87,42 +97,39 @@
         </div>
       </div>
 
-      <div class="p-2 border-t border-slate-800 flex justify-between">
-        <button onclick="clearHistory()" class="w-full text-xs text-rose-400 hover:text-rose-300 py-1 rounded flex items-center justify-center gap-1">
+      <div class="p-2 border-t border-slate-800">
+        <button onclick="clearHistory()" class="w-full text-xs text-rose-400 hover:text-rose-300 py-1.5 rounded flex items-center justify-center gap-1">
           <i class="fa-solid fa-trash"></i> Delete History
         </button>
       </div>
     </aside>
 
-    <!-- Main Chat Workspace -->
-    <main class="flex-1 flex flex-col h-full bg-slate-950">
-      
-      <!-- Messages Area -->
-      <div id="chatBox" class="flex-1 overflow-y-auto p-4 space-y-4"></div>
+    <!-- Chat Area -->
+    <main class="flex-1 flex flex-col h-full bg-slate-950 overflow-hidden relative">
+      <div id="chatBox" class="flex-1 overflow-y-auto p-3 md:p-4 space-y-4"></div>
 
-      <!-- Media Preview Area (Photo / Video selected) -->
-      <div id="mediaPreviewContainer" class="hidden px-4 py-2 bg-slate-900 border-t border-slate-800 flex items-center gap-2">
+      <!-- Media Preview -->
+      <div id="mediaPreviewContainer" class="hidden px-3 py-1.5 bg-slate-900 border-t border-slate-800 flex items-center gap-2 flex-shrink-0">
         <div class="relative">
-          <img id="attachedImg" class="h-14 w-14 object-cover rounded-lg border border-amber-500 shadow">
+          <img id="attachedImg" class="h-12 w-12 object-cover rounded-lg border border-amber-500 shadow">
           <button onclick="removeMedia()" class="absolute -top-1.5 -right-1.5 bg-rose-600 text-white rounded-full w-4 h-4 flex items-center justify-center text-[10px]">
             &times;
           </button>
         </div>
-        <span id="mediaLabel" class="text-xs text-slate-300 font-mono">Attachment selected</span>
+        <span class="text-xs text-slate-300 font-mono">Attachment ready</span>
       </div>
 
-      <!-- Input Area -->
-      <div class="p-3 bg-slate-900 border-t border-slate-800">
-        <div class="flex items-center gap-2">
-          <!-- Photo / Media Upload Button -->
-          <label class="cursor-pointer bg-slate-800 hover:bg-slate-700 text-slate-300 p-2.5 rounded-xl border border-slate-700 flex items-center justify-center">
-            <i class="fa-solid fa-paperclip"></i>
+      <!-- Bottom Fixed Input Box -->
+      <div class="p-2.5 md:p-3 bg-slate-900 border-t border-slate-800 safe-bottom flex-shrink-0 z-20">
+        <div class="flex items-center gap-2 max-w-4xl mx-auto">
+          <label class="cursor-pointer bg-slate-800 hover:bg-slate-700 active:scale-95 text-slate-300 w-10 h-10 rounded-xl border border-slate-700 flex items-center justify-center flex-shrink-0 transition">
+            <i class="fa-solid fa-paperclip text-sm"></i>
             <input type="file" id="mediaInput" accept="image/*" class="hidden" onchange="handleMedia(event)">
           </label>
 
-          <textarea id="userInput" rows="1" placeholder="Commander Erwin ko order dein..." class="flex-1 bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-sm focus:outline-none focus:border-amber-400 resize-none"></textarea>
+          <textarea id="userInput" rows="1" placeholder="Erwin se channel ideas discuss karein..." class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-amber-400 resize-none max-h-24"></textarea>
 
-          <button id="sendBtn" onclick="sendMessage()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 px-4 py-2.5 rounded-xl font-bold text-sm transition flex items-center justify-center shadow">
+          <button id="sendBtn" onclick="sendMessage()" class="bg-amber-500 hover:bg-amber-400 active:scale-95 text-slate-950 h-10 px-4 rounded-xl font-bold text-sm transition flex items-center justify-center shadow flex-shrink-0">
             Send
           </button>
         </div>
@@ -209,10 +216,10 @@
       const newId = 'session_' + Date.now();
       const newSession = {
         id: newId,
-        title: 'New Strategy',
+        title: 'Channel Selection Strategy',
         messages: [{
           sender: 'erwin',
-          text: '🫡 Commander Erwin reporting! Studio ka status clear hai. Hamare paas 4 channels (Luxury, Mystery, Funny, Business) hain aur 8 master anime specialists taiyar hain. Hukam karein, hume kis country ya topic par kaam shuru karna hai?'
+          text: '🫡 Commander Erwin reporting, Sir!\n\nFilhal humne koi channel freeze nahi kiya hai — aur yeh sabse behtar strategy hai! Hum pehle L (YouTube Researcher) aur Shikamaru (Analytics Strategist) ke data ke dam par market analyze karenge.\n\nBatayein, aap kis target audience ya category me explore karna chahte hain? (Jaise High CPM Finance, Shocking Mysteries, US Pop Culture, Tech Scandals, etc.)\n\nAap chahe to seedhe puchein: "Erwin, USA aur global market ke top 4 profitable faceless channel ideas suggest karo."'
         }]
       };
       sessions.unshift(newSession);
@@ -329,11 +336,11 @@
       if (!active) return;
 
       if (active.messages.filter(m => m.sender === 'user').length === 0) {
-        active.title = (text || "Media Inquiry").substring(0, 24);
+        active.title = (text || "Strategy Inquiry").substring(0, 24);
         renderSidebar();
       }
 
-      const userMsg = { sender: 'user', text: text || '[Sent Photo/Media]' };
+      const userMsg = { sender: 'user', text: text || '[Sent Reference]' };
       if (media) userMsg.image = `data:${mime};base64,${media}`;
 
       active.messages.push(userMsg);
@@ -344,24 +351,29 @@
       sendBtn.disabled = true;
       sendBtn.innerText = '...';
 
-      const erwinBrainPrompt = `You are Commander Erwin, the Executive Studio Head & Boss of a 4-channel YouTube empire (1. Luxury, 2. Mystery, 3. Funny, 4. Business).
-You report exclusively to the Owner.
-Your 8 anime subordinate specialists are:
-- L (YouTube Researcher)
-- Rohan (Master Scriptwriter)
-- Kurapika (Fact Checker & Compliance)
-- Uta (AI Voiceover Artist)
-- Levi (Professional Video Editor)
-- Senku (Thumbnail & Cover Designer)
-- Armin (SEO & Upload Manager)
-- Shikamaru (Channel Analytics & Strategy)
+      const erwinBrainPrompt = `You are Commander Erwin, the Executive Producer & Studio Head of an automated faceless YouTube media company.
+You report directly to the Owner (The User).
+You manage 8 top-tier anime specialists:
+1. L (YouTube Researcher)
+2. Rohan (Master Scriptwriter)
+3. Kurapika (Fact Checker & Compliance)
+4. Uta (AI Voiceover Artist)
+5. Levi (Professional Video Editor)
+6. Senku (Thumbnail & Cover Designer)
+7. Armin (SEO & Upload Manager)
+8. Shikamaru (Channel Analytics & Strategy)
 
-YOUR BEHAVIOR:
-- Authoritative, respectful, strategic, and sharp (Talk in natural Hinglish).
-- When the owner gives a task (or sends an image/video concept), address them as Sir/Owner.
-- Clearly state which squad member is executing which task [e.g. L (Researcher), Levi (Video Editor)].
-- Break down the steps clearly so the owner understands the plan without technical confusion.
-- Always provide high-value viral strategies (USA and Worldwide targeting).`;
+CRUCIAL CONTEXT:
+The Owner has NOT finalized the YouTube channels yet. You are currently in the Strategic Channel Incubation Phase.
+Your duty:
+1. Help the Owner brainstorm, evaluate, and decide the most profitable, viral, high-CPM faceless YouTube channel niches (targeting USA or any global country).
+2. For any channel idea discussed, provide:
+   - Target Audience & Country
+   - Estimated CPM & Monetization Potential
+   - Ease of faceless production (B-roll & AI voice feasibility)
+   - Unique positioning to beat competitors
+3. Speak with military precision, respect, and high strategic wisdom in natural Hinglish. Address the Owner as Sir or Owner.
+4. When planning topics, explain which squad member (e.g. L, Rohan, Levi) will execute which part of the roadmap once approved.`;
 
       const contents = [];
       active.messages.slice(-6).forEach(m => {
@@ -393,10 +405,10 @@ YOUR BEHAVIOR:
           saveSessions();
           appendUI(reply, 'erwin');
         } else {
-          appendUI("Erwin: Sir, API network thoda busy hai. Kripya dobara bhej kar dekhein.", 'erwin');
+          appendUI("Erwin: Sir, API response me thoda delay hai. Kripya dubara try karein.", 'erwin');
         }
       } catch (err) {
-        appendUI("Erwin: Network connection issue hai. Kripya API key aur internet check karein.", 'erwin');
+        appendUI("Erwin: Network connection issue hai. Kripya API key check karein.", 'erwin');
       }
 
       sendBtn.disabled = false;

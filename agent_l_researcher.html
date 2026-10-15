@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Agent L | Master YouTube Strategic Intelligence Engine</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #030712;
+      color: #f3f4f6;
+      overscroll-behavior: none;
+    }
+    .font-mono-code {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #374151;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col p-3 md:p-6 pb-20 select-none">
+
+  <!-- Header Console -->
+  <header class="w-full max-w-4xl mx-auto bg-slate-900/90 border border-slate-800 rounded-2xl p-4 mb-4 backdrop-blur shadow-2xl flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center font-black text-slate-950 text-lg shadow-lg">
+        L
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <h1 class="text-base md:text-lg font-black tracking-wide text-white">AGENT 1: "L"</h1>
+          <span class="text-[9px] px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30 font-bold uppercase tracking-wider">
+            Top 0.1% Global Forensics
+          </span>
+        </div>
+        <p class="text-[11px] text-slate-400 font-mono-code">Autonomous Trend Scout & Retention Architect</p>
+      </div>
+    </div>
+
+    <!-- Quick Navigation & Key Status -->
+    <div class="flex items-center gap-2">
+      <button onclick="openKeyModal()" class="text-xs bg-slate-800 hover:bg-slate-700 active:scale-95 px-3 py-2 rounded-xl border border-slate-700 text-slate-200 flex items-center gap-1.5 transition">
+        <i class="fa-solid fa-key text-amber-400"></i>
+        <span id="keyLabel">Set Key</span>
+      </button>
+      <a href="index.html" class="text-xs bg-amber-500 hover:bg-amber-400 active:scale-95 text-slate-950 font-extrabold px-3 py-2 rounded-xl shadow transition flex items-center gap-1.5">
+        <i class="fa-solid fa-crown"></i> Erwin Studio
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Intelligence Core -->
+  <main class="w-full max-w-4xl mx-auto space-y-4">
+
+    <!-- Mission Parameter Configuration Card -->
+    <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-xl space-y-4">
+      <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+        <div class="flex items-center gap-2 text-xs font-bold text-amber-400 uppercase tracking-wider font-mono-code">
+          <i class="fa-solid fa-sliders"></i> Target Mission Parameters
+        </div>
+        <div class="flex gap-2">
+          <button onclick="setNichePreset('Billionaire Underground Bunkers', 'USA', 'CH_01_LUXURY')" class="text-[10px] bg-slate-800 hover:bg-slate-700 px-2 py-1 rounded-lg text-amber-300 transition">
+            💎 Luxury Demo
+          </button>
+          <button onclick="setNichePreset('The Disappearance of Flight 370 New Evidence', 'USA', 'CH_02_MYSTERY')" class="text-[10px] bg-slate-800 hover:bg-slate-700 px-2 py-1 rounded-lg text-purple-300 transition">
+            👁️ Mystery Demo
+          </button>
+        </div>
+      </div>
+
+      <!-- Input Grids -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div class="md:col-span-2 space-y-1">
+          <label class="text-xs font-semibold text-slate-300">Investigative Lead / Niche Focus</label>
+          <input id="nicheInput" type="text" value="Billionaire Underground Bunkers" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-400 rounded-xl px-3 py-2.5 text-xs md:text-sm text-white outline-none font-mono-code transition">
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-xs font-semibold text-slate-300">Channel Node Destination</label>
+          <select id="channelSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none transition">
+            <option value="CH_01_LUXURY">CH_01: Luxury & Wealth</option>
+            <option value="CH_02_MYSTERY">CH_02: Mystery & Anomalies</option>
+            <option value="CH_03_FUNNY">CH_03: Funny Commentary</option>
+            <option value="CH_04_BUSINESS">CH_04: Business Secrets</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="space-y-1">
+          <label class="text-xs font-semibold text-slate-300">Geographic Demographic Target (Economics)</label>
+          <select id="countrySelect" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none transition">
+            <option value="USA">United States (Tier-1 | High CPM $18-$45)</option>
+            <option value="UK">United Kingdom (Tier-1 | $14-$32)</option>
+            <option value="Canada">Canada (Tier-1 | $15-$34)</option>
+            <option value="Australia">Australia (Tier-1 | $16-$38)</option>
+            <option value="Global">Worldwide Tier-1 Synthesis ($12-$25)</option>
+          </select>
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-xs font-semibold text-slate-300">Forensic Algorithm Scrape Depth</label>
+          <select id="depthSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none transition">
+            <option value="Maximum">Maximum (Search Intents + 5 Titles + 30s Retention + Competitor Defect)</option>
+            <option value="Rapid">Rapid Tactical (Titles + Hook Only)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Action Button -->
+      <button id="launchBtn" onclick="executeInvestigation()" class="w-full bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 hover:from-amber-400 hover:to-yellow-300 active:scale-[0.99] text-slate-950 font-black py-3.5 rounded-xl text-sm transition shadow-xl flex items-center justify-center gap-2">
+        <i class="fa-solid fa-magnifying-glass-chart"></i> Launch Deep Strategic Investigation
+      </button>
+    </div>
+
+    <!-- Live Execution Telemetry Tracker -->
+    <div id="telemetryBox" class="hidden bg-slate-900 border border-amber-500/30 rounded-2xl p-4 shadow-xl space-y-2">
+      <div class="flex justify-between items-center text-xs font-mono-code text-amber-400">
+        <span class="flex items-center gap-2">
+          <i class="fa-solid fa-circle-notch fa-spin"></i>
+          <span id="telemetryStatus">Initializing investigation...</span>
+        </span>
+        <span id="telemetryPct" class="font-bold">15%</span>
+      </div>
+      <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden border border-slate-800">
+        <div id="telemetryProgress" class="bg-gradient-to-r from-amber-500 to-yellow-400 h-full w-[15%] transition-all duration-300"></div>
+      </div>
+    </div>
+
+    <!-- Output Cockpit (Appears when L completes analysis) -->
+    <div id="cockpitArea" class="hidden space-y-4">
+
+      <!-- Executive Overview Card -->
+      <div class="bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-2xl space-y-4">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-2 border-b border-slate-800 pb-3">
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-amber-400 font-mono-code">Master Algorithmic Verdict</span>
+            <h2 id="dispTitle" class="text-base md:text-xl font-black text-white mt-0.5"></h2>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800 text-center">
+              <span class="text-[9px] text-slate-400 uppercase font-mono-code">Projected CPM</span>
+              <p id="dispCpm" class="text-xs font-extrabold text-emerald-400 font-mono-code">$24 - $45</p>
+            </div>
+            <div class="bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800 text-center">
+              <span class="text-[9px] text-slate-400 uppercase font-mono-code">Virality Score</span>
+              <p id="dispScore" class="text-xs font-extrabold text-amber-400 font-mono-code">96 / 100</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Tabs for Deep Breakdown -->
+        <div class="flex gap-1.5 overflow-x-auto pb-1 custom-scrollbar text-xs">
+          <button onclick="switchTab('tabTitles')" id="btnTabTitles" class="px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold transition">5-Angle Titles</button>
+          <button onclick="switchTab('tabRetention')" id="btnTabRetention" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition">0-30s Retention Lock</button>
+          <button onclick="switchTab('tabCompetitors')" id="btnTabCompetitors" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition">Competitor Flaws</button>
+          <button onclick="switchTab('tabSeo')" id="btnTabSeo" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition">SEO & Keywords</button>
+          <button onclick="switchTab('tabJson')" id="btnTabJson" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition font-mono-code">Rohan's Payload (JSON)</button>
+        </div>
+
+        <!-- TAB 1: 5-Angle Psychological Titles -->
+        <div id="tabTitles" class="space-y-2 pt-2">
+          <span class="text-[11px] text-slate-400 font-mono-code">Psychologically engineered for click curiosity without policy violation:</span>
+          <div id="titlesList" class="space-y-2"></div>
+        </div>
+
+        <!-- TAB 2: 0-30s Retention Lock Blueprint -->
+        <div id="tabRetention" class="hidden space-y-3 pt-2">
+          <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-1">
+            <span class="text-[10px] text-amber-400 font-mono-code uppercase font-bold">0-5s: Visual Pattern Interrupt & Opening Words</span>
+            <p id="ret0to5Visual" class="text-xs text-slate-300 font-mono-code"></p>
+            <p id="ret0to5Speech" class="text-xs text-amber-200 bg-slate-900 p-2.5 rounded-lg border border-slate-800 italic mt-1"></p>
+          </div>
+          <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-1">
+            <span class="text-[10px] text-purple-400 font-mono-code uppercase font-bold">5-15s: Micro-Stakes Escalation</span>
+            <p id="ret5to15" class="text-xs text-slate-300"></p>
+          </div>
+          <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-1">
+            <span class="text-[10px] text-rose-400 font-mono-code uppercase font-bold">15-30s: The Unsolvable Open Loop (Min 8+ Lock)</span>
+            <p id="ret15to30" class="text-xs text-slate-300"></p>
+          </div>
+        </div>
+
+        <!-- TAB 3: Competitor Flaws & Counter-Attack -->
+        <div id="tabCompetitors" class="hidden space-y-2 pt-2">
+          <div id="competitorList" class="space-y-2"></div>
+        </div>
+
+        <!-- TAB 4: High-CPM SEO Keywords -->
+        <div id="tabSeo" class="hidden space-y-3 pt-2">
+          <div class="flex flex-wrap gap-1.5" id="keywordsPills"></div>
+          <p id="briefingText" class="text-xs text-slate-300 bg-slate-950 p-3 rounded-xl border border-slate-800 leading-relaxed font-mono-code"></p>
+        </div>
+
+        <!-- TAB 5: Raw JSON Payload for Agent 2 (Rohan) -->
+        <div id="tabJson" class="hidden space-y-2 pt-2">
+          <div class="flex justify-between items-center">
+            <span class="text-[10px] text-slate-400 font-mono-code">Handover format for Agent 2: Rohan (Scriptwriter)</span>
+            <button onclick="copyRawJson()" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-1 rounded-lg text-amber-300 flex items-center gap-1">
+              <i class="fa-regular fa-copy"></i> Copy JSON
+            </button>
+          </div>
+          <pre id="rawJsonBox" class="p-3 bg-slate-950 rounded-xl border border-slate-800 text-[11px] font-mono-code text-emerald-400 overflow-x-auto max-h-72 custom-scrollbar"></pre>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- In-Screen API Key Modal (Zero native blocking popups) -->
+  <div id="keyModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 rounded-2xl p-5 w-full max-w-sm space-y-4 shadow-2xl">
+      <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+        <h3 class="text-sm font-bold text-amber-400 flex items-center gap-2">
+          <i class="fa-solid fa-key"></i> Set Gemini API Key
+        </h3>
+        <button onclick="closeKeyModal()" class="text-slate-400 hover:text-white text-lg">&times;</button>
+      </div>
+      <p class="text-xs text-slate-300 leading-relaxed">
+        Apni Google AI Studio key paste karein. Yeh key aapke device browser mein secure rahegi.
+      </p>
+      <input id="keyInputModal" type="password" placeholder="AIzaSy..." class="w-full bg-slate-950 border border-slate-700 focus:border-amber-400 rounded-xl p-3 text-xs text-white outline-none font-mono-code">
+      <div class="flex justify-end gap-2 pt-1">
+        <button onclick="closeKeyModal()" class="text-xs px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300">Cancel</button>
+        <button onclick="saveKeyModal()" class="text-xs px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold">Save Key</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let activeApiKey = localStorage.getItem('ERWIN_API_KEY') || localStorage.getItem('GEMINI_KEY') || '';
+    let currentPayload = null;
+
+    function initConsole() {
+      updateKeyUI();
+    }
+
+    function updateKeyUI() {
+      const lbl = document.getElementById('keyLabel');
+      if (activeApiKey) {
+        lbl.innerText = "Key Set ✓";
+        lbl.className = "text-emerald-400 font-bold";
+      } else {
+        lbl.innerText = "Set Key";
+        lbl.className = "text-slate-200";
+      }
+    }
+
+    function openKeyModal() {
+      document.getElementById('keyInputModal').value = activeApiKey;
+      document.getElementById('keyModal').classList.remove('hidden');
+    }
+
+    function closeKeyModal() {
+      document.getElementById('keyModal').classList.add('hidden');
+    }
+
+    function saveKeyModal() {
+      const v = document.getElementById('keyInputModal').value.trim();
+      if (!v) {
+        alert("Valid API key enter karein!");
+        return;
+      }
+      activeApiKey = v;
+      localStorage.setItem('ERWIN_API_KEY', activeApiKey);
+      localStorage.setItem('GEMINI_KEY', activeApiKey);
+      updateKeyUI();
+      closeKeyModal();
+      alert("✅ API Key successfully stored!");
+    }
+
+    function setNichePreset(niche, country, channel) {
+      document.getElementById('nicheInput').value = niche;
+      document.getElementById('countrySelect').value = country;
+      document.getElementById('channelSelect').value = channel;
+    }
+
+    function switchTab(tabId) {
+      const tabs = ['tabTitles', 'tabRetention', 'tabCompetitors', 'tabSeo', 'tabJson'];
+      const buttons = ['btnTabTitles', 'btnTabRetention', 'btnTabCompetitors', 'btnTabSeo', 'btnTabJson'];
+
+      tabs.forEach((t, i) => {
+        document.getElementById(t).classList.add('hidden');
+        document.getElementById(buttons[i]).className = "px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-medium hover:bg-slate-700 transition";
+      });
+
+      document.getElementById(tabId).classList.remove('hidden');
+      const activeIdx = tabs.indexOf(tabId);
+      document.getElementById(buttons[activeIdx]).className = "px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold transition";
+    }
+
+    async function executeInvestigation() {
+      if (!activeApiKey) {
+        openKeyModal();
+        return;
+      }
+
+      const niche = document.getElementById('nicheInput').value.trim();
+      const country = document.getElementById('countrySelect').value;
+      const channel = document.getElementById('channelSelect').value;
+      const depth = document.getElementById('depthSelect').value;
+
+      if (!niche) {
+        alert("Kripya topic enter karein!");
+        return;
+      }
+
+      const launchBtn = document.getElementById('launchBtn');
+      const telemetryBox = document.getElementById('telemetryBox');
+      const telemetryStatus = document.getElementById('telemetryStatus');
+      const telemetryProgress = document.getElementById('telemetryProgress');
+      const telemetryPct = document.getElementById('telemetryPct');
+      const cockpitArea = document.getElementById('cockpitArea');
+
+      launchBtn.disabled = true;
+      launchBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Investigating Algorithmic Patterns...';
+      telemetryBox.classList.remove('hidden');
+      cockpitArea.classList.add('hidden');
+
+      // Stage 1
+      telemetryStatus.innerText = "Extracting audience search volume & curiosity gaps...";
+      telemetryProgress.style.width = "30%";
+      telemetryPct.innerText = "30%";
+
+      const systemPrompt = `You are L Lawliet, the world's most sophisticated YouTube Strategic Researcher.
+Benchmark: Global Top 0.1% YouTube packaging agencies.
+
+CRUCIAL TASK:
+Analyze the niche, target market economics, viewer drop-off psychology, and competitor defects.
+Output STRICT VALID JSON ONLY. Zero markdown outside JSON.
+
+JSON SCHEMA:
+{
+  "projected_cpm": "$XX - $XX",
+  "virality_score_out_of_100": 95,
+  "working_title": "Primary viral title under 55 characters",
+  "title_matrix_5_angles": {
+    "curiosity_gap": "Title withholding the key answer",
+    "high_stakes": "Title with massive consequence or financial loss",
+    "negative_bias": "Why popular beliefs are dangerous or false",
+    "insider_whistleblower": "Confession or leak by an authoritative insider",
+    "counter_intuitive_paradox": "Contradictory fact that forces a click"
+  },
+  "retention_architecture_0_to_30s": {
+    "visual_pattern_interrupt_0_to_5s": "Detailed visual cue description",
+    "verbatim_spoken_script_0_to_5s": "Exact first 2 spoken sentences with extreme hook density",
+    "micro_stakes_escalation_5_to_15s": "Why this affects the viewer directly",
+    "open_loop_hook_15_to_30s": "The mystery that won't be revealed until the final act"
+  },
+  "competitor_defects": [
+    {
+      "competitor_flaw": "What standard videos do wrong",
+      "our_counter_strike": "How our video captures their audience"
+    },
+    {
+      "competitor_flaw": "Generic pacing or obvious stock clips",
+      "our_counter_strike": "Cinematic tension and exclusive case evidence"
+    }
+  ],
+  "high_cpm_keywords": ["keyword1", "keyword2", "keyword3", "keyword4", "keyword5", "keyword6"],
+  "erwin_briefing": "Crisp 3-sentence summary for Commander Erwin explaining why this topic will dominate the algorithm."
+}`;
+
+      const userMessage = `Perform exhaustive YouTube algorithmic research:
+Niche: ${niche}
+Target Country: ${country}
+Channel ID: ${channel}
+Scrape Depth: ${depth}`;
+
+      try {
+        setTimeout(() => {
+          telemetryStatus.innerText = "Calculating 5-angle psychological titles & 0-30s retention lock...";
+          telemetryProgress.style.width = "65%";
+          telemetryPct.innerText = "65%";
+        }, 1200);
+
+        const models = ['gemini-2.5-flash'];
+        let rawText = null;
+
+        for (const m of models) {
+          try {
+            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${activeApiKey}`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                system_instruction: { parts: [{ text: systemPrompt }] },
+                contents: [{ parts: [{ text: userMessage }] }],
+                generationConfig: {
+                  response_mime_type: "application/json",
+                  temperature: 0.4
+                }
+              })
+            });
+
+            if (res.ok) {
+              const resData = await res.json();
+              rawText = resData.candidates[0].content.parts[0].text;
+              break;
+            }
+          } catch (e) {
+            console.warn("Model fallback attempt:", m, e);
+          }
+        }
+
+        if (!rawText) {
+          throw new Error("Google AI servers par temporary load hai. Kripya 10s baad retry karein.");
+        }
+
+        telemetryStatus.innerText = "Compiling forensic payload for Agent 2 (Rohan)...";
+        telemetryProgress.style.width = "100%";
+        telemetryPct.innerText = "100%";
+
+        const data = JSON.parse(rawText);
+        currentPayload = data;
+
+        // Save to Shared LocalStorage for Erwin & Rohan
+        localStorage.setItem(`PIPELINE_RESEARCH_${channel}`, JSON.stringify(data));
+
+        // Render UI
+        document.getElementById('dispTitle').innerText = data.working_title;
+        document.getElementById('dispCpm').innerText = data.projected_cpm || "$20 - $45";
+        document.getElementById('dispScore').innerText = `${data.virality_score_out_of_100 || 94} / 100`;
+
+        // Titles Render
+        const titlesBox = document.getElementById('titlesList');
+        titlesBox.innerHTML = '';
+        const angles = [
+          { key: 'curiosity_gap', label: 'Curiosity Gap', color: 'amber' },
+          { key: 'high_stakes', label: 'High Stakes', color: 'rose' },
+          { key: 'negative_bias', label: 'Negative Bias', color: 'blue' },
+          { key: 'insider_whistleblower', label: 'Whistleblower', color: 'emerald' },
+          { key: 'counter_intuitive_paradox', label: 'Paradox', color: 'cyan' }
+        ];
+
+        angles.forEach(a => {
+          const tText = data.title_matrix_5_angles?.[a.key] || 'Analysis pending';
+          const card = document.createElement('div');
+          card.className = "p-3 bg-slate-950 rounded-xl border border-slate-800 flex justify-between items-center gap-2";
+          card.innerHTML = `
+            <div>
+              <span class="text-[9px] uppercase font-bold text-${a.color}-400 font-mono-code">${a.label}</span>
+              <p class="text-xs text-slate-200 font-medium mt-0.5">${tText}</p>
+            </div>
+            <button onclick="navigator.clipboard.writeText('${tText.replace(/'/g, "\\'")}'); alert('Title copied!');" class="text-xs text-slate-400 hover:text-white p-1.5 rounded bg-slate-900 border border-slate-800 flex-shrink-0">
+              <i class="fa-regular fa-copy"></i>
+            </button>
+          `;
+          titlesBox.appendChild(card);
+        });
+
+        // Retention Render
+        document.getElementById('ret0to5Visual').innerText = "Scene: " + (data.retention_architecture_0_to_30s?.visual_pattern_interrupt_0_to_5s || '');
+        document.getElementById('ret0to5Speech').innerText = '"' + (data.retention_architecture_0_to_30s?.verbatim_spoken_script_0_to_5s || '') + '"';
+        document.getElementById('ret5to15').innerText = data.retention_architecture_0_to_30s?.micro_stakes_escalation_5_to_15s || '';
+        document.getElementById('ret15to30').innerText = data.retention_architecture_0_to_30s?.open_loop_hook_15_to_30s || '';
+
+        // Competitor Flaws Render
+        const compBox = document.getElementById('competitorList');
+        compBox.innerHTML = '';
+        (data.competitor_defects || []).forEach(c => {
+          const cDiv = document.createElement('div');
+          cDiv.className = "p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-1";
+          cDiv.innerHTML = `
+            <span class="text-[10px] text-rose-400 font-bold uppercase font-mono-code">Competitor Defect:</span>
+            <p class="text-xs text-slate-300">${c.competitor_flaw}</p>
+            <span class="text-[10px] text-emerald-400 font-bold uppercase font-mono-code mt-1 inline-block">L's Counter-Attack:</span>
+            <p class="text-xs text-slate-200">${c.our_counter_strike}</p>
+          `;
+          compBox.appendChild(cDiv);
+        });
+
+        // Keywords & Briefing
+        const kwBox = document.getElementById('keywordsPills');
+        kwBox.innerHTML = '';
+        (data.high_cpm_keywords || []).forEach(k => {
+          const pill = document.createElement('span');
+          pill.className = "text-[11px] px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-800 text-amber-300 font-mono-code";
+          pill.innerText = `#${k}`;
+          kwBox.appendChild(pill);
+        });
+        document.getElementById('briefingText').innerText = "Erwin Briefing: " + (data.erwin_briefing || 'Complete.');
+
+        // Raw JSON Render
+        document.getElementById('rawJsonBox').innerText = JSON.stringify(data, null, 2);
+
+        cockpitArea.classList.remove('hidden');
+
+      } catch (err) {
+        alert("L Intelligence Engine Error: " + err.message);
+      } finally {
+        launchBtn.disabled = false;
+        launchBtn.innerHTML = '<i class="fa-solid fa-magnifying-glass-chart"></i> Launch Deep Strategic Investigation';
+        telemetryBox.classList.add('hidden');
+      }
+    }
+
+    function copyRawJson() {
+      if (currentPayload) {
+        navigator.clipboard.writeText(JSON.stringify(currentPayload, null, 2));
+        alert("Agent 2 (Rohan) payload copied to clipboard!");
+      }
+    }
+
+    window.onload = initConsole;
+  </script>
+</body>
+</html>

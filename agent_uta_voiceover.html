@@ -17,6 +17,14 @@
     .font-mono-code {
       font-family: 'JetBrains Mono', monospace;
     }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #374151;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col p-3 md:p-6 pb-28 select-none">
@@ -31,10 +39,10 @@
         <div class="flex items-center gap-2">
           <h1 class="text-base md:text-lg font-black tracking-wide text-white">AGENT 4: "UTA"</h1>
           <span class="text-[9px] px-2 py-0.5 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/30 font-bold uppercase tracking-wider">
-            ElevenLabs Pro Clean
+            Multi-Character Seiyū v3.0
           </span>
         </div>
-        <p class="text-[11px] text-slate-400 font-mono-code">Hollywood Narrator • Clean Human Articulation</p>
+        <p class="text-[11px] text-slate-400 font-mono-code">Any Accent • Any Persona • 29+ Languages Fluent</p>
       </div>
     </div>
 
@@ -57,7 +65,7 @@
     <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-xl space-y-4">
       <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-slate-800 pb-3">
         <span class="text-xs font-bold text-pink-400 uppercase tracking-wider font-mono-code flex items-center gap-2">
-          <i class="fa-solid fa-microphone-lines"></i> Spoken Narration Studio
+          <i class="fa-solid fa-microphone-lines"></i> Multi-Voice Performance Studio
         </span>
         <button onclick="autoImportApprovedScript()" class="text-xs bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-3 py-1.5 rounded-xl font-mono-code font-bold flex items-center gap-1.5 transition">
           <i class="fa-solid fa-bolt"></i> Auto-Import Clean Script
@@ -67,36 +75,54 @@
       <!-- Script Area -->
       <div class="space-y-1">
         <div class="flex justify-between items-center">
-          <label class="text-xs font-semibold text-slate-300">Spoken Words Only (No SFX or Technical Tags)</label>
-          <span class="text-[10px] text-emerald-400 font-mono-code">Clean Text Pipeline Active</span>
+          <label class="text-xs font-semibold text-slate-300">Spoken Script (Any Language - English, Hinglish, Japanese, etc.)</label>
+          <span class="text-[10px] text-emerald-400 font-mono-code">Clean Voice Stream Active</span>
         </div>
-        <textarea id="narrationInput" rows="4" placeholder="Type clean narration text here..." class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl p-3 text-xs text-slate-200 outline-none font-mono-code leading-relaxed"></textarea>
+        <textarea id="narrationInput" rows="4" placeholder="Script text yahan likhein ya import karein..." class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl p-3 text-xs text-slate-200 outline-none font-mono-code leading-relaxed"></textarea>
       </div>
 
-      <!-- Voice Selection -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <!-- Multi-Character Archetype Selection -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
         <div class="space-y-1">
-          <label class="text-xs font-semibold text-slate-300">Select Voice Archetype</label>
-          <select id="voiceIdSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl px-3 py-2.5 text-xs text-amber-300 font-semibold outline-none font-mono-code">
-            <option value="pNInz6obpgDQGcFmaJgB">🎙️ Adam (Deep Mystery & Luxury - World #1)</option>
-            <option value="JBFqnCBsd6RMkjVDRZzb">🇬🇧 George (British Warm Storyteller - Documentary)</option>
-            <option value="TX3LPaxmHKxFdv7VOQHJ">⚡ Liam (Energetic & Punchy - Shorts/Funny)</option>
-            <option value="XB0fDUnXU5powFXDhCwa">👁️ Charlotte (Chilling Suspense Whispers)</option>
+          <label class="text-xs font-semibold text-slate-300">Select Character Voice</label>
+          <select id="voiceIdSelect" onchange="toggleCustomVoice(this.value)" class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl px-3 py-2.5 text-xs text-amber-300 font-semibold outline-none font-mono-code">
+            <optgroup label="Male Personas">
+              <option value="pNInz6obpgDQGcFmaJgB">🎙️ Adam (Deep Mystery / Luxury / Boss)</option>
+              <option value="ErXwobaYiN019PkySvjV">⚡ Antoni (Energetic / High Sarcasm / Funny)</option>
+              <option value="JBFqnCBsd6RMkjVDRZzb">🇬🇧 George (BBC Documentary / British Noir)</option>
+              <option value="TX3LPaxmHKxFdv7VOQHJ">🔥 Liam (Fast-Paced American Shorts Narrator)</option>
+              <option value="nPczCjzI2devNBz1zQrb">🎧 Brian (Classic Storyteller / Deep Gravitas)</option>
+            </optgroup>
+            <optgroup label="Female Personas">
+              <option value="21m00Tcm4TlvDq8ikWAM">🎙️ Rachel (Warm, Natural, Engaging Storyteller)</option>
+              <option value="XB0fDUnXU5powFXDhCwa">👁️ Charlotte (Chilling, Suspenseful Whisper)</option>
+              <option value="EXAVITQu4vr4xnSDxMaL">💎 Bella (Ultra-Prestige Luxury & Elegance)</option>
+              <option value="piTKgcLEGmPE4e6mEKli">🔥 Nicole (Dramatic Suspense & Fast Cadence)</option>
+            </optgroup>
+            <optgroup label="Custom Archetype">
+              <option value="CUSTOM">⚙️ Enter Custom Voice ID...</option>
+            </optgroup>
           </select>
         </div>
 
         <div class="space-y-1">
-          <label class="text-xs font-semibold text-slate-300">Stability & Natural Pace</label>
+          <label class="text-xs font-semibold text-slate-300">Tone & Pacing Stability</label>
           <select id="voiceProfileSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none">
-            <option value="fluent_narrative">🎬 Fluent Cinematic Narrative (Stable, Clear, Natural)</option>
+            <option value="fluent_narrative">🎬 Fluent Cinematic Narrative (Stable & Natural)</option>
             <option value="deep_suspense">👁️ Deep Suspense (Heavy Dramatic Pauses)</option>
+            <option value="energetic_punch">⚡ High-Octane Energy (Punchy Delivery)</option>
           </select>
+        </div>
+
+        <div class="space-y-1" id="customVoiceBox" style="display: none;">
+          <label class="text-xs font-semibold text-slate-300">Custom ElevenLabs Voice ID</label>
+          <input id="customVoiceInput" type="text" placeholder="Paste Voice ID here..." class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl px-3 py-2.5 text-xs text-pink-300 font-mono-code outline-none">
         </div>
       </div>
 
       <!-- Action Button -->
       <button id="renderVoiceBtn" onclick="renderAuthenticElevenLabsAudio()" class="w-full bg-gradient-to-r from-pink-500 via-rose-500 to-purple-600 hover:from-pink-400 hover:to-purple-500 active:scale-[0.99] text-white font-black py-3.5 rounded-xl text-sm transition shadow-xl flex items-center justify-center gap-2">
-        <i class="fa-solid fa-microphone"></i> Render 100% Fluent Voiceover
+        <i class="fa-solid fa-microphone"></i> Render 100% Fluent Multi-Character Voiceover
       </button>
     </div>
 
@@ -105,7 +131,7 @@
       <div class="flex justify-between items-center text-xs font-mono-code text-pink-400">
         <span class="flex items-center gap-2">
           <i class="fa-solid fa-circle-notch fa-spin"></i>
-          <span id="telemetryStatus">Uta is generating audio with ElevenLabs...</span>
+          <span id="telemetryStatus">Uta is channeling character vocal inflection...</span>
         </span>
         <span id="telemetryPct">50%</span>
       </div>
@@ -121,10 +147,10 @@
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-800 pb-3">
           <div>
             <span class="text-[10px] uppercase font-bold text-pink-400 font-mono-code">Master Vocal Track Ready</span>
-            <h2 id="dispVocalTitle" class="text-base font-extrabold text-white mt-0.5">ElevenLabs Fluent Master Take</h2>
+            <h2 id="dispVocalTitle" class="text-base font-extrabold text-white mt-0.5">ElevenLabs Multi-Character Master Take</h2>
           </div>
           <div class="flex items-center gap-2">
-            <a id="downloadLink" download="uta_clean_master.mp3" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-2 rounded-xl text-slate-200 border border-slate-700 flex items-center gap-1.5 transition">
+            <a id="downloadLink" download="uta_character_voiceover.mp3" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-2 rounded-xl text-slate-200 border border-slate-700 flex items-center gap-1.5 transition">
               <i class="fa-solid fa-download text-pink-400"></i> Download MP3
             </a>
           </div>
@@ -171,6 +197,10 @@
       if (!document.getElementById('narrationInput').value) {
         document.getElementById('narrationInput').value = defaultText;
       }
+    }
+
+    function toggleCustomVoice(val) {
+      document.getElementById('customVoiceBox').style.display = (val === 'CUSTOM') ? 'block' : 'none';
     }
 
     function updateKeyUI() {
@@ -225,7 +255,6 @@
         text = verified;
       }
 
-      // Deep clean brackets, technical notes, dots corruption
       const clean = text
         .replace(/[whisper]/gi, '')
         .replace(/\[pause[^\]]*\]/gi, '')
@@ -253,12 +282,15 @@
       }
 
       let rawScript = document.getElementById('narrationInput').value.trim();
-      const voiceId = document.getElementById('voiceIdSelect').value;
+      let voiceId = document.getElementById('voiceIdSelect').value;
+      if (voiceId === 'CUSTOM') {
+        voiceId = document.getElementById('customVoiceInput').value.trim();
+        if (!voiceId) return alert("Kripya custom Voice ID daalein!");
+      }
       const profile = document.getElementById('voiceProfileSelect').value;
 
       if (!rawScript) return alert("Pehle narration text dalein!");
 
-      // Thorough cleaning so text is read normally, not spelled out
       const cleanText = rawScript
         .replace(/\[.*?\]/g, '')
         .replace(/\{.*?\}/g, '')
@@ -282,11 +314,10 @@
       telemetryBox.classList.remove('hidden');
       cockpitArea.classList.add('hidden');
 
-      telemetryStatus.innerText = "Applying stable Hollywood narrative pacing...";
+      telemetryStatus.innerText = "Applying narrative prosody & inflection...";
       telemetryProgress.style.width = "40%";
       telemetryPct.innerText = "40%";
 
-      // Stable natural settings so words are pronounced normally
       let stability = 0.50;
       let similarity = 0.80;
       let style = 0.20;
@@ -295,6 +326,10 @@
         stability = 0.45;
         similarity = 0.85;
         style = 0.30;
+      } else if (profile === 'energetic_punch') {
+        stability = 0.38;
+        similarity = 0.82;
+        style = 0.40;
       }
 
       document.getElementById('cleanPreviewText').innerText = cleanText;
@@ -337,7 +372,7 @@
 
         audioPlayer.src = audioUrl;
         dlLink.href = audioUrl;
-        dlLink.download = `uta_fluent_voiceover.mp3`;
+        dlLink.download = `uta_character_voiceover.mp3`;
 
         cockpitArea.classList.remove('hidden');
         audioPlayer.play();
@@ -346,7 +381,7 @@
         alert("ElevenLabs Engine Error: " + err.message);
       } finally {
         renderBtn.disabled = false;
-        renderBtn.innerHTML = '<i class="fa-solid fa-microphone"></i> Render 100% Fluent Voiceover';
+        renderBtn.innerHTML = '<i class="fa-solid fa-microphone"></i> Render 100% Fluent Multi-Character Voiceover';
         telemetryBox.classList.add('hidden');
       }
     }

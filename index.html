@@ -16,7 +16,6 @@
     .safe-bottom {
       padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
     }
-    /* Auto expanding textarea without ugly scrollbar */
     #userInput::-webkit-scrollbar {
       width: 4px;
     }
@@ -118,7 +117,7 @@
     <main class="flex-1 flex flex-col h-full bg-slate-950 overflow-hidden relative">
       <div id="chatBox" class="flex-1 overflow-y-auto p-3 md:p-4 space-y-4"></div>
 
-      <!-- Live Animated Thinking Tracker (Nexus Style) -->
+      <!-- Live Animated Thinking Tracker -->
       <div id="statusTracker" class="hidden px-4 py-2 bg-slate-900/95 border-t border-slate-800 flex items-center gap-2 text-xs text-amber-400 font-mono flex-shrink-0">
         <i class="fa-solid fa-circle-notch fa-spin text-amber-400"></i>
         <span id="statusText">Commander Erwin is analyzing your directive...</span>
@@ -135,19 +134,16 @@
         <span class="text-xs text-slate-300 font-mono">Attachment ready</span>
       </div>
 
-      <!-- Bottom Chat-Style Auto-Expanding Input Box (ChatGPT / Gemini Style) -->
+      <!-- Bottom Chat-Style Auto-Expanding Input Box -->
       <div class="p-2.5 md:p-3 bg-slate-900/95 border-t border-slate-800 safe-bottom flex-shrink-0 z-20">
         <div class="flex items-end gap-2 max-w-4xl mx-auto bg-slate-950 border border-slate-700/80 rounded-2xl p-1.5 focus-within:border-amber-400 transition shadow-lg">
-          <!-- Attachment Button -->
           <label class="cursor-pointer text-slate-400 hover:text-slate-200 active:scale-95 w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 transition mb-0.5">
             <i class="fa-solid fa-paperclip text-sm"></i>
             <input type="file" id="mediaInput" accept="image/*" class="hidden" onchange="handleMedia(event)">
           </label>
 
-          <!-- Auto-Growing Textarea -->
           <textarea id="userInput" rows="1" placeholder="Commander Erwin ko order dein..." oninput="autoGrow(this)" class="flex-1 bg-transparent px-2 py-2 text-sm text-slate-100 focus:outline-none resize-none max-h-36 leading-relaxed"></textarea>
 
-          <!-- Send Button -->
           <button id="sendBtn" onclick="sendMessage()" class="bg-amber-500 hover:bg-amber-400 active:scale-95 text-slate-950 w-9 h-9 rounded-xl font-bold transition flex items-center justify-center shadow flex-shrink-0 mb-0.5">
             <i class="fa-solid fa-arrow-up text-sm"></i>
           </button>
@@ -391,7 +387,6 @@
       sendBtn.disabled = true;
       sendBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-sm"></i>';
 
-      // Step-by-Step Animated Thinking Status (Nexus Style)
       setStatus("Commander Erwin is analyzing your directive...");
       setTimeout(() => setStatus("Consulting L (Researcher) for viral mystery hooks..."), 800);
       setTimeout(() => setStatus("Tasking Rohan (Scriptwriter) for scene-by-scene pacing..."), 1600);
@@ -426,8 +421,10 @@ YOUR BEHAVIOR:
         contents.push({ role: m.sender === 'user' ? 'user' : 'model', parts: parts });
       });
 
-      const models = ['gemini-2.5-flash'];
+      // Updated to active Google endpoints only
+      const models = ['gemini-3.8-flash', 'gemini-3.5-flash-lite'];
       let reply = null;
+      let detailedErr = null;
 
       for (const m of models) {
         try {
@@ -444,9 +441,12 @@ YOUR BEHAVIOR:
             const data = await res.json();
             reply = data.candidates[0].content.parts[0].text;
             break;
+          } else {
+            const errData = await res.json();
+            detailedErr = errData.error ? errData.error.message : `HTTP ${res.status}`;
           }
         } catch (err) {
-          console.warn("Retrying...", err);
+          detailedErr = err.message;
         }
       }
 
@@ -457,7 +457,7 @@ YOUR BEHAVIOR:
         saveSessions();
         appendUI(reply, 'erwin');
       } else {
-        appendUI("Erwin: Sir, Google API server busy hai. Kripya thodi der baad dobara Send karein.", 'erwin');
+        appendUI(`Erwin: Sir, API response issue hai (${detailedErr || 'Network error'}). Kripya API Key check karein.`, 'erwin');
       }
 
       sendBtn.disabled = false;

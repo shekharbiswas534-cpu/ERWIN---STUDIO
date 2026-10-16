@@ -75,21 +75,22 @@
         </button>
       </div>
 
-      <!-- Quick Links to Squad Members (L, Rohan & Kurapika) -->
+      <!-- Quick Links to Squad Members (L, Rohan, Kurapika & Uta) -->
       <div class="p-3 border-b border-slate-800/60 bg-slate-950/40">
         <span class="text-[10px] uppercase font-bold text-amber-400 tracking-wider">Active Squad Cockpits:</span>
-        <div class="grid grid-cols-1 gap-1.5 mt-2">
-          <div class="grid grid-cols-2 gap-1.5">
-            <a href="agent_l_researcher.html" class="p-2 rounded-xl bg-slate-900 border border-slate-800 text-amber-300 hover:bg-slate-800 text-xs flex items-center gap-1.5 transition">
-              🕵️ L (Researcher)
-            </a>
-            <a href="agent_rohan_scriptwriter.html" class="p-2 rounded-xl bg-slate-900 border border-slate-800 text-purple-300 hover:bg-slate-800 text-xs flex items-center gap-1.5 transition">
-              ✍️ Rohan (Script)
-            </a>
-          </div>
-          <!-- Kurapika Connection Button -->
-          <a href="agent_kurapika_factchecker.html" class="p-2 rounded-xl bg-slate-900 border border-emerald-500/30 text-emerald-300 hover:bg-slate-800 text-xs flex items-center justify-center gap-1.5 transition font-semibold">
-            🛡️ Kurapika (Fact Checker & Compliance)
+        <div class="grid grid-cols-2 gap-1.5 mt-2">
+          <a href="agent_l_researcher.html" class="p-2 rounded-xl bg-slate-900 border border-slate-800 text-amber-300 hover:bg-slate-800 text-xs flex items-center gap-1.5 transition">
+            🕵️ L (Research)
+          </a>
+          <a href="agent_rohan_scriptwriter.html" class="p-2 rounded-xl bg-slate-900 border border-slate-800 text-purple-300 hover:bg-slate-800 text-xs flex items-center gap-1.5 transition">
+            ✍️ Rohan (Script)
+          </a>
+          <a href="agent_kurapika_factchecker.html" class="p-2 rounded-xl bg-slate-900 border border-emerald-500/30 text-emerald-300 hover:bg-slate-800 text-xs flex items-center gap-1.5 transition font-semibold">
+            🛡️ Kurapika (Fact)
+          </a>
+          <!-- Uta Active Button -->
+          <a href="agent_uta_voiceover.html" class="p-2 rounded-xl bg-slate-900 border border-pink-500/30 text-pink-300 hover:bg-slate-800 text-xs flex items-center gap-1.5 transition font-semibold">
+            🎙️ Uta (Voiceover)
           </a>
         </div>
       </div>
@@ -104,7 +105,7 @@
           <span class="px-1.5 py-0.5 rounded bg-slate-800 text-amber-300 font-bold">L (Research ✓)</span>
           <span class="px-1.5 py-0.5 rounded bg-slate-800 text-purple-300 font-bold">Rohan (Script ✓)</span>
           <span class="px-1.5 py-0.5 rounded bg-slate-800 text-emerald-300 font-bold">Kurapika (Fact ✓)</span>
-          <span class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">Uta</span>
+          <span class="px-1.5 py-0.5 rounded bg-slate-800 text-pink-300 font-bold">Uta (Voice ✓)</span>
           <span class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">Levi</span>
           <span class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">Senku</span>
           <span class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">Armin</span>
@@ -126,7 +127,7 @@
       <!-- Live Animated Thinking Tracker -->
       <div id="statusTracker" class="hidden px-4 py-2 bg-slate-900/95 border-t border-slate-800 flex items-center gap-2 text-xs text-amber-400 font-mono flex-shrink-0">
         <i class="fa-solid fa-circle-notch fa-spin text-amber-400"></i>
-        <span id="statusText">Commander Erwin is coordinating with the squad...</span>
+        <span id="statusText">Commander Erwin is directing the squad...</span>
       </div>
 
       <!-- Media Preview -->
@@ -248,7 +249,7 @@
         title: 'Studio Command Room',
         messages: [{
           sender: 'erwin',
-          text: '🫡 Commander Erwin reporting, Sir!\n\nHamare 3 Master Specialists active hain:\n1. 🕵️ L (Researcher)\n2. ✍️ Rohan (Storyteller & Scriptwriter)\n3. 🛡️ Kurapika (Fact Checker & Compliance)\n\nHukam karein, kis topic par research, script aur fact check ka loop chalana hai?'
+          text: '🫡 Commander Erwin reporting, Sir!\n\nHamare 4 Master Specialists active hain:\n1. 🕵️ L (Researcher)\n2. ✍️ Rohan (Storyteller & Scriptwriter)\n3. 🛡️ Kurapika (Fact Checker & Compliance)\n4. 🎙️ Uta (AI Voiceover Artist & Multi-Character Seiyū)\n\nHukam karein, kis video ka concept aur vocal pipeline execute karna hai?'
         }]
       };
       sessions.unshift(newSession);
@@ -396,7 +397,8 @@
       setStatus("Commander Erwin is analyzing your directive...");
       setTimeout(() => setStatus("Consulting L (Researcher) for viral hooks..."), 700);
       setTimeout(() => setStatus("Tasking Rohan (Scriptwriter) for dual-column script..."), 1400);
-      setTimeout(() => setStatus("Briefing Kurapika (Compliance) for claim audit..."), 2100);
+      setTimeout(() => setStatus("Briefing Kurapika (Compliance) for fact check..."), 2100);
+      setTimeout(() => setStatus("Directing Uta (Voice Artist) for Multi-Character performance..."), 2800);
 
       const erwinBrainPrompt = `You are Commander Erwin, the Executive Studio Head & Boss of an automated YouTube media company.
 You report exclusively to the Owner (The User).
@@ -404,14 +406,15 @@ Active Subordinates currently operational:
 1. L (YouTube Master Strategic Researcher)
 2. Rohan (Master Storyteller & Scriptwriter)
 3. Kurapika (Fact Checker & Compliance Officer)
-Upcoming subordinates: Uta, Levi, Senku, Armin, Shikamaru.
+4. Uta (AI Voiceover Artist & Multi-Character Seiyū)
+Upcoming subordinates: Levi, Senku, Armin, Shikamaru.
 
 YOUR BEHAVIOR:
 - Speak directly in authoritative, sharp, respectful Hinglish/English. Address the Owner as Sir or Owner.
 - When the owner gives a task:
   1. Acknowledge with military precision.
-  2. State exact assignments given to L (Research), Rohan (Script & Memes), and Kurapika (Truth Check & Compliance).
-  3. Deliver the full strategic battle-plan: The 0-3s retention hook, meme pacing directives, and factual guardrails!`;
+  2. State exact assignments given to L (Research), Rohan (Script & Memes), Kurapika (Fact Check), and Uta (Voice Archetype & Emotional delivery).
+  3. Deliver the full strategic battle-plan: The 0-3s retention hook, meme pacing directives, factual guardrails, and Uta's voice actor selection!`;
 
       const contents = [];
       active.messages.slice(-6).forEach(m => {

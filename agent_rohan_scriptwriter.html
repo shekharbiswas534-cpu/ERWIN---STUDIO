@@ -329,8 +329,10 @@ Mandatory 0-5s Hook: ${hook}`;
           telemetryPct.innerText = "75%";
         }, 1500);
 
-        const models = ['gemini-2.5-flash'];
+        // Updated models without deprecated endpoints
+        const models = ['gemini-3.8-flash', 'gemini-3.5-flash-lite'];
         let rawText = null;
+        let lastErr = null;
 
         for (const m of models) {
           try {
@@ -347,13 +349,16 @@ Mandatory 0-5s Hook: ${hook}`;
               const resData = await res.json();
               rawText = resData.candidates[0].content.parts[0].text;
               break;
+            } else {
+              const errBody = await res.json();
+              lastErr = errBody.error ? errBody.error.message : `HTTP ${res.status}`;
             }
           } catch (e) {
-            console.warn(e);
+            lastErr = e.message;
           }
         }
 
-        if (!rawText) throw new Error("API response error. Kripya key check karein.");
+        if (!rawText) throw new Error(lastErr || "API response error. Kripya key check karein.");
 
         telemetryStatus.innerText = "Packaging master script for Kurapika...";
         telemetryProgress.style.width = "100%";
@@ -425,7 +430,7 @@ Mandatory 0-5s Hook: ${hook}`;
       btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
 
       try {
-        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${activeApiKey}`, {
+        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${activeApiKey}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

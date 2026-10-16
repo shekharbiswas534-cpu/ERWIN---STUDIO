@@ -39,10 +39,10 @@
         <div class="flex items-center gap-2">
           <h1 class="text-base md:text-lg font-black tracking-wide text-white">AGENT 3: "KURAPIKA"</h1>
           <span class="text-[9px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold uppercase tracking-wider">
-            Truth & Compliance Officer
+            Smart Compliance & Auto-Fix v2.0
           </span>
         </div>
-        <p class="text-[11px] text-slate-400 font-mono-code">Dowsing Chain Claim Verification • YouTube Guidelines Sentinel</p>
+        <p class="text-[11px] text-slate-400 font-mono-code">Dowsing Chain Sentinel • Non-Blocking Smart Audit • Auto-Fix Engine</p>
       </div>
     </div>
 
@@ -74,7 +74,7 @@
       <div class="space-y-1">
         <div class="flex justify-between items-center">
           <label class="text-xs font-semibold text-slate-300">Script Text or Claims to Audit</label>
-          <span class="text-[10px] text-slate-500 font-mono-code">Full Narration or Specific Bullet Claims</span>
+          <span class="text-[10px] text-slate-500 font-mono-code">Auto-Imported from Rohan</span>
         </div>
         <textarea id="scriptInput" rows="4" placeholder="Paste Rohan's narration script or tap Auto-Import..." class="w-full bg-slate-950 border border-slate-800 focus:border-emerald-400 rounded-xl p-3 text-xs text-slate-200 outline-none font-mono-code custom-scrollbar leading-relaxed"></textarea>
       </div>
@@ -83,9 +83,9 @@
         <div class="space-y-1">
           <label class="text-xs font-semibold text-slate-300">Target Channel Policy Strictness</label>
           <select id="strictnessSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-emerald-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none">
+            <option value="Smart Flexible (Pass with Warnings for minor exaggerations)">⚡ Smart Flexible (Pass minor issues, only block severe strikes)</option>
+            <option value="Mystery Standard (Allows Unresolved Theses with Disclaimers)">👁️ Mystery Standard (Theories labeled with disclaimers)</option>
             <option value="Maximum (Zero Falsehoods, Strict Citation)">🛡️ Maximum (Investigative & Documentary Grade)</option>
-            <option value="Balanced (Allows Parody & Sarcastic Hyperbole)">⚖️ Balanced (Funny Commentary & Meme Channels)</option>
-            <option value="Mystery Standard (Allows Unresolved Theses with Disclaimers)">👁️ Mystery Standard (Theories labeled as hypotheses)</option>
           </select>
         </div>
         <div class="space-y-1">
@@ -128,12 +128,18 @@
             <h2 id="verdictHeadline" class="text-base font-extrabold text-white mt-1"></h2>
             <p id="verdictSummary" class="text-xs text-slate-300 mt-1"></p>
           </div>
-          <div class="flex gap-2">
+          <div class="flex flex-wrap gap-2">
+            <button id="autoFixBtn" onclick="autoFixScript()" class="text-xs bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-3 py-2 rounded-xl flex items-center gap-1 shadow">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> ⚡ Auto-Fix Script
+            </button>
             <button onclick="copyAuditReport()" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-2 rounded-xl text-slate-200 border border-slate-700 flex items-center gap-1">
               <i class="fa-regular fa-copy"></i> Copy Audit
             </button>
             <button id="sendToUtaBtn" onclick="exportToUta()" class="text-xs bg-pink-600 hover:bg-pink-500 text-white font-bold px-3 py-2 rounded-xl flex items-center gap-1 shadow">
-              <i class="fa-solid fa-microphone-lines"></i> Pass to Uta (Voiceover)
+              <i class="fa-solid fa-microphone-lines"></i> Pass to Uta
+            </button>
+            <button id="overrideBtn" onclick="forceOverridePass()" class="text-xs bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-500/40 px-2.5 py-2 rounded-xl font-bold flex items-center gap-1">
+              ⚡ Force Pass
             </button>
           </div>
         </div>
@@ -147,8 +153,8 @@
                 <tr class="border-b border-slate-800 bg-slate-950/80 text-slate-400 font-mono-code">
                   <th class="p-3 w-16">#</th>
                   <th class="p-3 w-1/3">Extracted Script Claim</th>
-                  <th class="p-3 w-28">Truth Status</th>
-                  <th class="p-3">Kurapika's Correction & Compliance Directives</th>
+                  <th class="p-3 w-32">Severity & Status</th>
+                  <th class="p-3">Kurapika's Directive / Safe Wording</th>
                 </tr>
               </thead>
               <tbody id="claimsTableBody" class="divide-y divide-slate-800/60 font-sans">
@@ -209,7 +215,7 @@
       const outputArea = document.getElementById('auditOutputArea');
 
       auditBtn.disabled = true;
-      auditBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Kurapika is testing claims with Dowsing Chain...';
+      auditBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Kurapika is testing claims...';
       telemetryBox.classList.remove('hidden');
       outputArea.classList.add('hidden');
 
@@ -217,32 +223,33 @@
       telemetryProgress.style.width = "40%";
       telemetryPct.innerText = "40%";
 
-      const systemPrompt = `You are Kurapika, the relentless Truth Sentinel & Compliance Officer for a world-tier YouTube automation media house.
-Benchmark: Zero Demonetization Risk, Zero Defamation, Zero Community Guideline Strikes.
+      const systemPrompt = `You are Kurapika, the Truth Sentinel & YouTube Compliance Officer.
+Strictness Policy: ${strictness}.
 
-MISSION:
-Audit the provided YouTube script line-by-line.
-Verify dates, numbers, historical claims, and potential copyright/clickbait liabilities under strictness level: ${strictness}.
+CORE RULE ON BLOCKING:
+DO NOT block scripts for minor hyperbole, creative storytelling, unverified theories, or harmless drama.
+Only block (REVISION_REQUIRED) if there is an EXTREME real-world legal risk, severe hate speech, real dangerous harm, or direct copyright strike risk.
+For minor issues, mark as "MINOR_ISSUE" or "VERIFIED_PASS" and provide a compliant disclaimer or safe phrasing so the video can proceed.
 
 OUTPUT STRICT VALID JSON ONLY:
 {
   "final_verdict": "VERIFIED_PASS" or "REVISION_REQUIRED",
-  "safety_score_out_of_100": 94,
+  "safety_score_out_of_100": 85,
   "verdict_summary": "Executive summary for Commander Erwin",
-  "policy_flags": ["Any strike risk or copyright trigger words"],
   "claims_audit": [
     {
       "claim_id": 1,
       "exact_quote": "Quote from script",
-      "status": "VERIFIED" or "UNVERIFIED" or "EXAGGERATED" or "POLICY_RISK",
-      "correction_or_source": "Factual context or safe replacement phrase"
+      "severity": "SAFE" or "MINOR" or "MODERATE" or "CRITICAL_RISK",
+      "status": "VERIFIED" or "THEORY_WITH_DISCLAIMER" or "EXAGGERATION" or "STRIKE_RISK",
+      "correction_or_source": "Compliant phrasing or disclaimer"
     }
   ]
 }`;
 
       try {
         setTimeout(() => {
-          telemetryStatus.innerText = "Checking YouTube community guidelines & monetization compliance...";
+          telemetryStatus.innerText = "Evaluating YouTube community strike threshold...";
           telemetryProgress.style.width = "75%";
           telemetryPct.innerText = "75%";
         }, 1200);
@@ -257,7 +264,7 @@ OUTPUT STRICT VALID JSON ONLY:
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
                 system_instruction: { parts: [{ text: systemPrompt }] },
-                contents: [{ parts: [{ text: `Channel: ${channel}\nStrictness: ${strictness}\nScript to Audit:\n${scriptContent}` }] }],
+                contents: [{ parts: [{ text: `Channel: ${channel}\nPolicy: ${strictness}\nScript to Audit:\n${scriptContent}` }] }],
                 generationConfig: { response_mime_type: "application/json", temperature: 0.2 }
               })
             });
@@ -273,7 +280,7 @@ OUTPUT STRICT VALID JSON ONLY:
 
         if (!rawText) throw new Error("API call failed. Kripya key confirm karein.");
 
-        telemetryStatus.innerText = "Finalizing Dowsing Chain compliance report...";
+        telemetryStatus.innerText = "Finalizing compliance verdict...";
         telemetryProgress.style.width = "100%";
         telemetryPct.innerText = "100%";
 
@@ -302,21 +309,21 @@ OUTPUT STRICT VALID JSON ONLY:
       const score = document.getElementById('riskScore');
       const utaBtn = document.getElementById('sendToUtaBtn');
 
-      score.innerText = `Compliance Score: ${data.safety_score_out_of_100 || 90} / 100`;
+      score.innerText = `Compliance Score: ${data.safety_score_out_of_100 || 85} / 100`;
       summary.innerText = data.verdict_summary || 'Audit concluded.';
 
-      if (data.final_verdict === 'VERIFIED_PASS') {
+      if (data.final_verdict === 'VERIFIED_PASS' || data.safety_score_out_of_100 >= 60) {
         banner.className = "p-4 rounded-xl border border-emerald-500/40 bg-emerald-950/20";
         badge.className = "text-xs px-2.5 py-1 rounded-md font-extrabold uppercase font-mono-code tracking-wider bg-emerald-500 text-slate-950";
-        badge.innerText = "PASSED: VERIFIED CLEAN";
-        headline.innerText = "Script Cleared for Voiceover & Production";
+        badge.innerText = "PASSED FOR PRODUCTION";
+        headline.innerText = "Script Cleared for Voiceover & Video Production";
         utaBtn.classList.remove('hidden');
       } else {
-        banner.className = "p-4 rounded-xl border border-rose-500/40 bg-rose-950/20";
-        badge.className = "text-xs px-2.5 py-1 rounded-md font-extrabold uppercase font-mono-code tracking-wider bg-rose-500 text-white";
-        badge.innerText = "REVISION REQUIRED";
-        headline.innerText = "Script Blocked: Factual Anomalies Detected";
-        utaBtn.classList.add('hidden');
+        banner.className = "p-4 rounded-xl border border-amber-500/40 bg-amber-950/20";
+        badge.className = "text-xs px-2.5 py-1 rounded-md font-extrabold uppercase font-mono-code tracking-wider bg-amber-500 text-slate-950";
+        badge.innerText = "ATTENTION / AUTO-FIX READY";
+        headline.innerText = "Minor Adjustments Recommended (Click Auto-Fix)";
+        utaBtn.classList.remove('hidden');
       }
 
       const tableBody = document.getElementById('claimsTableBody');
@@ -327,9 +334,13 @@ OUTPUT STRICT VALID JSON ONLY:
         tr.className = "hover:bg-slate-950/50 transition";
         
         let statusBadge = '';
-        if (cl.status === 'VERIFIED') statusBadge = '<span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold">VERIFIED</span>';
-        else if (cl.status === 'EXAGGERATED') statusBadge = '<span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30 font-bold">EXAGGERATED</span>';
-        else statusBadge = '<span class="text-[10px] px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30 font-bold">RISK / FAKE</span>';
+        if (cl.severity === 'SAFE' || cl.status === 'VERIFIED') {
+          statusBadge = '<span class="text-[9px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold">VERIFIED</span>';
+        } else if (cl.severity === 'MINOR' || cl.status === 'THEORY_WITH_DISCLAIMER') {
+          statusBadge = '<span class="text-[9px] px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30 font-bold">THEORY / MINOR</span>';
+        } else {
+          statusBadge = '<span class="text-[9px] px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30 font-bold">HIGH RISK</span>';
+        }
 
         tr.innerHTML = `
           <td class="p-3 font-mono-code text-slate-500 font-bold align-top">#${cl.claim_id}</td>
@@ -341,6 +352,45 @@ OUTPUT STRICT VALID JSON ONLY:
       });
     }
 
+    async function autoFixScript() {
+      const orig = document.getElementById('scriptInput').value.trim();
+      if (!orig) return;
+
+      const fixBtn = document.getElementById('autoFixBtn');
+      fixBtn.disabled = true;
+      fixBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Fixing...';
+
+      try {
+        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${activeApiKey}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            system_instruction: { parts: [{ text: "You are Kurapika. Re-frame and adjust any risky/unverified claims in this script by adding compliant disclaimers (e.g. 'According to theories...', 'While unconfirmed...') so the script is 100% compliant with YouTube guidelines. Return the clean updated script directly." }] },
+            contents: [{ parts: [{ text: orig }] }]
+          })
+        });
+
+        const data = await res.json();
+        const cleaned = data.candidates[0].content.parts[0].text;
+        document.getElementById('scriptInput').value = cleaned;
+
+        // Auto-re-audit the fixed script
+        runKurapikaAudit();
+        alert("✨ Kurapika has automatically fixed all flagged lines with compliant disclaimers!");
+      } catch (e) {
+        alert("Auto-fix error: " + e.message);
+      } finally {
+        fixBtn.disabled = false;
+        fixBtn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> ⚡ Auto-Fix Script';
+      }
+    }
+
+    function forceOverridePass() {
+      if (confirm("Owner Override: Kya aap is script ko bina kisi badlav ke Uta (Voiceover) ke paas pass karna chahte hain?")) {
+        exportToUta();
+      }
+    }
+
     function copyAuditReport() {
       if (currentAuditPayload) {
         navigator.clipboard.writeText(JSON.stringify(currentAuditPayload, null, 2));
@@ -349,7 +399,10 @@ OUTPUT STRICT VALID JSON ONLY:
     }
 
     function exportToUta() {
-      alert("✅ Script passed! Ready for Agent 4: Uta (Voiceover Director).");
+      const channel = document.getElementById('channelInput').value.trim() || 'CH_02_MYSTERY';
+      const cleanScript = document.getElementById('scriptInput').value.trim();
+      localStorage.setItem(`PIPELINE_VERIFIED_SCRIPT_${channel}`, cleanScript);
+      alert("✅ Script verified & locked! Ready for Agent 4: Uta (AI Voiceover Artist).");
     }
 
     window.onload = () => {

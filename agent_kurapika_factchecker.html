@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Agent Kurapika | Master YouTube Fact Checker & Compliance Officer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #030712;
+      color: #f3f4f6;
+      overscroll-behavior: none;
+    }
+    .font-mono-code {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #374151;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col p-3 md:p-6 pb-24 select-none">
+
+  <!-- Header -->
+  <header class="w-full max-w-5xl mx-auto bg-slate-900/90 border border-slate-800 rounded-2xl p-4 mb-4 backdrop-blur shadow-2xl flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-600 flex items-center justify-center font-black text-slate-950 text-lg shadow-lg">
+        K
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <h1 class="text-base md:text-lg font-black tracking-wide text-white">AGENT 3: "KURAPIKA"</h1>
+          <span class="text-[9px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold uppercase tracking-wider">
+            Truth & Compliance Officer
+          </span>
+        </div>
+        <p class="text-[11px] text-slate-400 font-mono-code">Dowsing Chain Claim Verification • YouTube Guidelines Sentinel</p>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <a href="agent_rohan_scriptwriter.html" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-2 rounded-xl border border-slate-700 text-purple-300 font-bold flex items-center gap-1.5 transition">
+        ✍️ Rohan (Script)
+      </a>
+      <a href="index.html" class="text-xs bg-amber-500 hover:bg-amber-400 active:scale-95 text-slate-950 font-extrabold px-3 py-2 rounded-xl shadow transition flex items-center gap-1.5">
+        <i class="fa-solid fa-crown"></i> Erwin Studio
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Cockpit -->
+  <main class="w-full max-w-5xl mx-auto space-y-4">
+
+    <!-- Audit Input Box -->
+    <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-xl space-y-4">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-slate-800 pb-3">
+        <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider font-mono-code flex items-center gap-2">
+          <i class="fa-solid fa-shield-halved"></i> Script Ingestion & Compliance Target
+        </span>
+        <button onclick="autoImportFromRohan()" class="text-xs bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 border border-purple-500/30 px-3 py-1.5 rounded-xl font-mono-code font-bold flex items-center gap-1.5 transition">
+          <i class="fa-solid fa-bolt"></i> Auto-Import Latest Script from "Rohan"
+        </button>
+      </div>
+
+      <!-- Script Raw Text / Claims -->
+      <div class="space-y-1">
+        <div class="flex justify-between items-center">
+          <label class="text-xs font-semibold text-slate-300">Script Text or Claims to Audit</label>
+          <span class="text-[10px] text-slate-500 font-mono-code">Full Narration or Specific Bullet Claims</span>
+        </div>
+        <textarea id="scriptInput" rows="4" placeholder="Paste Rohan's narration script or tap Auto-Import..." class="w-full bg-slate-950 border border-slate-800 focus:border-emerald-400 rounded-xl p-3 text-xs text-slate-200 outline-none font-mono-code custom-scrollbar leading-relaxed"></textarea>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="space-y-1">
+          <label class="text-xs font-semibold text-slate-300">Target Channel Policy Strictness</label>
+          <select id="strictnessSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-emerald-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none">
+            <option value="Maximum (Zero Falsehoods, Strict Citation)">🛡️ Maximum (Investigative & Documentary Grade)</option>
+            <option value="Balanced (Allows Parody & Sarcastic Hyperbole)">⚖️ Balanced (Funny Commentary & Meme Channels)</option>
+            <option value="Mystery Standard (Allows Unresolved Theses with Disclaimers)">👁️ Mystery Standard (Theories labeled as hypotheses)</option>
+          </select>
+        </div>
+        <div class="space-y-1">
+          <label class="text-xs font-semibold text-slate-300">Channel ID</label>
+          <input id="channelInput" type="text" value="CH_02_MYSTERY" class="w-full bg-slate-950 border border-slate-800 focus:border-emerald-400 rounded-xl px-3 py-2.5 text-xs text-amber-300 font-mono-code outline-none">
+        </div>
+      </div>
+
+      <!-- Action Button -->
+      <button id="auditBtn" onclick="runKurapikaAudit()" class="w-full bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-600 hover:from-emerald-400 hover:to-cyan-500 active:scale-[0.99] text-slate-950 font-black py-3.5 rounded-xl text-sm transition shadow-xl flex items-center justify-center gap-2">
+        <i class="fa-solid fa-magnifying-glass-arrow-right"></i> Execute Dowsing Chain Forensic Audit
+      </button>
+    </div>
+
+    <!-- Live Telemetry -->
+    <div id="telemetryBox" class="hidden bg-slate-900 border border-emerald-500/30 rounded-2xl p-4 shadow-xl space-y-2">
+      <div class="flex justify-between items-center text-xs font-mono-code text-emerald-400">
+        <span class="flex items-center gap-2">
+          <i class="fa-solid fa-circle-notch fa-spin"></i>
+          <span id="telemetryStatus">Kurapika is cross-referencing truth anchors...</span>
+        </span>
+        <span id="telemetryPct">40%</span>
+      </div>
+      <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden border border-slate-800">
+        <div id="telemetryProgress" class="bg-gradient-to-r from-emerald-500 to-cyan-400 h-full w-[40%] transition-all duration-300"></div>
+      </div>
+    </div>
+
+    <!-- Audit Results Cockpit -->
+    <div id="auditOutputArea" class="hidden space-y-4">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-2xl space-y-4">
+        
+        <!-- Verdict Banner -->
+        <div id="verdictBanner" class="p-4 rounded-xl border flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
+          <div>
+            <div class="flex items-center gap-2">
+              <span id="verdictBadge" class="text-xs px-2.5 py-1 rounded-md font-extrabold uppercase font-mono-code tracking-wider"></span>
+              <span id="riskScore" class="text-xs font-bold text-slate-300 font-mono-code"></span>
+            </div>
+            <h2 id="verdictHeadline" class="text-base font-extrabold text-white mt-1"></h2>
+            <p id="verdictSummary" class="text-xs text-slate-300 mt-1"></p>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="copyAuditReport()" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-2 rounded-xl text-slate-200 border border-slate-700 flex items-center gap-1">
+              <i class="fa-regular fa-copy"></i> Copy Audit
+            </button>
+            <button id="sendToUtaBtn" onclick="exportToUta()" class="text-xs bg-pink-600 hover:bg-pink-500 text-white font-bold px-3 py-2 rounded-xl flex items-center gap-1 shadow">
+              <i class="fa-solid fa-microphone-lines"></i> Pass to Uta (Voiceover)
+            </button>
+          </div>
+        </div>
+
+        <!-- Claims Forensic Table -->
+        <div class="space-y-2">
+          <span class="text-[10px] uppercase font-bold text-slate-400 font-mono-code">Claim-by-Claim Verification Matrix:</span>
+          <div class="overflow-x-auto custom-scrollbar">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="border-b border-slate-800 bg-slate-950/80 text-slate-400 font-mono-code">
+                  <th class="p-3 w-16">#</th>
+                  <th class="p-3 w-1/3">Extracted Script Claim</th>
+                  <th class="p-3 w-28">Truth Status</th>
+                  <th class="p-3">Kurapika's Correction & Compliance Directives</th>
+                </tr>
+              </thead>
+              <tbody id="claimsTableBody" class="divide-y divide-slate-800/60 font-sans">
+                <!-- Dynamically Populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+    let activeApiKey = localStorage.getItem('ERWIN_API_KEY') || localStorage.getItem('GEMINI_KEY') || '';
+    let currentAuditPayload = null;
+
+    function autoImportFromRohan() {
+      const channel = document.getElementById('channelInput').value.trim() || 'CH_02_MYSTERY';
+      const stored = localStorage.getItem(`PIPELINE_SCRIPT_${channel}`);
+      if (!stored) {
+        alert(`"Rohan" ka koi script data nahi mila '${channel}' ke liye! Pehle Rohan page par jakar script generate karein.`);
+        return;
+      }
+      try {
+        const data = JSON.parse(stored);
+        let extracted = `TITLE: ${data.script_title || ''}\n\n`;
+        (data.scenes || []).forEach(sc => {
+          extracted += `Scene ${sc.scene_num}: ${sc.audio_narration}\n`;
+        });
+        document.getElementById('scriptInput').value = extracted;
+        alert("✅ Rohan ki script successfully import ho gayi!");
+      } catch (e) {
+        alert("Script format parse error.");
+      }
+    }
+
+    async function runKurapikaAudit() {
+      if (!activeApiKey) {
+        alert("Gemini API Key missing hai! Kripya Erwin Studio par key set karein.");
+        return;
+      }
+
+      const scriptContent = document.getElementById('scriptInput').value.trim();
+      const strictness = document.getElementById('strictnessSelect').value;
+      const channel = document.getElementById('channelInput').value.trim();
+
+      if (!scriptContent) {
+        alert("Pehle script paste karein ya Rohan se import karein!");
+        return;
+      }
+
+      const auditBtn = document.getElementById('auditBtn');
+      const telemetryBox = document.getElementById('telemetryBox');
+      const telemetryStatus = document.getElementById('telemetryStatus');
+      const telemetryProgress = document.getElementById('telemetryProgress');
+      const telemetryPct = document.getElementById('telemetryPct');
+      const outputArea = document.getElementById('auditOutputArea');
+
+      auditBtn.disabled = true;
+      auditBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Kurapika is testing claims with Dowsing Chain...';
+      telemetryBox.classList.remove('hidden');
+      outputArea.classList.add('hidden');
+
+      telemetryStatus.innerText = "Extracting factual assertions, numbers, and dates...";
+      telemetryProgress.style.width = "40%";
+      telemetryPct.innerText = "40%";
+
+      const systemPrompt = `You are Kurapika, the relentless Truth Sentinel & Compliance Officer for a world-tier YouTube automation media house.
+Benchmark: Zero Demonetization Risk, Zero Defamation, Zero Community Guideline Strikes.
+
+MISSION:
+Audit the provided YouTube script line-by-line.
+Verify dates, numbers, historical claims, and potential copyright/clickbait liabilities under strictness level: ${strictness}.
+
+OUTPUT STRICT VALID JSON ONLY:
+{
+  "final_verdict": "VERIFIED_PASS" or "REVISION_REQUIRED",
+  "safety_score_out_of_100": 94,
+  "verdict_summary": "Executive summary for Commander Erwin",
+  "policy_flags": ["Any strike risk or copyright trigger words"],
+  "claims_audit": [
+    {
+      "claim_id": 1,
+      "exact_quote": "Quote from script",
+      "status": "VERIFIED" or "UNVERIFIED" or "EXAGGERATED" or "POLICY_RISK",
+      "correction_or_source": "Factual context or safe replacement phrase"
+    }
+  ]
+}`;
+
+      try {
+        setTimeout(() => {
+          telemetryStatus.innerText = "Checking YouTube community guidelines & monetization compliance...";
+          telemetryProgress.style.width = "75%";
+          telemetryPct.innerText = "75%";
+        }, 1200);
+
+        const models = ['gemini-3.8-flash', 'gemini-3.5-flash-lite'];
+        let rawText = null;
+
+        for (const m of models) {
+          try {
+            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${activeApiKey}`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                system_instruction: { parts: [{ text: systemPrompt }] },
+                contents: [{ parts: [{ text: `Channel: ${channel}\nStrictness: ${strictness}\nScript to Audit:\n${scriptContent}` }] }],
+                generationConfig: { response_mime_type: "application/json", temperature: 0.2 }
+              })
+            });
+            if (res.ok) {
+              const resData = await res.json();
+              rawText = resData.candidates[0].content.parts[0].text;
+              break;
+            }
+          } catch (e) {
+            console.warn(e);
+          }
+        }
+
+        if (!rawText) throw new Error("API call failed. Kripya key confirm karein.");
+
+        telemetryStatus.innerText = "Finalizing Dowsing Chain compliance report...";
+        telemetryProgress.style.width = "100%";
+        telemetryPct.innerText = "100%";
+
+        const data = JSON.parse(rawText);
+        currentAuditPayload = data;
+
+        localStorage.setItem(`PIPELINE_AUDIT_${channel}`, JSON.stringify(data));
+
+        renderAuditCockpit(data);
+        outputArea.classList.remove('hidden');
+
+      } catch (err) {
+        alert("Kurapika Audit Error: " + err.message);
+      } finally {
+        auditBtn.disabled = false;
+        auditBtn.innerHTML = '<i class="fa-solid fa-magnifying-glass-arrow-right"></i> Execute Dowsing Chain Forensic Audit';
+        telemetryBox.classList.add('hidden');
+      }
+    }
+
+    function renderAuditCockpit(data) {
+      const banner = document.getElementById('verdictBanner');
+      const badge = document.getElementById('verdictBadge');
+      const headline = document.getElementById('verdictHeadline');
+      const summary = document.getElementById('verdictSummary');
+      const score = document.getElementById('riskScore');
+      const utaBtn = document.getElementById('sendToUtaBtn');
+
+      score.innerText = `Compliance Score: ${data.safety_score_out_of_100 || 90} / 100`;
+      summary.innerText = data.verdict_summary || 'Audit concluded.';
+
+      if (data.final_verdict === 'VERIFIED_PASS') {
+        banner.className = "p-4 rounded-xl border border-emerald-500/40 bg-emerald-950/20";
+        badge.className = "text-xs px-2.5 py-1 rounded-md font-extrabold uppercase font-mono-code tracking-wider bg-emerald-500 text-slate-950";
+        badge.innerText = "PASSED: VERIFIED CLEAN";
+        headline.innerText = "Script Cleared for Voiceover & Production";
+        utaBtn.classList.remove('hidden');
+      } else {
+        banner.className = "p-4 rounded-xl border border-rose-500/40 bg-rose-950/20";
+        badge.className = "text-xs px-2.5 py-1 rounded-md font-extrabold uppercase font-mono-code tracking-wider bg-rose-500 text-white";
+        badge.innerText = "REVISION REQUIRED";
+        headline.innerText = "Script Blocked: Factual Anomalies Detected";
+        utaBtn.classList.add('hidden');
+      }
+
+      const tableBody = document.getElementById('claimsTableBody');
+      tableBody.innerHTML = '';
+
+      (data.claims_audit || []).forEach(cl => {
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-slate-950/50 transition";
+        
+        let statusBadge = '';
+        if (cl.status === 'VERIFIED') statusBadge = '<span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold">VERIFIED</span>';
+        else if (cl.status === 'EXAGGERATED') statusBadge = '<span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30 font-bold">EXAGGERATED</span>';
+        else statusBadge = '<span class="text-[10px] px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30 font-bold">RISK / FAKE</span>';
+
+        tr.innerHTML = `
+          <td class="p-3 font-mono-code text-slate-500 font-bold align-top">#${cl.claim_id}</td>
+          <td class="p-3 text-slate-200 align-top italic font-mono-code text-[11px] leading-relaxed">"${cl.exact_quote}"</td>
+          <td class="p-3 align-top">${statusBadge}</td>
+          <td class="p-3 text-slate-300 align-top leading-relaxed text-[11px]">${cl.correction_or_source}</td>
+        `;
+        tableBody.appendChild(tr);
+      });
+    }
+
+    function copyAuditReport() {
+      if (currentAuditPayload) {
+        navigator.clipboard.writeText(JSON.stringify(currentAuditPayload, null, 2));
+        alert("✅ Audit report copied to clipboard!");
+      }
+    }
+
+    function exportToUta() {
+      alert("✅ Script passed! Ready for Agent 4: Uta (Voiceover Director).");
+    }
+
+    window.onload = () => {
+      const channel = 'CH_02_MYSTERY';
+      if (localStorage.getItem(`PIPELINE_SCRIPT_${channel}`)) {
+        autoImportFromRohan();
+      }
+    };
+  </script>
+</body>
+</html>

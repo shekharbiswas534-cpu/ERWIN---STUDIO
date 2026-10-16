@@ -14,7 +14,15 @@
       overscroll-behavior: none;
     }
     .safe-bottom {
-      padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+      padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+    }
+    /* Auto expanding textarea without ugly scrollbar */
+    #userInput::-webkit-scrollbar {
+      width: 4px;
+    }
+    #userInput::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
     }
   </style>
 </head>
@@ -57,7 +65,7 @@
   <!-- Main Container -->
   <div class="flex-1 flex overflow-hidden relative w-full">
 
-    <!-- Left Drawer (History & Channel Incubation) -->
+    <!-- Left Drawer (History & Squad Hub) -->
     <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-72 bg-slate-900 border-r border-slate-800 flex flex-col transform -translate-x-full transition-transform duration-200 ease-in-out md:relative md:translate-x-0 shadow-2xl">
       <div class="p-3 border-b border-slate-800 flex justify-between items-center gap-2">
         <button onclick="startNewChat()" class="flex-1 flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 active:scale-95 text-slate-950 font-bold text-xs py-2 px-3 rounded-xl shadow transition">
@@ -68,15 +76,17 @@
         </button>
       </div>
 
-      <!-- Strategy & Channel Setup Stage -->
+      <!-- Quick Links to Squad Members -->
       <div class="p-3 border-b border-slate-800/60 bg-slate-950/40">
-        <div class="flex items-center justify-between">
-          <span class="text-[10px] uppercase font-bold text-amber-400 tracking-wider">🎯 Channel Incubation Hub</span>
-          <span class="text-[9px] px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">Planning</span>
+        <span class="text-[10px] uppercase font-bold text-amber-400 tracking-wider">Active Squad Cockpits:</span>
+        <div class="grid grid-cols-2 gap-2 mt-2">
+          <a href="agent_l_researcher.html" class="p-2 rounded-xl bg-slate-900 border border-slate-800 text-amber-300 hover:bg-slate-800 text-xs flex items-center gap-1.5 transition">
+            🕵️ L (Researcher)
+          </a>
+          <a href="agent_rohan_scriptwriter.html" class="p-2 rounded-xl bg-slate-900 border border-slate-800 text-purple-300 hover:bg-slate-800 text-xs flex items-center gap-1.5 transition">
+            ✍️ Rohan (Script)
+          </a>
         </div>
-        <p class="text-[11px] text-slate-400 mt-1">
-          Abhi channels finalize karne hain. Erwin aur L market research ke sath best high-CPM channels select karwayenge.
-        </p>
       </div>
 
       <!-- Saved Chats -->
@@ -84,16 +94,16 @@
 
       <!-- Squad Status -->
       <div class="p-2.5 border-t border-slate-800 text-[11px] bg-slate-950/60">
-        <span class="text-slate-400 text-[10px] uppercase font-bold">Erwin's 8 Specialists:</span>
+        <span class="text-slate-400 text-[10px] uppercase font-bold">Commander's Core Squad:</span>
         <div class="flex flex-wrap gap-1 mt-1 text-[10px] text-slate-300">
-          <span class="px-1.5 py-0.5 rounded bg-slate-800">L (Research)</span>
-          <span class="px-1.5 py-0.5 rounded bg-slate-800">Rohan (Script)</span>
-          <span class="px-1.5 py-0.5 rounded bg-slate-800">Kurapika (Fact)</span>
-          <span class="px-1.5 py-0.5 rounded bg-slate-800">Uta (Voice)</span>
-          <span class="px-1.5 py-0.5 rounded bg-slate-800">Levi (Edit)</span>
-          <span class="px-1.5 py-0.5 rounded bg-slate-800">Senku (Cover)</span>
-          <span class="px-1.5 py-0.5 rounded bg-slate-800">Armin (SEO)</span>
-          <span class="px-1.5 py-0.5 rounded bg-slate-800">Shikamaru (Stats)</span>
+          <span class="px-1.5 py-0.5 rounded bg-slate-800 text-amber-300 font-bold">L (Research ✓)</span>
+          <span class="px-1.5 py-0.5 rounded bg-slate-800 text-purple-300 font-bold">Rohan (Script ✓)</span>
+          <span class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">Kurapika</span>
+          <span class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">Uta</span>
+          <span class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">Levi</span>
+          <span class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">Senku</span>
+          <span class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">Armin</span>
+          <span class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">Shikamaru</span>
         </div>
       </div>
 
@@ -108,6 +118,12 @@
     <main class="flex-1 flex flex-col h-full bg-slate-950 overflow-hidden relative">
       <div id="chatBox" class="flex-1 overflow-y-auto p-3 md:p-4 space-y-4"></div>
 
+      <!-- Live Animated Thinking Tracker (Nexus Style) -->
+      <div id="statusTracker" class="hidden px-4 py-2 bg-slate-900/95 border-t border-slate-800 flex items-center gap-2 text-xs text-amber-400 font-mono flex-shrink-0">
+        <i class="fa-solid fa-circle-notch fa-spin text-amber-400"></i>
+        <span id="statusText">Commander Erwin is analyzing your directive...</span>
+      </div>
+
       <!-- Media Preview -->
       <div id="mediaPreviewContainer" class="hidden px-3 py-1.5 bg-slate-900 border-t border-slate-800 flex items-center gap-2 flex-shrink-0">
         <div class="relative">
@@ -119,18 +135,21 @@
         <span class="text-xs text-slate-300 font-mono">Attachment ready</span>
       </div>
 
-      <!-- Bottom Fixed Input Box -->
-      <div class="p-2.5 md:p-3 bg-slate-900 border-t border-slate-800 safe-bottom flex-shrink-0 z-20">
-        <div class="flex items-center gap-2 max-w-4xl mx-auto">
-          <label class="cursor-pointer bg-slate-800 hover:bg-slate-700 active:scale-95 text-slate-300 w-10 h-10 rounded-xl border border-slate-700 flex items-center justify-center flex-shrink-0 transition">
+      <!-- Bottom Chat-Style Auto-Expanding Input Box (ChatGPT / Gemini Style) -->
+      <div class="p-2.5 md:p-3 bg-slate-900/95 border-t border-slate-800 safe-bottom flex-shrink-0 z-20">
+        <div class="flex items-end gap-2 max-w-4xl mx-auto bg-slate-950 border border-slate-700/80 rounded-2xl p-1.5 focus-within:border-amber-400 transition shadow-lg">
+          <!-- Attachment Button -->
+          <label class="cursor-pointer text-slate-400 hover:text-slate-200 active:scale-95 w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 transition mb-0.5">
             <i class="fa-solid fa-paperclip text-sm"></i>
             <input type="file" id="mediaInput" accept="image/*" class="hidden" onchange="handleMedia(event)">
           </label>
 
-          <textarea id="userInput" rows="1" placeholder="Erwin se channel ideas discuss karein..." class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-amber-400 resize-none max-h-24"></textarea>
+          <!-- Auto-Growing Textarea -->
+          <textarea id="userInput" rows="1" placeholder="Commander Erwin ko order dein..." oninput="autoGrow(this)" class="flex-1 bg-transparent px-2 py-2 text-sm text-slate-100 focus:outline-none resize-none max-h-36 leading-relaxed"></textarea>
 
-          <button id="sendBtn" onclick="sendMessage()" class="bg-amber-500 hover:bg-amber-400 active:scale-95 text-slate-950 h-10 px-4 rounded-xl font-bold text-sm transition flex items-center justify-center shadow flex-shrink-0">
-            Send
+          <!-- Send Button -->
+          <button id="sendBtn" onclick="sendMessage()" class="bg-amber-500 hover:bg-amber-400 active:scale-95 text-slate-950 w-9 h-9 rounded-xl font-bold transition flex items-center justify-center shadow flex-shrink-0 mb-0.5">
+            <i class="fa-solid fa-arrow-up text-sm"></i>
           </button>
         </div>
       </div>
@@ -138,12 +157,20 @@
   </div>
 
   <script>
-    let apiKey = localStorage.getItem('ERWIN_API_KEY') || '';
+    let apiKey = localStorage.getItem('ERWIN_API_KEY') || localStorage.getItem('GEMINI_KEY') || '';
     let user = JSON.parse(localStorage.getItem('ERWIN_USER') || 'null');
     let sessions = [];
     let currentId = null;
     let attachedBase64 = null;
     let attachedMime = null;
+
+    function autoGrow(element) {
+      element.style.height = 'auto';
+      element.style.height = (element.scrollHeight) + 'px';
+      if (element.value === '') {
+        element.style.height = 'auto';
+      }
+    }
 
     function getStorageKey() {
       return user ? `ERWIN_CHATS_${user.email}` : 'ERWIN_CHATS_GUEST';
@@ -216,10 +243,10 @@
       const newId = 'session_' + Date.now();
       const newSession = {
         id: newId,
-        title: 'Channel Selection Strategy',
+        title: 'Studio Command Room',
         messages: [{
           sender: 'erwin',
-          text: '🫡 Commander Erwin reporting, Sir!\n\nFilhal humne koi channel freeze nahi kiya hai — aur yeh sabse behtar strategy hai! Hum pehle L (YouTube Researcher) aur Shikamaru (Analytics Strategist) ke data ke dam par market analyze karenge.\n\nBatayein, aap kis target audience ya category me explore karna chahte hain? (Jaise High CPM Finance, Shocking Mysteries, US Pop Culture, Tech Scandals, etc.)\n\nAap chahe to seedhe puchein: "Erwin, USA aur global market ke top 4 profitable faceless channel ideas suggest karo."'
+          text: '🫡 Commander Erwin reporting, Sir!\n\nHamare 2 Master Specialists (L - Researcher aur Rohan - Storyteller) poori tarah active aur calibrated hain. Hukam karein, kis video ka concept aur script pipeline shuru karwani hai?'
         }]
       };
       sessions.unshift(newSession);
@@ -293,6 +320,7 @@
       if (key !== null) {
         apiKey = key.trim();
         localStorage.setItem('ERWIN_API_KEY', apiKey);
+        localStorage.setItem('GEMINI_KEY', apiKey);
         alert("API Key Save Ho Gayi!");
       }
     }
@@ -318,6 +346,17 @@
       document.getElementById('mediaInput').value = '';
     }
 
+    function setStatus(text) {
+      const tracker = document.getElementById('statusTracker');
+      const label = document.getElementById('statusText');
+      tracker.classList.remove('hidden');
+      label.innerText = text;
+    }
+
+    function hideStatus() {
+      document.getElementById('statusTracker').classList.add('hidden');
+    }
+
     async function sendMessage() {
       const input = document.getElementById('userInput');
       const sendBtn = document.getElementById('sendBtn');
@@ -336,7 +375,7 @@
       if (!active) return;
 
       if (active.messages.filter(m => m.sender === 'user').length === 0) {
-        active.title = (text || "Strategy Inquiry").substring(0, 24);
+        active.title = (text || "Order").substring(0, 24);
         renderSidebar();
       }
 
@@ -347,15 +386,21 @@
       appendUI(userMsg.text, 'user', userMsg.image);
 
       input.value = '';
+      input.style.height = 'auto';
       removeMedia();
       sendBtn.disabled = true;
-      sendBtn.innerText = '...';
+      sendBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-sm"></i>';
 
-      const erwinBrainPrompt = `You are Commander Erwin, the Executive Producer & Studio Head of an automated faceless YouTube media company.
-You report directly to the Owner (The User).
+      // Step-by-Step Animated Thinking Status (Nexus Style)
+      setStatus("Commander Erwin is analyzing your directive...");
+      setTimeout(() => setStatus("Consulting L (Researcher) for viral mystery hooks..."), 800);
+      setTimeout(() => setStatus("Tasking Rohan (Scriptwriter) for scene-by-scene pacing..."), 1600);
+
+      const erwinBrainPrompt = `You are Commander Erwin, the Executive Studio Head & Boss of an automated YouTube media company.
+You report exclusively to the Owner (The User).
 You manage 8 top-tier anime specialists:
-1. L (YouTube Researcher)
-2. Rohan (Master Scriptwriter)
+1. L (YouTube Master Strategic Researcher)
+2. Rohan (Master Storyteller & Scriptwriter)
 3. Kurapika (Fact Checker & Compliance)
 4. Uta (AI Voiceover Artist)
 5. Levi (Professional Video Editor)
@@ -363,17 +408,12 @@ You manage 8 top-tier anime specialists:
 7. Armin (SEO & Upload Manager)
 8. Shikamaru (Channel Analytics & Strategy)
 
-CRUCIAL CONTEXT:
-The Owner has NOT finalized the YouTube channels yet. You are currently in the Strategic Channel Incubation Phase.
-Your duty:
-1. Help the Owner brainstorm, evaluate, and decide the most profitable, viral, high-CPM faceless YouTube channel niches (targeting USA or any global country).
-2. For any channel idea discussed, provide:
-   - Target Audience & Country
-   - Estimated CPM & Monetization Potential
-   - Ease of faceless production (B-roll & AI voice feasibility)
-   - Unique positioning to beat competitors
-3. Speak with military precision, respect, and high strategic wisdom in natural Hinglish. Address the Owner as Sir or Owner.
-4. When planning topics, explain which squad member (e.g. L, Rohan, Levi) will execute which part of the roadmap once approved.`;
+YOUR BEHAVIOR:
+- Speak directly in authoritative, sharp, respectful Hinglish/English. Address the Owner as Sir or Owner.
+- When the owner gives a task (e.g. 30s mystery short, documentary, funny video):
+  1. Acknowledge with military precision.
+  2. State exact orders given to L (Researcher) and Rohan (Scriptwriter).
+  3. Deliver the full strategic battle-plan: The 0-3s retention hook, exact B-roll & meme pacing for Levi, audio tone for Uta, and the climactic reveal!`;
 
       const contents = [];
       active.messages.slice(-6).forEach(m => {
@@ -381,38 +421,47 @@ Your duty:
         if (m.sender === 'user' && m.image) {
           const partsArr = m.image.split(',');
           const mType = partsArr[0].match(/:(.*?);/)[1];
-          parts.push({
-            inline_data: { mime_type: mType, data: partsArr[1] }
-          });
+          parts.push({ inline_data: { mime_type: mType, data: partsArr[1] } });
         }
         contents.push({ role: m.sender === 'user' ? 'user' : 'model', parts: parts });
       });
 
-      try {
-        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            system_instruction: { parts: [{ text: erwinBrainPrompt }] },
-            contents: contents
-          })
-        });
+      const models = ['gemini-2.5-flash'];
+      let reply = null;
 
-        const data = await res.json();
-        if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-          const reply = data.candidates[0].content.parts[0].text;
-          active.messages.push({ sender: 'erwin', text: reply });
-          saveSessions();
-          appendUI(reply, 'erwin');
-        } else {
-          appendUI("Erwin: Sir, API response me thoda delay hai. Kripya dubara try karein.", 'erwin');
+      for (const m of models) {
+        try {
+          const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${apiKey}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              system_instruction: { parts: [{ text: erwinBrainPrompt }] },
+              contents: contents
+            })
+          });
+
+          if (res.ok) {
+            const data = await res.json();
+            reply = data.candidates[0].content.parts[0].text;
+            break;
+          }
+        } catch (err) {
+          console.warn("Retrying...", err);
         }
-      } catch (err) {
-        appendUI("Erwin: Network connection issue hai. Kripya API key check karein.", 'erwin');
+      }
+
+      hideStatus();
+
+      if (reply) {
+        active.messages.push({ sender: 'erwin', text: reply });
+        saveSessions();
+        appendUI(reply, 'erwin');
+      } else {
+        appendUI("Erwin: Sir, Google API server busy hai. Kripya thodi der baad dobara Send karein.", 'erwin');
       }
 
       sendBtn.disabled = false;
-      sendBtn.innerText = 'Send';
+      sendBtn.innerHTML = '<i class="fa-solid fa-arrow-up text-sm"></i>';
     }
 
     function appendUI(text, sender, imageUri) {

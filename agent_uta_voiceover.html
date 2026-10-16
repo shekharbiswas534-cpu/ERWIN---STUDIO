@@ -17,14 +17,6 @@
     .font-mono-code {
       font-family: 'JetBrains Mono', monospace;
     }
-    .custom-scrollbar::-webkit-scrollbar {
-      width: 4px;
-      height: 4px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #374151;
-      border-radius: 4px;
-    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col p-3 md:p-6 pb-28 select-none">
@@ -39,10 +31,10 @@
         <div class="flex items-center gap-2">
           <h1 class="text-base md:text-lg font-black tracking-wide text-white">AGENT 4: "UTA"</h1>
           <span class="text-[9px] px-2 py-0.5 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/30 font-bold uppercase tracking-wider">
-            ElevenLabs Studio Master
+            ElevenLabs Pro Clean
           </span>
         </div>
-        <p class="text-[11px] text-slate-400 font-mono-code">Hyper-Realistic Human Vocals • Dynamic Breath & Emotion</p>
+        <p class="text-[11px] text-slate-400 font-mono-code">Hollywood Narrator • Clean Human Articulation</p>
       </div>
     </div>
 
@@ -65,26 +57,26 @@
     <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-xl space-y-4">
       <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-slate-800 pb-3">
         <span class="text-xs font-bold text-pink-400 uppercase tracking-wider font-mono-code flex items-center gap-2">
-          <i class="fa-solid fa-microphone-lines"></i> Vocal Script & Voice Configuration
+          <i class="fa-solid fa-microphone-lines"></i> Spoken Narration Studio
         </span>
         <button onclick="autoImportApprovedScript()" class="text-xs bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-3 py-1.5 rounded-xl font-mono-code font-bold flex items-center gap-1.5 transition">
-          <i class="fa-solid fa-bolt"></i> Auto-Import from Kurapika
+          <i class="fa-solid fa-bolt"></i> Auto-Import Clean Script
         </button>
       </div>
 
       <!-- Script Area -->
       <div class="space-y-1">
         <div class="flex justify-between items-center">
-          <label class="text-xs font-semibold text-slate-300">Narration Script</label>
-          <span class="text-[10px] text-slate-500 font-mono-code">Human pauses & breath tags auto-applied</span>
+          <label class="text-xs font-semibold text-slate-300">Spoken Words Only (No SFX or Technical Tags)</label>
+          <span class="text-[10px] text-emerald-400 font-mono-code">Clean Text Pipeline Active</span>
         </div>
-        <textarea id="narrationInput" rows="4" placeholder="Narration text yahan paste karein..." class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl p-3 text-xs text-slate-200 outline-none font-mono-code custom-scrollbar leading-relaxed"></textarea>
+        <textarea id="narrationInput" rows="4" placeholder="Type clean narration text here..." class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl p-3 text-xs text-slate-200 outline-none font-mono-code leading-relaxed"></textarea>
       </div>
 
-      <!-- Voice & Style Selectors -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <!-- Voice Selection -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
         <div class="space-y-1">
-          <label class="text-xs font-semibold text-slate-300">Voice Archetype</label>
+          <label class="text-xs font-semibold text-slate-300">Select Voice Archetype</label>
           <select id="voiceIdSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl px-3 py-2.5 text-xs text-amber-300 font-semibold outline-none font-mono-code">
             <option value="pNInz6obpgDQGcFmaJgB">🎙️ Adam (Deep Mystery & Luxury - World #1)</option>
             <option value="JBFqnCBsd6RMkjVDRZzb">🇬🇧 George (British Warm Storyteller - Documentary)</option>
@@ -94,23 +86,17 @@
         </div>
 
         <div class="space-y-1">
-          <label class="text-xs font-semibold text-slate-300">Emotion & Realism Tuning</label>
-          <select id="realismProfileSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none">
-            <option value="extreme_human">🔥 Extreme Human (Low Stability + High Breath Inflection)</option>
-            <option value="deep_suspense">👁️ Deep Suspense (Heavy Pauses & Low Vocal Pitch)</option>
-            <option value="balanced">⚖️ Standard Broadcast (Balanced & Crisp)</option>
+          <label class="text-xs font-semibold text-slate-300">Stability & Natural Pace</label>
+          <select id="voiceProfileSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none">
+            <option value="fluent_narrative">🎬 Fluent Cinematic Narrative (Stable, Clear, Natural)</option>
+            <option value="deep_suspense">👁️ Deep Suspense (Heavy Dramatic Pauses)</option>
           </select>
-        </div>
-
-        <div class="space-y-1">
-          <label class="text-xs font-semibold text-slate-300">Channel Style Node</label>
-          <input id="channelInput" type="text" value="CH_02_MYSTERY" class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl px-3 py-2.5 text-xs text-amber-300 font-mono-code outline-none">
         </div>
       </div>
 
       <!-- Action Button -->
       <button id="renderVoiceBtn" onclick="renderAuthenticElevenLabsAudio()" class="w-full bg-gradient-to-r from-pink-500 via-rose-500 to-purple-600 hover:from-pink-400 hover:to-purple-500 active:scale-[0.99] text-white font-black py-3.5 rounded-xl text-sm transition shadow-xl flex items-center justify-center gap-2">
-        <i class="fa-solid fa-microphone"></i> Render Authentic Human Voiceover (ElevenLabs)
+        <i class="fa-solid fa-microphone"></i> Render 100% Fluent Voiceover
       </button>
     </div>
 
@@ -119,47 +105,44 @@
       <div class="flex justify-between items-center text-xs font-mono-code text-pink-400">
         <span class="flex items-center gap-2">
           <i class="fa-solid fa-circle-notch fa-spin"></i>
-          <span id="telemetryStatus">Uta is rendering human voice with ElevenLabs...</span>
+          <span id="telemetryStatus">Uta is generating audio with ElevenLabs...</span>
         </span>
-        <span id="telemetryPct">60%</span>
+        <span id="telemetryPct">50%</span>
       </div>
       <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden border border-slate-800">
-        <div id="telemetryProgress" class="bg-gradient-to-r from-pink-500 to-purple-500 h-full w-[60%] transition-all duration-300"></div>
+        <div id="telemetryProgress" class="bg-gradient-to-r from-pink-500 to-purple-500 h-full w-[50%] transition-all duration-300"></div>
       </div>
     </div>
 
-    <!-- Real Studio Audio Player Cockpit -->
+    <!-- Audio Player Cockpit -->
     <div id="audioPlayerCockpit" class="hidden space-y-4">
       <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-2xl space-y-4">
         
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-800 pb-3">
           <div>
             <span class="text-[10px] uppercase font-bold text-pink-400 font-mono-code">Master Vocal Track Ready</span>
-            <h2 id="dispVocalTitle" class="text-base font-extrabold text-white mt-0.5">ElevenLabs Ultra-Human Master Take</h2>
+            <h2 id="dispVocalTitle" class="text-base font-extrabold text-white mt-0.5">ElevenLabs Fluent Master Take</h2>
           </div>
           <div class="flex items-center gap-2">
-            <a id="downloadLink" download="uta_human_voiceover.mp3" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-2 rounded-xl text-slate-200 border border-slate-700 flex items-center gap-1.5 transition">
+            <a id="downloadLink" download="uta_clean_master.mp3" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-2 rounded-xl text-slate-200 border border-slate-700 flex items-center gap-1.5 transition">
               <i class="fa-solid fa-download text-pink-400"></i> Download MP3
             </a>
-            <button onclick="passToLevi()" class="text-xs bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black px-3.5 py-2 rounded-xl flex items-center gap-1.5 shadow transition">
-              <i class="fa-solid fa-film"></i> Pass to Levi (Editor)
-            </button>
           </div>
         </div>
 
-        <!-- HTML5 Audio Player -->
         <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
           <audio id="realAudioPlayer" controls class="w-full h-11 outline-none rounded-xl"></audio>
-          <p class="text-[11px] text-emerald-400 font-mono-code flex items-center gap-1.5">
-            <i class="fa-solid fa-circle-check"></i> Mastered with real human breathing, dynamic pause phrasing, and natural vocal inflections.
-          </p>
+          <div class="text-[11px] text-slate-400 font-mono-code">
+            <span class="text-emerald-400 font-bold block mb-1">Spoken Script Cleaned:</span>
+            <p id="cleanPreviewText" class="text-slate-200 bg-slate-900 p-3 rounded-lg border border-slate-800 italic"></p>
+          </div>
         </div>
 
       </div>
     </div>
   </main>
 
-  <!-- API Key Modal -->
+  <!-- Key Modal -->
   <div id="keyModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
     <div class="bg-slate-900 border border-slate-700 rounded-2xl p-5 w-full max-w-sm space-y-4 shadow-2xl">
       <div class="flex justify-between items-center border-b border-slate-800 pb-2">
@@ -169,7 +152,7 @@
         <button onclick="closeKeyModal()" class="text-slate-400 hover:text-white text-lg">&times;</button>
       </div>
       <p class="text-xs text-slate-300 leading-relaxed">
-        Apni ElevenLabs free API key paste karein taaki Uta direct browser se Hollywood-grade human voices generate kar sake.
+        Apni ElevenLabs API Key paste karein:
       </p>
       <input id="keyInputModal" type="password" placeholder="sk_..." class="w-full bg-slate-950 border border-slate-700 focus:border-pink-400 rounded-xl p-3 text-xs text-white outline-none font-mono-code">
       <div class="flex justify-end gap-2 pt-1">
@@ -184,7 +167,10 @@
 
     function initConsole() {
       updateKeyUI();
-      autoImportApprovedScript();
+      const defaultText = "In late 2018, an uncalibrated satellite pass over the Wilkes Land ice shelf penetrated two miles deeper than glaciologists intended. What bounced back was not bedrock, but a 150-mile structural cavity emitting localized heat signatures that physics says should literally not exist.";
+      if (!document.getElementById('narrationInput').value) {
+        document.getElementById('narrationInput').value = defaultText;
+      }
     }
 
     function updateKeyUI() {
@@ -218,24 +204,46 @@
     }
 
     function autoImportApprovedScript() {
-      const channel = document.getElementById('channelInput').value.trim() || 'CH_02_MYSTERY';
+      const channel = 'CH_02_MYSTERY';
       const verified = localStorage.getItem(`PIPELINE_VERIFIED_SCRIPT_${channel}`) || localStorage.getItem(`PIPELINE_SCRIPT_${channel}`);
-      if (!verified) return;
+      if (!verified) {
+        alert("Pehle Kurapika ya Rohan se script finalize karein!");
+        return;
+      }
 
+      let text = '';
       if (verified.startsWith('{')) {
         try {
           const parsed = JSON.parse(verified);
-          let text = '';
           (parsed.scenes || []).forEach(sc => {
             text += `${sc.audio_narration} `;
           });
-          document.getElementById('narrationInput').value = text.trim();
         } catch (e) {
-          document.getElementById('narrationInput').value = verified;
+          text = verified;
         }
       } else {
-        document.getElementById('narrationInput').value = verified;
+        text = verified;
       }
+
+      // Deep clean brackets, technical notes, dots corruption
+      const clean = text
+        .replace(/[whisper]/gi, '')
+        .replace(/\[pause[^\]]*\]/gi, '')
+        .replace(/\[intense[^\]]*\]/gi, '')
+        .replace(/\[fast[^\]]*\]/gi, '')
+        .replace(/\[sarcastic[^\]]*\]/gi, '')
+        .replace(/\[Scene\s*\d+\]/gi, '')
+        .replace(/Title:[^\n]+/gi, '')
+        .replace(/\[SFX:[^\]]*\]/gi, '')
+        .replace(/\[Meme:[^\]]*\]/gi, '')
+        .replace(/\[B-Roll:[^\]]*\]/gi, '')
+        .replace(/Bro\.\.\./gi, 'Bro,')
+        .replace(/\.{2,}/g, ', ')
+        .replace(/\s+/g, ' ')
+        .trim();
+
+      document.getElementById('narrationInput').value = clean;
+      alert("✅ Clean script loaded without technical tags!");
     }
 
     async function renderAuthenticElevenLabsAudio() {
@@ -244,11 +252,21 @@
         return;
       }
 
-      const rawScript = document.getElementById('narrationInput').value.trim();
+      let rawScript = document.getElementById('narrationInput').value.trim();
       const voiceId = document.getElementById('voiceIdSelect').value;
-      const profile = document.getElementById('realismProfileSelect').value;
+      const profile = document.getElementById('voiceProfileSelect').value;
 
       if (!rawScript) return alert("Pehle narration text dalein!");
+
+      // Thorough cleaning so text is read normally, not spelled out
+      const cleanText = rawScript
+        .replace(/\[.*?\]/g, '')
+        .replace(/\{.*?\}/g, '')
+        .replace(/[\(\)]/g, '')
+        .replace(/\.{2,}/g, ', ')
+        .replace(/[-_]{2,}/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
 
       const renderBtn = document.getElementById('renderVoiceBtn');
       const telemetryBox = document.getElementById('telemetryBox');
@@ -260,41 +278,29 @@
       const dlLink = document.getElementById('downloadLink');
 
       renderBtn.disabled = true;
-      renderBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Uta is synthesizing human voice...';
+      renderBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Rendering Natural Voice...';
       telemetryBox.classList.remove('hidden');
       cockpitArea.classList.add('hidden');
 
-      telemetryStatus.innerText = "Applying emotional pauses and breathing cadence...";
+      telemetryStatus.innerText = "Applying stable Hollywood narrative pacing...";
       telemetryProgress.style.width = "40%";
       telemetryPct.innerText = "40%";
 
-      // Advanced Realism Calibration (Removes robot feel)
-      let stability = 0.35;
-      let similarity = 0.85;
-      let style = 0.45;
+      // Stable natural settings so words are pronounced normally
+      let stability = 0.50;
+      let similarity = 0.80;
+      let style = 0.20;
 
-      if (profile === 'extreme_human') {
-        stability = 0.30;
-        similarity = 0.88;
-        style = 0.55;
-      } else if (profile === 'deep_suspense') {
-        stability = 0.32;
-        similarity = 0.90;
-        style = 0.40;
+      if (profile === 'deep_suspense') {
+        stability = 0.45;
+        similarity = 0.85;
+        style = 0.30;
       }
 
-      // Convert script tags to natural pauses
-      const formattedText = rawScript
-        .replace(/[whisper]/gi, '...')
-        .replace(/\[pause[^\]]*\]/gi, '... ...')
-        .replace(/\[intense[^\]]*\]/gi, '')
-        .replace(/\[fast[^\]]*\]/gi, '')
-        .replace(/\[Scene\s*\d+\]/gi, '')
-        .replace(/Title:[^\n]+/gi, '')
-        .trim();
+      document.getElementById('cleanPreviewText').innerText = cleanText;
 
       try {
-        telemetryStatus.innerText = "Generating high-bitrate neural master audio...";
+        telemetryStatus.innerText = "ElevenLabs Neural Rendering in progress...";
         telemetryProgress.style.width = "75%";
         telemetryPct.innerText = "75%";
 
@@ -306,7 +312,7 @@
             'xi-api-key': elevenApiKey
           },
           body: JSON.stringify({
-            text: formattedText,
+            text: cleanText,
             model_id: 'eleven_multilingual_v2',
             voice_settings: {
               stability: stability,
@@ -322,7 +328,7 @@
           throw new Error(errData.detail?.message || `HTTP ${res.status}`);
         }
 
-        telemetryStatus.innerText = "Mastering audio track...";
+        telemetryStatus.innerText = "Finalizing clean audio master...";
         telemetryProgress.style.width = "100%";
         telemetryPct.innerText = "100%";
 
@@ -331,7 +337,7 @@
 
         audioPlayer.src = audioUrl;
         dlLink.href = audioUrl;
-        dlLink.download = `uta_human_voiceover.mp3`;
+        dlLink.download = `uta_fluent_voiceover.mp3`;
 
         cockpitArea.classList.remove('hidden');
         audioPlayer.play();
@@ -340,13 +346,9 @@
         alert("ElevenLabs Engine Error: " + err.message);
       } finally {
         renderBtn.disabled = false;
-        renderBtn.innerHTML = '<i class="fa-solid fa-microphone"></i> Render Authentic Human Voiceover (ElevenLabs)';
+        renderBtn.innerHTML = '<i class="fa-solid fa-microphone"></i> Render 100% Fluent Voiceover';
         telemetryBox.classList.add('hidden');
       }
-    }
-
-    function passToLevi() {
-      alert("✅ Studio Audio Track locked! Ready for Agent 5: Levi (Video Editor & VFX Master).");
     }
 
     window.onload = initConsole;

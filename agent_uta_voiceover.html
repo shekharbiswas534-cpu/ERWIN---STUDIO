@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Agent Uta | Master AI Vocal Seiyū & Audio Director</title>
+  <title>Agent Uta | Master AI Vocal Studio Pro</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -25,17 +25,6 @@
       background: #374151;
       border-radius: 4px;
     }
-    @keyframes soundwave {
-      0%, 100% { height: 6px; }
-      50% { height: 32px; }
-    }
-    .wave-bar {
-      animation: soundwave 0.8s ease-in-out infinite;
-    }
-    .wave-bar.paused {
-      animation: none;
-      height: 6px;
-    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col p-3 md:p-6 pb-28 select-none">
@@ -50,21 +39,19 @@
         <div class="flex items-center gap-2">
           <h1 class="text-base md:text-lg font-black tracking-wide text-white">AGENT 4: "UTA"</h1>
           <span class="text-[9px] px-2 py-0.5 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/30 font-bold uppercase tracking-wider">
-            World Top-5 Vocal Seiyū
+            ElevenLabs Studio Master
           </span>
         </div>
-        <p class="text-[11px] text-slate-400 font-mono-code">Zero Robot Voice • Multi-Language Polyglot • Adaptive Brain</p>
+        <p class="text-[11px] text-slate-400 font-mono-code">Hyper-Realistic Human Vocals • Dynamic Breath & Emotion</p>
       </div>
     </div>
 
+    <!-- Right Controls -->
     <div class="flex items-center gap-2">
-      <div class="bg-slate-950 px-2.5 py-1 rounded-xl border border-slate-800 text-right hidden sm:block">
-        <span class="text-[8px] text-slate-500 uppercase font-mono-code block">Uta Brain Mastery</span>
-        <span id="utaXpBadge" class="text-xs font-bold text-pink-400 font-mono-code">Rank: S-Seiyū (0 XP)</span>
-      </div>
-      <a href="agent_kurapika_factchecker.html" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-2 rounded-xl border border-slate-700 text-emerald-300 font-bold flex items-center gap-1.5 transition">
-        🛡️ Kurapika
-      </a>
+      <button onclick="openKeyModal()" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-2 rounded-xl border border-slate-700 text-slate-200 flex items-center gap-1.5 transition">
+        <i class="fa-solid fa-key text-pink-400"></i>
+        <span id="keyLabel">Set Key</span>
+      </button>
       <a href="index.html" class="text-xs bg-amber-500 hover:bg-amber-400 active:scale-95 text-slate-950 font-extrabold px-3 py-2 rounded-xl shadow transition flex items-center gap-1.5">
         <i class="fa-solid fa-crown"></i> Erwin Studio
       </a>
@@ -74,188 +61,173 @@
   <!-- Main Cockpit -->
   <main class="w-full max-w-5xl mx-auto space-y-4">
 
-    <!-- Input Card -->
+    <!-- Mission Input Card -->
     <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-xl space-y-4">
       <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-slate-800 pb-3">
         <span class="text-xs font-bold text-pink-400 uppercase tracking-wider font-mono-code flex items-center gap-2">
-          <i class="fa-solid fa-microphone-lines"></i> Neural Vocal Master Console
+          <i class="fa-solid fa-microphone-lines"></i> Vocal Script & Voice Configuration
         </span>
         <button onclick="autoImportApprovedScript()" class="text-xs bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-3 py-1.5 rounded-xl font-mono-code font-bold flex items-center gap-1.5 transition">
-          <i class="fa-solid fa-bolt"></i> Auto-Import Script from Kurapika
+          <i class="fa-solid fa-bolt"></i> Auto-Import from Kurapika
         </button>
       </div>
 
       <!-- Script Area -->
       <div class="space-y-1">
         <div class="flex justify-between items-center">
-          <label class="text-xs font-semibold text-slate-300">Narration Script (With Tone & Emotion Markers)</label>
-          <span class="text-[10px] text-slate-500 font-mono-code">[whisper], [intense], [sarcastic] supported</span>
+          <label class="text-xs font-semibold text-slate-300">Narration Script</label>
+          <span class="text-[10px] text-slate-500 font-mono-code">Human pauses & breath tags auto-applied</span>
         </div>
-        <textarea id="narrationInput" rows="4" placeholder="Paste script or tap Auto-Import..." class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl p-3 text-xs text-slate-200 outline-none font-mono-code custom-scrollbar leading-relaxed"></textarea>
+        <textarea id="narrationInput" rows="4" placeholder="Narration text yahan paste karein..." class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl p-3 text-xs text-slate-200 outline-none font-mono-code custom-scrollbar leading-relaxed"></textarea>
       </div>
 
-      <!-- Real HD Voices & Emotion Controls -->
+      <!-- Voice & Style Selectors -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
         <div class="space-y-1">
-          <label class="text-xs font-semibold text-slate-300">Hardware Neural Voice Engine</label>
-          <select id="deviceVoiceSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl px-3 py-2.5 text-xs text-amber-300 font-semibold outline-none font-mono-code">
-            <option value="">Detecting High-Definition Human Voices...</option>
+          <label class="text-xs font-semibold text-slate-300">Voice Archetype</label>
+          <select id="voiceIdSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl px-3 py-2.5 text-xs text-amber-300 font-semibold outline-none font-mono-code">
+            <option value="pNInz6obpgDQGcFmaJgB">🎙️ Adam (Deep Mystery & Luxury - World #1)</option>
+            <option value="JBFqnCBsd6RMkjVDRZzb">🇬🇧 George (British Warm Storyteller - Documentary)</option>
+            <option value="TX3LPaxmHKxFdv7VOQHJ">⚡ Liam (Energetic & Punchy - Shorts/Funny)</option>
+            <option value="XB0fDUnXU5powFXDhCwa">👁️ Charlotte (Chilling Suspense Whispers)</option>
           </select>
         </div>
 
         <div class="space-y-1">
-          <label class="text-xs font-semibold text-slate-300">Vocal Style & Cadence</label>
-          <select id="vocalStyleSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none">
-            <option value="cinematic_deep">🎙️ Deep Cinematic & Whispering (Mystery / Luxury)</option>
-            <option value="viral_energetic">⚡ Fast & Punchy Viral Delivery (Shorts / Funny)</option>
-            <option value="investigative_calm">🕵️ Cold Investigative Journalism (Documentary)</option>
-            <option value="anime_intense">🔥 High-Emotion Anime Seiyū (Dramatic Climax)</option>
+          <label class="text-xs font-semibold text-slate-300">Emotion & Realism Tuning</label>
+          <select id="realismProfileSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none">
+            <option value="extreme_human">🔥 Extreme Human (Low Stability + High Breath Inflection)</option>
+            <option value="deep_suspense">👁️ Deep Suspense (Heavy Pauses & Low Vocal Pitch)</option>
+            <option value="balanced">⚖️ Standard Broadcast (Balanced & Crisp)</option>
           </select>
         </div>
 
         <div class="space-y-1">
-          <label class="text-xs font-semibold text-slate-300">Breathing & Pause Spacing</label>
-          <select id="pauseSpacingSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none">
-            <option value="dramatic">🌌 Dramatic Heavy Pauses (Hold Viewer Suspense)</option>
-            <option value="rapid">⚡ Rapid Non-Stop Flow (Zero Retention Drop)</option>
-            <option value="natural">🎧 Natural Human Conversational</option>
-          </select>
+          <label class="text-xs font-semibold text-slate-300">Channel Style Node</label>
+          <input id="channelInput" type="text" value="CH_02_MYSTERY" class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl px-3 py-2.5 text-xs text-amber-300 font-mono-code outline-none">
         </div>
       </div>
 
       <!-- Action Button -->
-      <button id="recordBtn" onclick="prepareAndPlayPerformance()" class="w-full bg-gradient-to-r from-pink-500 via-rose-500 to-purple-600 hover:from-pink-400 hover:to-purple-500 active:scale-[0.99] text-white font-black py-3.5 rounded-xl text-sm transition shadow-xl flex items-center justify-center gap-2">
-        <i class="fa-solid fa-play"></i> Perform & Master Live Vocal Audio with Uta
+      <button id="renderVoiceBtn" onclick="renderAuthenticElevenLabsAudio()" class="w-full bg-gradient-to-r from-pink-500 via-rose-500 to-purple-600 hover:from-pink-400 hover:to-purple-500 active:scale-[0.99] text-white font-black py-3.5 rounded-xl text-sm transition shadow-xl flex items-center justify-center gap-2">
+        <i class="fa-solid fa-microphone"></i> Render Authentic Human Voiceover (ElevenLabs)
       </button>
     </div>
 
-    <!-- Active Audio Master Console -->
-    <div id="activeConsole" class="bg-slate-900 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-2xl space-y-4">
-      
-      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-800 pb-3">
-        <div>
-          <span class="text-[10px] uppercase font-bold text-pink-400 font-mono-code">Master Vocal Soundstage</span>
-          <h2 id="activeTrackTitle" class="text-base font-extrabold text-white mt-0.5">Uta Live Performance Deck</h2>
-        </div>
-        <div class="flex items-center gap-2">
-          <button id="playbackToggleBtn" onclick="togglePlayPause()" class="text-xs bg-pink-500 hover:bg-pink-400 active:scale-95 text-slate-950 font-black px-4 py-2 rounded-xl flex items-center gap-1.5 transition shadow">
-            <i id="toggleIcon" class="fa-solid fa-stop"></i> <span id="toggleText">Stop Audio</span>
-          </button>
-          <button onclick="passToLevi()" class="text-xs bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black px-3.5 py-2 rounded-xl flex items-center gap-1.5 shadow transition">
-            <i class="fa-solid fa-film"></i> Pass to Levi (Editor)
-          </button>
-        </div>
+    <!-- Live Telemetry -->
+    <div id="telemetryBox" class="hidden bg-slate-900 border border-pink-500/30 rounded-2xl p-4 shadow-xl space-y-2">
+      <div class="flex justify-between items-center text-xs font-mono-code text-pink-400">
+        <span class="flex items-center gap-2">
+          <i class="fa-solid fa-circle-notch fa-spin"></i>
+          <span id="telemetryStatus">Uta is rendering human voice with ElevenLabs...</span>
+        </span>
+        <span id="telemetryPct">60%</span>
       </div>
+      <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden border border-slate-800">
+        <div id="telemetryProgress" class="bg-gradient-to-r from-pink-500 to-purple-500 h-full w-[60%] transition-all duration-300"></div>
+      </div>
+    </div>
 
-      <!-- Live Waveform & Current Speaking Telemetry -->
-      <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-2">
-            <div id="waveBox" class="flex items-center gap-1.5 h-8 px-3 bg-slate-900 rounded-lg border border-slate-800">
-              <div class="w-1 bg-pink-500 rounded-full wave-bar paused" style="animation-delay: 0.1s"></div>
-              <div class="w-1 bg-rose-400 rounded-full wave-bar paused" style="animation-delay: 0.3s"></div>
-              <div class="w-1 bg-purple-500 rounded-full wave-bar paused" style="animation-delay: 0.2s"></div>
-              <div class="w-1 bg-pink-400 rounded-full wave-bar paused" style="animation-delay: 0.5s"></div>
-              <div class="w-1 bg-amber-400 rounded-full wave-bar paused" style="animation-delay: 0.4s"></div>
-              <div class="w-1 bg-cyan-400 rounded-full wave-bar paused" style="animation-delay: 0.2s"></div>
-              <div class="w-1 bg-pink-500 rounded-full wave-bar paused" style="animation-delay: 0.6s"></div>
-            </div>
-            <span id="speakingStatus" class="text-xs font-mono-code text-slate-400">Ready to speak...</span>
+    <!-- Real Studio Audio Player Cockpit -->
+    <div id="audioPlayerCockpit" class="hidden space-y-4">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-2xl space-y-4">
+        
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-800 pb-3">
+          <div>
+            <span class="text-[10px] uppercase font-bold text-pink-400 font-mono-code">Master Vocal Track Ready</span>
+            <h2 id="dispVocalTitle" class="text-base font-extrabold text-white mt-0.5">ElevenLabs Ultra-Human Master Take</h2>
           </div>
-
-          <div class="flex items-center gap-3 text-xs font-mono-code text-right">
-            <div>
-              <span class="text-[8px] text-slate-500 block uppercase">Pacing Tempo</span>
-              <span id="dispPacing" class="text-emerald-400 font-bold">155 WPM</span>
-            </div>
-            <div>
-              <span class="text-[8px] text-slate-500 block uppercase">Vocal Inflection</span>
-              <span id="dispInflection" class="text-amber-400 font-bold">Seiyū Dynamic</span>
-            </div>
+          <div class="flex items-center gap-2">
+            <a id="downloadLink" download="uta_human_voiceover.mp3" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-2 rounded-xl text-slate-200 border border-slate-700 flex items-center gap-1.5 transition">
+              <i class="fa-solid fa-download text-pink-400"></i> Download MP3
+            </a>
+            <button onclick="passToLevi()" class="text-xs bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black px-3.5 py-2 rounded-xl flex items-center gap-1.5 shadow transition">
+              <i class="fa-solid fa-film"></i> Pass to Levi (Editor)
+            </button>
           </div>
         </div>
 
-        <!-- Karaoke Live Dialogue Display Box (Highlights current spoken line) -->
-        <div class="bg-slate-900/80 p-3.5 rounded-xl border border-slate-800 min-h-[70px] flex items-center justify-center text-center">
-          <p id="karaokeText" class="text-sm md:text-base font-semibold text-slate-200 leading-relaxed italic">
-            "Script ready. Tap 'Perform & Master Live Vocal Audio' to hear Uta speak."
+        <!-- HTML5 Audio Player -->
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
+          <audio id="realAudioPlayer" controls class="w-full h-11 outline-none rounded-xl"></audio>
+          <p class="text-[11px] text-emerald-400 font-mono-code flex items-center gap-1.5">
+            <i class="fa-solid fa-circle-check"></i> Mastered with real human breathing, dynamic pause phrasing, and natural vocal inflections.
           </p>
         </div>
-      </div>
 
-      <!-- Segmented Breakdown -->
-      <div class="space-y-1">
-        <span class="text-[10px] uppercase font-bold text-slate-400 font-mono-code">Master Transcript & Cadence Roadmap:</span>
-        <div id="segmentsList" class="space-y-1.5 max-h-52 overflow-y-auto custom-scrollbar text-xs"></div>
       </div>
-
     </div>
   </main>
 
+  <!-- API Key Modal -->
+  <div id="keyModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 rounded-2xl p-5 w-full max-w-sm space-y-4 shadow-2xl">
+      <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+        <h3 class="text-sm font-bold text-pink-400 flex items-center gap-2">
+          <i class="fa-solid fa-key"></i> Set ElevenLabs API Key
+        </h3>
+        <button onclick="closeKeyModal()" class="text-slate-400 hover:text-white text-lg">&times;</button>
+      </div>
+      <p class="text-xs text-slate-300 leading-relaxed">
+        Apni ElevenLabs free API key paste karein taaki Uta direct browser se Hollywood-grade human voices generate kar sake.
+      </p>
+      <input id="keyInputModal" type="password" placeholder="sk_..." class="w-full bg-slate-950 border border-slate-700 focus:border-pink-400 rounded-xl p-3 text-xs text-white outline-none font-mono-code">
+      <div class="flex justify-end gap-2 pt-1">
+        <button onclick="closeKeyModal()" class="text-xs px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300">Cancel</button>
+        <button onclick="saveKeyModal()" class="text-xs px-4 py-2 rounded-xl bg-pink-500 hover:bg-pink-400 text-slate-950 font-bold">Save Key</button>
+      </div>
+    </div>
+  </div>
+
   <script>
-    let synth = window.speechSynthesis;
-    let availableVoices = [];
-    let isSpeaking = false;
-    let speechQueue = [];
-    let currentSegmentIndex = 0;
-    let utaXp = parseInt(localStorage.getItem('UTA_XP') || '0');
-    let utaRank = localStorage.getItem('UTA_RANK') || 'S-Seiyū';
+    let elevenApiKey = localStorage.getItem('ELEVEN_API_KEY') || '';
 
-    function updateUtaStats() {
-      document.getElementById('utaXpBadge').innerText = `${utaRank} (${utaXp} XP)`;
+    function initConsole() {
+      updateKeyUI();
+      autoImportApprovedScript();
     }
 
-    function addUtaExperience(points) {
-      utaXp += points;
-      if (utaXp > 300) utaRank = "SS-Seiyū Master";
-      if (utaXp > 800) utaRank = "SSS-Legendary Vocal Sovereign";
-      localStorage.setItem('UTA_XP', utaXp);
-      localStorage.setItem('UTA_RANK', utaRank);
-      updateUtaStats();
-    }
-
-    // Populate Hardware High-Definition Voices with fallback
-    function populateVoices() {
-      availableVoices = synth.getVoices();
-      const select = document.getElementById('deviceVoiceSelect');
-      select.innerHTML = '';
-
-      if (availableVoices.length === 0) {
-        select.innerHTML = '<option value="">Default High-Definition Voice Engine</option>';
-        return;
+    function updateKeyUI() {
+      const lbl = document.getElementById('keyLabel');
+      if (elevenApiKey) {
+        lbl.innerText = "Key Set ✓";
+        lbl.className = "text-emerald-400 font-bold";
+      } else {
+        lbl.innerText = "Set Key";
+        lbl.className = "text-slate-200";
       }
-
-      // Prioritize natural English, US, UK, Hindi, and Neural models
-      availableVoices.forEach((v, index) => {
-        const opt = document.createElement('option');
-        opt.value = index;
-        const isNatural = v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Neural') || v.name.includes('Premium');
-        opt.innerText = `${isNatural ? '✨ ' : ''}${v.name} (${v.lang})`;
-        if (v.lang.startsWith('en') && (v.name.includes('US') || v.name.includes('United States') || isNatural)) {
-          opt.selected = true;
-        }
-        select.appendChild(opt);
-      });
     }
 
-    if (speechSynthesis.onvoiceschanged !== undefined) {
-      speechSynthesis.onvoiceschanged = populateVoices;
+    function openKeyModal() {
+      document.getElementById('keyInputModal').value = elevenApiKey;
+      document.getElementById('keyModal').classList.remove('hidden');
+    }
+
+    function closeKeyModal() {
+      document.getElementById('keyModal').classList.add('hidden');
+    }
+
+    function saveKeyModal() {
+      const v = document.getElementById('keyInputModal').value.trim();
+      if (!v) return alert("Valid ElevenLabs API key enter karein!");
+      elevenApiKey = v;
+      localStorage.setItem('ELEVEN_API_KEY', elevenApiKey);
+      updateKeyUI();
+      closeKeyModal();
+      alert("✅ ElevenLabs API Key saved!");
     }
 
     function autoImportApprovedScript() {
-      const channel = 'CH_02_MYSTERY';
+      const channel = document.getElementById('channelInput').value.trim() || 'CH_02_MYSTERY';
       const verified = localStorage.getItem(`PIPELINE_VERIFIED_SCRIPT_${channel}`) || localStorage.getItem(`PIPELINE_SCRIPT_${channel}`);
-      if (!verified) {
-        alert("Kurapika ka script nahi mila! Pehle Kurapika page par jakar script audit karein.");
-        return;
-      }
+      if (!verified) return;
 
       if (verified.startsWith('{')) {
         try {
           const parsed = JSON.parse(verified);
           let text = '';
           (parsed.scenes || []).forEach(sc => {
-            text += `${sc.audio_narration}\n\n`;
+            text += `${sc.audio_narration} `;
           });
           document.getElementById('narrationInput').value = text.trim();
         } catch (e) {
@@ -264,173 +236,120 @@
       } else {
         document.getElementById('narrationInput').value = verified;
       }
-      alert("✅ Verified script successfully Uta ke console me load ho gayi!");
     }
 
-    function setWaveAnimation(active) {
-      const bars = document.querySelectorAll('.wave-bar');
-      bars.forEach(b => {
-        if (active) b.classList.remove('paused');
-        else b.classList.add('paused');
-      });
-    }
+    async function renderAuthenticElevenLabsAudio() {
+      if (!elevenApiKey) {
+        openKeyModal();
+        return;
+      }
 
-    function prepareAndPlayPerformance() {
       const rawScript = document.getElementById('narrationInput').value.trim();
-      if (!rawScript) {
-        alert("Pehle script likhein ya Auto-Import karein!");
-        return;
+      const voiceId = document.getElementById('voiceIdSelect').value;
+      const profile = document.getElementById('realismProfileSelect').value;
+
+      if (!rawScript) return alert("Pehle narration text dalein!");
+
+      const renderBtn = document.getElementById('renderVoiceBtn');
+      const telemetryBox = document.getElementById('telemetryBox');
+      const telemetryStatus = document.getElementById('telemetryStatus');
+      const telemetryProgress = document.getElementById('telemetryProgress');
+      const telemetryPct = document.getElementById('telemetryPct');
+      const cockpitArea = document.getElementById('audioPlayerCockpit');
+      const audioPlayer = document.getElementById('realAudioPlayer');
+      const dlLink = document.getElementById('downloadLink');
+
+      renderBtn.disabled = true;
+      renderBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Uta is synthesizing human voice...';
+      telemetryBox.classList.remove('hidden');
+      cockpitArea.classList.add('hidden');
+
+      telemetryStatus.innerText = "Applying emotional pauses and breathing cadence...";
+      telemetryProgress.style.width = "40%";
+      telemetryPct.innerText = "40%";
+
+      // Advanced Realism Calibration (Removes robot feel)
+      let stability = 0.35;
+      let similarity = 0.85;
+      let style = 0.45;
+
+      if (profile === 'extreme_human') {
+        stability = 0.30;
+        similarity = 0.88;
+        style = 0.55;
+      } else if (profile === 'deep_suspense') {
+        stability = 0.32;
+        similarity = 0.90;
+        style = 0.40;
       }
 
-      // Stop any existing speech
-      synth.cancel();
+      // Convert script tags to natural pauses
+      const formattedText = rawScript
+        .replace(/[whisper]/gi, '...')
+        .replace(/\[pause[^\]]*\]/gi, '... ...')
+        .replace(/\[intense[^\]]*\]/gi, '')
+        .replace(/\[fast[^\]]*\]/gi, '')
+        .replace(/\[Scene\s*\d+\]/gi, '')
+        .replace(/Title:[^\n]+/gi, '')
+        .trim();
 
-      // Parse sentences and clean bracket notes
-      const rawSentences = rawScript.split(/(?<=[.?!])\s+/);
-      speechQueue = [];
+      try {
+        telemetryStatus.innerText = "Generating high-bitrate neural master audio...";
+        telemetryProgress.style.width = "75%";
+        telemetryPct.innerText = "75%";
 
-      rawSentences.forEach((s, idx) => {
-        const clean = s
-          .replace(/[whisper]/gi, '')
-          .replace(/\[pause[^\]]*\]/gi, '')
-          .replace(/\[intense[^\]]*\]/gi, '')
-          .replace(/\[fast[^\]]*\]/gi, '')
-          .replace(/\[sarcastic[^\]]*\]/gi, '')
-          .replace(/\[Scene\s*\d+\]/gi, '')
-          .replace(/Title:[^\n]+/gi, '')
-          .replace(/\[SFX:[^\]]*\]/gi, '')
-          .replace(/\[Meme:[^\]]*\]/gi, '')
-          .trim();
+        const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
+          method: 'POST',
+          headers: {
+            'Accept': 'audio/mpeg',
+            'Content-Type': 'application/json',
+            'xi-api-key': elevenApiKey
+          },
+          body: JSON.stringify({
+            text: formattedText,
+            model_id: 'eleven_multilingual_v2',
+            voice_settings: {
+              stability: stability,
+              similarity_boost: similarity,
+              style: style,
+              use_speaker_boost: true
+            }
+          })
+        });
 
-        if (clean.length > 2) {
-          // Detect tone modifiers from original sentence
-          let pitch = 1.0;
-          let rate = 1.0;
-          let pauseAfter = 400;
-
-          const style = document.getElementById('vocalStyleSelect').value;
-          if (style === 'cinematic_deep') {
-            pitch = 0.88;
-            rate = 0.94;
-            pauseAfter = 650;
-          } else if (style === 'viral_energetic') {
-            pitch = 1.1;
-            rate = 1.15;
-            pauseAfter = 250;
-          } else if (style === 'anime_intense') {
-            pitch = idx % 2 === 0 ? 1.05 : 0.95;
-            rate = 1.08;
-            pauseAfter = 500;
-          }
-
-          if (s.toLowerCase().includes('[whisper]')) {
-            pitch = 0.85;
-            rate = 0.9;
-            pauseAfter = 800;
-          }
-
-          speechQueue.push({ text: clean, pitch: pitch, rate: rate, pause: pauseAfter, original: s });
+        if (!res.ok) {
+          const errData = await res.json().catch(() => ({}));
+          throw new Error(errData.detail?.message || `HTTP ${res.status}`);
         }
-      });
 
-      if (speechQueue.length === 0) {
-        alert("Script me koi audible text nahi mila!");
-        return;
+        telemetryStatus.innerText = "Mastering audio track...";
+        telemetryProgress.style.width = "100%";
+        telemetryPct.innerText = "100%";
+
+        const audioBlob = await res.blob();
+        const audioUrl = URL.createObjectURL(audioBlob);
+
+        audioPlayer.src = audioUrl;
+        dlLink.href = audioUrl;
+        dlLink.download = `uta_human_voiceover.mp3`;
+
+        cockpitArea.classList.remove('hidden');
+        audioPlayer.play();
+
+      } catch (err) {
+        alert("ElevenLabs Engine Error: " + err.message);
+      } finally {
+        renderBtn.disabled = false;
+        renderBtn.innerHTML = '<i class="fa-solid fa-microphone"></i> Render Authentic Human Voiceover (ElevenLabs)';
+        telemetryBox.classList.add('hidden');
       }
-
-      // Render Segment List
-      const list = document.getElementById('segmentsList');
-      list.innerHTML = '';
-      speechQueue.forEach((item, i) => {
-        const div = document.createElement('div');
-        div.id = `seg_card_${i}`;
-        div.className = "p-2 rounded-lg bg-slate-950 border border-slate-800 text-slate-300 transition";
-        div.innerHTML = `<b class="text-pink-400 font-mono-code">Take #${i+1}:</b> ${item.text}`;
-        list.appendChild(div);
-      });
-
-      // Start Playback
-      currentSegmentIndex = 0;
-      isSpeaking = true;
-      document.getElementById('toggleText').innerText = "Stop Audio";
-      document.getElementById('toggleIcon').className = "fa-solid fa-stop";
-      setWaveAnimation(true);
-      playSegment(currentSegmentIndex);
-      addUtaExperience(40);
-    }
-
-    function playSegment(index) {
-      if (!isSpeaking || index >= speechQueue.length) {
-        finishSpeaking();
-        return;
-      }
-
-      const seg = speechQueue[index];
-      const utter = new SpeechSynthesisUtterance(seg.text);
-
-      // Voice selection
-      const voiceIdx = document.getElementById('deviceVoiceSelect').value;
-      if (voiceIdx && availableVoices[voiceIdx]) {
-        utter.voice = availableVoices[voiceIdx];
-      }
-
-      utter.pitch = seg.pitch;
-      utter.rate = seg.rate;
-
-      // Update Karaoke display
-      document.getElementById('karaokeText').innerText = `"${seg.text}"`;
-      document.getElementById('speakingStatus').innerText = `Uta Speaking Take #${index + 1} of ${speechQueue.length}...`;
-
-      // Highlight segment card
-      document.querySelectorAll('#segmentsList > div').forEach(d => d.className = "p-2 rounded-lg bg-slate-950 border border-slate-800 text-slate-400");
-      const activeCard = document.getElementById(`seg_card_${index}`);
-      if (activeCard) {
-        activeCard.className = "p-2 rounded-lg bg-pink-500/20 border border-pink-500/50 text-pink-200 font-semibold";
-        activeCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
-
-      utter.onend = () => {
-        if (!isSpeaking) return;
-        setTimeout(() => {
-          currentSegmentIndex++;
-          playSegment(currentSegmentIndex);
-        }, seg.pause);
-      };
-
-      utter.onerror = () => {
-        currentSegmentIndex++;
-        playSegment(currentSegmentIndex);
-      };
-
-      synth.speak(utter);
-    }
-
-    function togglePlayPause() {
-      if (isSpeaking) {
-        synth.cancel();
-        finishSpeaking();
-      } else {
-        prepareAndPlayPerformance();
-      }
-    }
-
-    function finishSpeaking() {
-      isSpeaking = false;
-      setWaveAnimation(false);
-      document.getElementById('speakingStatus').innerText = "Performance Complete ✓";
-      document.getElementById('toggleText').innerText = "Replay Audio";
-      document.getElementById('toggleIcon').className = "fa-solid fa-rotate-right";
     }
 
     function passToLevi() {
-      alert("✅ Vocal performance locked! Ready for Agent 5: Levi (Video Editor & VFX Master).");
+      alert("✅ Studio Audio Track locked! Ready for Agent 5: Levi (Video Editor & VFX Master).");
     }
 
-    window.onload = () => {
-      populateVoices();
-      updateUtaStats();
-      autoImportApprovedScript();
-    };
+    window.onload = initConsole;
   </script>
 </body>
 </html>

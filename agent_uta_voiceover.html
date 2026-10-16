@@ -39,10 +39,10 @@
         <div class="flex items-center gap-2">
           <h1 class="text-base md:text-lg font-black tracking-wide text-white">AGENT 4: "UTA"</h1>
           <span class="text-[9px] px-2 py-0.5 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/30 font-bold uppercase tracking-wider">
-            Multi-Character Seiyū v3.0
+            Vocal Master Pro v4.0
           </span>
         </div>
-        <p class="text-[11px] text-slate-400 font-mono-code">Any Accent • Any Persona • 29+ Languages Fluent</p>
+        <p class="text-[11px] text-slate-400 font-mono-code">Human Pacing • Punctuation Pacing • Multi-Voice Sliders</p>
       </div>
     </div>
 
@@ -65,64 +65,90 @@
     <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-xl space-y-4">
       <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-slate-800 pb-3">
         <span class="text-xs font-bold text-pink-400 uppercase tracking-wider font-mono-code flex items-center gap-2">
-          <i class="fa-solid fa-microphone-lines"></i> Multi-Voice Performance Studio
+          <i class="fa-solid fa-microphone-lines"></i> Studio Vocal Performance Studio
         </span>
-        <button onclick="autoImportApprovedScript()" class="text-xs bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-3 py-1.5 rounded-xl font-mono-code font-bold flex items-center gap-1.5 transition">
-          <i class="fa-solid fa-bolt"></i> Auto-Import Clean Script
-        </button>
+        <div class="flex gap-2">
+          <button onclick="humanizePacing()" class="text-xs bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 px-3 py-1.5 rounded-xl font-mono-code font-bold flex items-center gap-1 transition">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> ⚡ Auto-Humanize Pacing
+          </button>
+          <button onclick="autoImportApprovedScript()" class="text-xs bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-3 py-1.5 rounded-xl font-mono-code font-bold flex items-center gap-1 transition">
+            <i class="fa-solid fa-bolt"></i> Auto-Import
+          </button>
+        </div>
       </div>
 
       <!-- Script Area -->
       <div class="space-y-1">
         <div class="flex justify-between items-center">
-          <label class="text-xs font-semibold text-slate-300">Spoken Script (Any Language - English, Hinglish, Japanese, etc.)</label>
-          <span class="text-[10px] text-emerald-400 font-mono-code">Clean Voice Stream Active</span>
+          <label class="text-xs font-semibold text-slate-300">Spoken Script (Dashes & Ellipses create natural pauses)</label>
+          <span class="text-[10px] text-emerald-400 font-mono-code">Human Rhythm Engine</span>
         </div>
-        <textarea id="narrationInput" rows="4" placeholder="Script text yahan likhein ya import karein..." class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl p-3 text-xs text-slate-200 outline-none font-mono-code leading-relaxed"></textarea>
+        <textarea id="narrationInput" rows="4" placeholder="Script text yahan likhein..." class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl p-3 text-xs text-slate-200 outline-none font-mono-code leading-relaxed"></textarea>
       </div>
 
-      <!-- Multi-Character Archetype Selection -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <!-- Voice Selection -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
         <div class="space-y-1">
-          <label class="text-xs font-semibold text-slate-300">Select Character Voice</label>
-          <select id="voiceIdSelect" onchange="toggleCustomVoice(this.value)" class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl px-3 py-2.5 text-xs text-amber-300 font-semibold outline-none font-mono-code">
+          <label class="text-xs font-semibold text-slate-300">Select Voice Archetype</label>
+          <select id="voiceIdSelect" onchange="applyPresetSettings(this.value)" class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl px-3 py-2.5 text-xs text-amber-300 font-semibold outline-none font-mono-code">
             <optgroup label="Male Personas">
               <option value="pNInz6obpgDQGcFmaJgB">🎙️ Adam (Deep Mystery / Luxury / Boss)</option>
-              <option value="ErXwobaYiN019PkySvjV">⚡ Antoni (Energetic / High Sarcasm / Funny)</option>
-              <option value="JBFqnCBsd6RMkjVDRZzb">🇬🇧 George (BBC Documentary / British Noir)</option>
-              <option value="TX3LPaxmHKxFdv7VOQHJ">🔥 Liam (Fast-Paced American Shorts Narrator)</option>
-              <option value="nPczCjzI2devNBz1zQrb">🎧 Brian (Classic Storyteller / Deep Gravitas)</option>
+              <option value="JBFqnCBsd6RMkjVDRZzb">🇬🇧 George (BBC Documentary / British Warm)</option>
+              <option value="TX3LPaxmHKxFdv7VOQHJ">⚡ Liam (Energetic Fast-Paced Shorts)</option>
+              <option value="nPczCjzI2devNBz1zQrb">🎧 Brian (Classic Rich Narrative Gravitas)</option>
             </optgroup>
             <optgroup label="Female Personas">
-              <option value="21m00Tcm4TlvDq8ikWAM">🎙️ Rachel (Warm, Natural, Engaging Storyteller)</option>
-              <option value="XB0fDUnXU5powFXDhCwa">👁️ Charlotte (Chilling, Suspenseful Whisper)</option>
-              <option value="EXAVITQu4vr4xnSDxMaL">💎 Bella (Ultra-Prestige Luxury & Elegance)</option>
-              <option value="piTKgcLEGmPE4e6mEKli">🔥 Nicole (Dramatic Suspense & Fast Cadence)</option>
-            </optgroup>
-            <optgroup label="Custom Archetype">
-              <option value="CUSTOM">⚙️ Enter Custom Voice ID...</option>
+              <option value="21m00Tcm4TlvDq8ikWAM">🎙️ Rachel (Warm, Engaging & Emotional)</option>
+              <option value="XB0fDUnXU5powFXDhCwa">👁️ Charlotte (Chilling Suspense Whispers)</option>
+              <option value="EXAVITQu4vr4xnSDxMaL">💎 Bella (Luxury & Elegance)</option>
             </optgroup>
           </select>
         </div>
 
         <div class="space-y-1">
-          <label class="text-xs font-semibold text-slate-300">Tone & Pacing Stability</label>
-          <select id="voiceProfileSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none">
-            <option value="fluent_narrative">🎬 Fluent Cinematic Narrative (Stable & Natural)</option>
-            <option value="deep_suspense">👁️ Deep Suspense (Heavy Dramatic Pauses)</option>
-            <option value="energetic_punch">⚡ High-Octane Energy (Punchy Delivery)</option>
+          <label class="text-xs font-semibold text-slate-300">Genre Preset</label>
+          <select id="presetSelect" onchange="applyGenrePreset(this.value)" class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none">
+            <option value="mystery">👁️ Documentary Mystery (Low Stability, Rich Pauses)</option>
+            <option value="luxury">💎 Luxury / Prestige (Smooth & Authoritative)</option>
+            <option value="funny">⚡ High-Energy Shorts (Dynamic Variation)</option>
           </select>
         </div>
+      </div>
 
-        <div class="space-y-1" id="customVoiceBox" style="display: none;">
-          <label class="text-xs font-semibold text-slate-300">Custom ElevenLabs Voice ID</label>
-          <input id="customVoiceInput" type="text" placeholder="Paste Voice ID here..." class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl px-3 py-2.5 text-xs text-pink-300 font-mono-code outline-none">
+      <!-- Advanced Voice Sliders (The Humanization Secret) -->
+      <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-3">
+        <span class="text-[10px] uppercase font-bold text-slate-400 font-mono-code block">Voice Calibrations (Sliders)</span>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+          <div>
+            <div class="flex justify-between text-slate-300 mb-1">
+              <span>Stability (Lower = More Human Variation)</span>
+              <span id="dispStability" class="text-pink-400 font-mono-code font-bold">40%</span>
+            </div>
+            <input type="range" id="sliderStability" min="20" max="85" value="40" oninput="document.getElementById('dispStability').innerText = this.value + '%'" class="w-full accent-pink-500">
+          </div>
+
+          <div>
+            <div class="flex justify-between text-slate-300 mb-1">
+              <span>Similarity (Clarity)</span>
+              <span id="dispSimilarity" class="text-amber-400 font-mono-code font-bold">82%</span>
+            </div>
+            <input type="range" id="sliderSimilarity" min="40" max="95" value="82" oninput="document.getElementById('dispSimilarity').innerText = this.value + '%'" class="w-full accent-amber-500">
+          </div>
+
+          <div>
+            <div class="flex justify-between text-slate-300 mb-1">
+              <span>Style Exaggeration (Emotion)</span>
+              <span id="dispStyle" class="text-cyan-400 font-mono-code font-bold">35%</span>
+            </div>
+            <input type="range" id="sliderStyle" min="0" max="75" value="35" oninput="document.getElementById('dispStyle').innerText = this.value + '%'" class="w-full accent-cyan-500">
+          </div>
         </div>
       </div>
 
       <!-- Action Button -->
       <button id="renderVoiceBtn" onclick="renderAuthenticElevenLabsAudio()" class="w-full bg-gradient-to-r from-pink-500 via-rose-500 to-purple-600 hover:from-pink-400 hover:to-purple-500 active:scale-[0.99] text-white font-black py-3.5 rounded-xl text-sm transition shadow-xl flex items-center justify-center gap-2">
-        <i class="fa-solid fa-microphone"></i> Render 100% Fluent Multi-Character Voiceover
+        <i class="fa-solid fa-microphone"></i> Render 100% Master Voiceover with Uta
       </button>
     </div>
 
@@ -131,7 +157,7 @@
       <div class="flex justify-between items-center text-xs font-mono-code text-pink-400">
         <span class="flex items-center gap-2">
           <i class="fa-solid fa-circle-notch fa-spin"></i>
-          <span id="telemetryStatus">Uta is channeling character vocal inflection...</span>
+          <span id="telemetryStatus">Uta is rendering with human breath dynamics...</span>
         </span>
         <span id="telemetryPct">50%</span>
       </div>
@@ -147,10 +173,10 @@
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-800 pb-3">
           <div>
             <span class="text-[10px] uppercase font-bold text-pink-400 font-mono-code">Master Vocal Track Ready</span>
-            <h2 id="dispVocalTitle" class="text-base font-extrabold text-white mt-0.5">ElevenLabs Multi-Character Master Take</h2>
+            <h2 id="dispVocalTitle" class="text-base font-extrabold text-white mt-0.5">ElevenLabs Ultra-Human Master Take</h2>
           </div>
           <div class="flex items-center gap-2">
-            <a id="downloadLink" download="uta_character_voiceover.mp3" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-2 rounded-xl text-slate-200 border border-slate-700 flex items-center gap-1.5 transition">
+            <a id="downloadLink" download="uta_master_human_voiceover.mp3" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-2 rounded-xl text-slate-200 border border-slate-700 flex items-center gap-1.5 transition">
               <i class="fa-solid fa-download text-pink-400"></i> Download MP3
             </a>
           </div>
@@ -159,7 +185,7 @@
         <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
           <audio id="realAudioPlayer" controls class="w-full h-11 outline-none rounded-xl"></audio>
           <div class="text-[11px] text-slate-400 font-mono-code">
-            <span class="text-emerald-400 font-bold block mb-1">Spoken Script Cleaned:</span>
+            <span class="text-emerald-400 font-bold block mb-1">Spoken Script with Natural Pacing:</span>
             <p id="cleanPreviewText" class="text-slate-200 bg-slate-900 p-3 rounded-lg border border-slate-800 italic"></p>
           </div>
         </div>
@@ -193,14 +219,48 @@
 
     function initConsole() {
       updateKeyUI();
-      const defaultText = "In late 2018, an uncalibrated satellite pass over the Wilkes Land ice shelf penetrated two miles deeper than glaciologists intended. What bounced back was not bedrock, but a 150-mile structural cavity emitting localized heat signatures that physics says should literally not exist.";
+      const defaultText = "In late 2018 — an uncalibrated satellite pass over the Wilkes Land ice shelf penetrated two miles deeper than glaciologists intended.\n\nWhat bounced back was not bedrock... but a 150-mile structural cavity, emitting localized heat signatures that physics says — should literally not exist.";
       if (!document.getElementById('narrationInput').value) {
         document.getElementById('narrationInput').value = defaultText;
       }
     }
 
-    function toggleCustomVoice(val) {
-      document.getElementById('customVoiceBox').style.display = (val === 'CUSTOM') ? 'block' : 'none';
+    function applyGenrePreset(preset) {
+      if (preset === 'mystery') {
+        document.getElementById('sliderStability').value = 38;
+        document.getElementById('dispStability').innerText = '38%';
+        document.getElementById('sliderSimilarity').value = 85;
+        document.getElementById('dispSimilarity').innerText = '85%';
+        document.getElementById('sliderStyle').value = 40;
+        document.getElementById('dispStyle').innerText = '40%';
+      } else if (preset === 'luxury') {
+        document.getElementById('sliderStability').value = 65;
+        document.getElementById('dispStability').innerText = '65%';
+        document.getElementById('sliderSimilarity').value = 80;
+        document.getElementById('dispSimilarity').innerText = '80%';
+        document.getElementById('sliderStyle').value = 20;
+        document.getElementById('dispStyle').innerText = '20%';
+      } else if (preset === 'funny') {
+        document.getElementById('sliderStability').value = 32;
+        document.getElementById('dispStability').innerText = '32%';
+        document.getElementById('sliderSimilarity').value = 82;
+        document.getElementById('dispSimilarity').innerText = '82%';
+        document.getElementById('sliderStyle').value = 55;
+        document.getElementById('dispStyle').innerText = '55%';
+      }
+    }
+
+    function humanizePacing() {
+      let t = document.getElementById('narrationInput').value;
+      if (!t) return;
+      // Convert standard periods to natural human cadence pauses
+      t = t.replace(/\.\s+/g, '.\n\n')
+           .replace(/,\s+/g, ', ')
+           .replace(/\s+but\s+/gi, ' — but ')
+           .replace(/\s+because\s+/gi, '... because ')
+           .replace(/\s+and\s+/gi, ' — and ');
+      document.getElementById('narrationInput').value = t;
+      alert("✨ Uta has structured natural breathing pauses and pacing breaks!");
     }
 
     function updateKeyUI() {
@@ -246,7 +306,7 @@
         try {
           const parsed = JSON.parse(verified);
           (parsed.scenes || []).forEach(sc => {
-            text += `${sc.audio_narration} `;
+            text += `${sc.audio_narration}\n\n`;
           });
         } catch (e) {
           text = verified;
@@ -255,9 +315,10 @@
         text = verified;
       }
 
+      // Clean tags and insert natural pauses
       const clean = text
         .replace(/[whisper]/gi, '')
-        .replace(/\[pause[^\]]*\]/gi, '')
+        .replace(/\[pause[^\]]*\]/gi, ' — ')
         .replace(/\[intense[^\]]*\]/gi, '')
         .replace(/\[fast[^\]]*\]/gi, '')
         .replace(/\[sarcastic[^\]]*\]/gi, '')
@@ -266,13 +327,12 @@
         .replace(/\[SFX:[^\]]*\]/gi, '')
         .replace(/\[Meme:[^\]]*\]/gi, '')
         .replace(/\[B-Roll:[^\]]*\]/gi, '')
-        .replace(/Bro\.\.\./gi, 'Bro,')
-        .replace(/\.{2,}/g, ', ')
-        .replace(/\s+/g, ' ')
+        .replace(/Bro\.\.\./gi, 'Bro, ')
+        .replace(/\.{2,}/g, '... ')
         .trim();
 
       document.getElementById('narrationInput').value = clean;
-      alert("✅ Clean script loaded without technical tags!");
+      alert("✅ Clean script loaded with human pacing!");
     }
 
     async function renderAuthenticElevenLabsAudio() {
@@ -283,22 +343,12 @@
 
       let rawScript = document.getElementById('narrationInput').value.trim();
       let voiceId = document.getElementById('voiceIdSelect').value;
-      if (voiceId === 'CUSTOM') {
-        voiceId = document.getElementById('customVoiceInput').value.trim();
-        if (!voiceId) return alert("Kripya custom Voice ID daalein!");
-      }
-      const profile = document.getElementById('voiceProfileSelect').value;
 
       if (!rawScript) return alert("Pehle narration text dalein!");
 
-      const cleanText = rawScript
-        .replace(/\[.*?\]/g, '')
-        .replace(/\{.*?\}/g, '')
-        .replace(/[\(\)]/g, '')
-        .replace(/\.{2,}/g, ', ')
-        .replace(/[-_]{2,}/g, ' ')
-        .replace(/\s+/g, ' ')
-        .trim();
+      const stability = parseFloat(document.getElementById('sliderStability').value) / 100;
+      const similarity = parseFloat(document.getElementById('sliderSimilarity').value) / 100;
+      const style = parseFloat(document.getElementById('sliderStyle').value) / 100;
 
       const renderBtn = document.getElementById('renderVoiceBtn');
       const telemetryBox = document.getElementById('telemetryBox');
@@ -314,25 +364,11 @@
       telemetryBox.classList.remove('hidden');
       cockpitArea.classList.add('hidden');
 
-      telemetryStatus.innerText = "Applying narrative prosody & inflection...";
+      telemetryStatus.innerText = "Applying calibrated stability & breathing pauses...";
       telemetryProgress.style.width = "40%";
       telemetryPct.innerText = "40%";
 
-      let stability = 0.50;
-      let similarity = 0.80;
-      let style = 0.20;
-
-      if (profile === 'deep_suspense') {
-        stability = 0.45;
-        similarity = 0.85;
-        style = 0.30;
-      } else if (profile === 'energetic_punch') {
-        stability = 0.38;
-        similarity = 0.82;
-        style = 0.40;
-      }
-
-      document.getElementById('cleanPreviewText').innerText = cleanText;
+      document.getElementById('cleanPreviewText').innerText = rawScript;
 
       try {
         telemetryStatus.innerText = "ElevenLabs Neural Rendering in progress...";
@@ -347,7 +383,7 @@
             'xi-api-key': elevenApiKey
           },
           body: JSON.stringify({
-            text: cleanText,
+            text: rawScript,
             model_id: 'eleven_multilingual_v2',
             voice_settings: {
               stability: stability,
@@ -372,7 +408,7 @@
 
         audioPlayer.src = audioUrl;
         dlLink.href = audioUrl;
-        dlLink.download = `uta_character_voiceover.mp3`;
+        dlLink.download = `uta_master_human_voiceover.mp3`;
 
         cockpitArea.classList.remove('hidden');
         audioPlayer.play();
@@ -381,7 +417,7 @@
         alert("ElevenLabs Engine Error: " + err.message);
       } finally {
         renderBtn.disabled = false;
-        renderBtn.innerHTML = '<i class="fa-solid fa-microphone"></i> Render 100% Fluent Multi-Character Voiceover';
+        renderBtn.innerHTML = '<i class="fa-solid fa-microphone"></i> Render 100% Master Voiceover with Uta';
         telemetryBox.classList.add('hidden');
       }
     }

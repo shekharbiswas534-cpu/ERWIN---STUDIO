@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Agent Rohan | Master Narrative & Retention Architect</title>
+  <title>Agent Rohan | Master Narrative & Retention Architect Pro</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -27,10 +27,10 @@
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col p-3 md:p-6 pb-20 select-none">
+<body class="min-h-screen flex flex-col p-3 md:p-6 pb-24 select-none">
 
   <!-- Header -->
-  <header class="w-full max-w-4xl mx-auto bg-slate-900/90 border border-slate-800 rounded-2xl p-4 mb-4 backdrop-blur shadow-2xl flex justify-between items-center">
+  <header class="w-full max-w-5xl mx-auto bg-slate-900/90 border border-slate-800 rounded-2xl p-4 mb-4 backdrop-blur shadow-2xl flex justify-between items-center">
     <div class="flex items-center gap-3">
       <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 via-pink-500 to-indigo-600 flex items-center justify-center font-black text-white text-lg shadow-lg">
         R
@@ -39,18 +39,17 @@
         <div class="flex items-center gap-2">
           <h1 class="text-base md:text-lg font-black tracking-wide text-white">AGENT 2: "ROHAN"</h1>
           <span class="text-[9px] px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30 font-bold uppercase tracking-wider">
-            Self-Evolving Master Storyteller
+            Script Architect v2.5 Pro
           </span>
         </div>
-        <p class="text-[11px] text-slate-400 font-mono-code">Hook Sorcerer • Meme & Pacing Director • Retention King</p>
+        <p class="text-[11px] text-slate-400 font-mono-code">Hollywood Hooks • Meme Library • WPM Calculator • Re-write Engine</p>
       </div>
     </div>
 
-    <!-- Stats & Links -->
     <div class="flex items-center gap-2">
       <div class="bg-slate-950 px-2.5 py-1 rounded-xl border border-slate-800 text-right hidden sm:block">
-        <span class="text-[8px] text-slate-500 uppercase font-mono-code block">Experience</span>
-        <span id="rohanXp" class="text-xs font-bold text-amber-400 font-mono-code">Level 1 (0 XP)</span>
+        <span class="text-[8px] text-slate-500 uppercase font-mono-code block">Mastery Score</span>
+        <span id="rohanXp" class="text-xs font-bold text-amber-400 font-mono-code">Level 2 (150 XP)</span>
       </div>
       <a href="agent_l_researcher.html" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-2 rounded-xl border border-slate-700 text-amber-300 font-bold flex items-center gap-1.5 transition">
         🕵️ L (Researcher)
@@ -62,7 +61,7 @@
   </header>
 
   <!-- Main Cockpit -->
-  <main class="w-full max-w-4xl mx-auto space-y-4">
+  <main class="w-full max-w-5xl mx-auto space-y-4">
 
     <!-- Mission Input Card -->
     <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-xl space-y-4">
@@ -75,51 +74,62 @@
         </button>
       </div>
 
-      <!-- Inputs -->
+      <!-- Inputs Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
         <div class="space-y-1">
-          <label class="text-xs font-semibold text-slate-300">Video Title / Hook Theme</label>
-          <input id="titleInput" type="text" placeholder="e.g. You Won't Believe What Billionaires Build Underground" class="w-full bg-slate-950 border border-slate-800 focus:border-purple-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none font-mono-code">
+          <label class="text-xs font-semibold text-slate-300">Video Title / Hook Premise</label>
+          <input id="titleInput" type="text" placeholder="e.g. Why Billionaires Actually Live in Bunkers" class="w-full bg-slate-950 border border-slate-800 focus:border-purple-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none font-mono-code">
         </div>
         <div class="space-y-1">
-          <label class="text-xs font-semibold text-slate-300">Channel ID / Audience Profile</label>
-          <input id="channelInput" type="text" value="CH_03_FUNNY" placeholder="e.g. CH_03_FUNNY / CH_01_LUXURY" class="w-full bg-slate-950 border border-slate-800 focus:border-purple-400 rounded-xl px-3 py-2.5 text-xs text-amber-300 font-mono-code outline-none">
+          <label class="text-xs font-semibold text-slate-300">Channel ID / Custom Destination</label>
+          <input id="channelInput" type="text" value="CH_02_MYSTERY" placeholder="e.g. CH_02_MYSTERY / CH_03_FUNNY" class="w-full bg-slate-950 border border-slate-800 focus:border-purple-400 rounded-xl px-3 py-2.5 text-xs text-amber-300 font-mono-code outline-none">
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <!-- Row 2: Slang & Tone Selection -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
         <div class="space-y-1">
-          <label class="text-xs font-semibold text-slate-300">Tone & Script Style</label>
-          <select id="toneSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-purple-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none">
-            <option value="Hilarious, Sarcastic Meme Commentary with Rapid Cuts">😂 High-Energy Funny Commentary + Trending Memes</option>
-            <option value="Hypnotic, Deep Investigative, High Prestige">💎 Hypnotic & Deep Investigative (Luxury / Business)</option>
-            <option value="Cold, Chilling, Whispering Suspense">👁️ Cold, Chilling Whispers (Mystery / Dark Truths)</option>
-            <option value="Epic 5-Act Cinematic Documentary Drama">🎬 Cinematic Feature Documentary Drama (Long-form)</option>
+          <label class="text-xs font-semibold text-slate-300">Accent & Slang Tuning</label>
+          <select id="accentSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-purple-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none">
+            <option value="US Gen-Z & Pop-Culture (Slang, High-Energy, Viral)">🇺🇸 US Gen-Z & Pop-Culture (Sarcasm, Slangs)</option>
+            <option value="Cold British Investigative (Sophisticated, Noir, Chilling)">🇬🇧 Cold British BBC Noir (Investigative)</option>
+            <option value="Conversational Hinglish / Indian Pop-Culture">🇮🇳 Conversational Hinglish (Relatable, punchy)</option>
+            <option value="Neutral Global English (Clean, Universal, High-Retention)">🌐 Neutral Global English (Documentary Standard)</option>
           </select>
         </div>
+
         <div class="space-y-1">
-          <label class="text-xs font-semibold text-slate-300">Video Format / Length</label>
+          <label class="text-xs font-semibold text-slate-300">Format & Pacing Target</label>
           <select id="formatSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-purple-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none">
-            <option value="Standard Video (8-15 mins)">Standard Video (8-15 mins)</option>
-            <option value="YouTube Shorts (30-60 secs)">⚡ YouTube Shorts (30-60 secs)</option>
-            <option value="Deep-Dive Investigation (20-35 mins)">🕵️ Deep-Dive Investigation (20-35 mins)</option>
-            <option value="Feature Length Documentary (45-60+ mins)">🎬 Full Documentary (45-60+ mins)</option>
+            <option value="YouTube Shorts (30-60 secs)">⚡ YouTube Shorts (30-60s - Rapid 180 WPM)</option>
+            <option value="Standard Video (8-15 mins)">📹 Standard Long-form (8-15m - 150 WPM)</option>
+            <option value="Deep-Dive Mini-Doc (20-35 mins)">🕵️ Deep-Dive Mini-Doc (20-35 mins)</option>
+            <option value="Feature Length Documentary (45-60+ mins)">🎬 Full Documentary (45-60+ mins - 130 WPM)</option>
+          </select>
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-xs font-semibold text-slate-300">Meme & SFX Density</label>
+          <select id="sfxDensitySelect" class="w-full bg-slate-950 border border-slate-800 focus:border-purple-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none">
+            <option value="Maximum Meme Density (Meme/SFX every 4 seconds)">🔥 Maximum Memes & SFX Drops (Every 4s)</option>
+            <option value="Cinematic Tension (Sub-bass, Heartbeats, Whooshes)">🎧 Cinematic Tension (Sub-bass, Risers, Glitches)</option>
+            <option value="Minimalistic Narrative (Clean Voiceover focus)">🎙️ Minimalist (Clean Narrative focus)</option>
           </select>
         </div>
       </div>
 
-      <!-- Mandatory Hook Reference -->
+      <!-- Hook Box -->
       <div class="space-y-1">
         <div class="flex justify-between items-center">
           <label class="text-xs font-semibold text-slate-300">0-5s Scroll-Stopping Hook (From L or Custom)</label>
-          <span class="text-[10px] text-amber-400 font-mono-code">Must hook within 3 seconds</span>
+          <span class="text-[10px] text-amber-400 font-mono-code">Hook Sorcerer Mode</span>
         </div>
-        <textarea id="hookInput" rows="2" placeholder="The first scene and words spoken to freeze the viewer's finger..." class="w-full bg-slate-950 border border-slate-800 focus:border-purple-400 rounded-xl p-2.5 text-xs text-slate-200 outline-none font-mono-code resize-none"></textarea>
+        <textarea id="hookInput" rows="2" placeholder="First scene visual & spoken words..." class="w-full bg-slate-950 border border-slate-800 focus:border-purple-400 rounded-xl p-2.5 text-xs text-slate-200 outline-none font-mono-code resize-none"></textarea>
       </div>
 
-      <!-- Action Button -->
+      <!-- Main Action Button -->
       <button id="generateBtn" onclick="runRohanMasterEngine()" class="w-full bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 active:scale-[0.99] text-white font-black py-3.5 rounded-xl text-sm transition shadow-xl flex items-center justify-center gap-2">
-        <i class="fa-solid fa-feather-pointed"></i> Unleash Rohan's Retention Storytelling Engine
+        <i class="fa-solid fa-feather-pointed"></i> Unleash Rohan's Full Production Script
       </button>
     </div>
 
@@ -128,16 +138,16 @@
       <div class="flex justify-between items-center text-xs font-mono-code text-purple-400">
         <span class="flex items-center gap-2">
           <i class="fa-solid fa-circle-notch fa-spin"></i>
-          <span id="telemetryStatus">Rohan is crafting retention hooks & memes...</span>
+          <span id="telemetryStatus">Rohan is crafting narrative pacing...</span>
         </span>
-        <span id="telemetryPct">30%</span>
+        <span id="telemetryPct">35%</span>
       </div>
       <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden border border-slate-800">
-        <div id="telemetryProgress" class="bg-gradient-to-r from-purple-500 to-pink-500 h-full w-[30%] transition-all duration-300"></div>
+        <div id="telemetryProgress" class="bg-gradient-to-r from-purple-500 to-pink-500 h-full w-[35%] transition-all duration-300"></div>
       </div>
     </div>
 
-    <!-- Script Output Cockpit -->
+    <!-- Output Cockpit -->
     <div id="scriptOutputArea" class="hidden space-y-4">
       <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-2xl space-y-4">
         
@@ -150,16 +160,16 @@
             <button onclick="copyFullScript()" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-xl text-slate-200 border border-slate-700 flex items-center gap-1 transition">
               <i class="fa-regular fa-copy"></i> Copy Script
             </button>
-            <button onclick="copyPayloadForKurapika()" class="text-xs bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-3 py-1.5 rounded-xl flex items-center gap-1 shadow transition">
-              <i class="fa-solid fa-shield-halved"></i> Export for Kurapika
+            <button onclick="exportToKurapika()" class="text-xs bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-3 py-1.5 rounded-xl flex items-center gap-1 shadow transition">
+              <i class="fa-solid fa-shield-halved"></i> Export to Kurapika
             </button>
           </div>
         </div>
 
-        <!-- Metrics -->
-        <div class="grid grid-cols-3 gap-2 bg-slate-950 p-2.5 rounded-xl border border-slate-800 text-center text-xs font-mono-code">
+        <!-- Real-time Mathematical Pacing Metrics -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 bg-slate-950 p-3 rounded-xl border border-slate-800 text-center text-xs font-mono-code">
           <div>
-            <span class="text-[9px] text-slate-500 uppercase">Estimated Words</span>
+            <span class="text-[9px] text-slate-500 uppercase">Total Words</span>
             <p id="statWords" class="text-purple-400 font-bold">1,650</p>
           </div>
           <div>
@@ -167,23 +177,28 @@
             <p id="statTime" class="text-emerald-400 font-bold">11m 30s</p>
           </div>
           <div>
-            <span class="text-[9px] text-slate-500 uppercase">Retention Rating</span>
-            <p id="statGrade" class="text-amber-400 font-bold">S-Tier (72%+ Lock)</p>
+            <span class="text-[9px] text-slate-500 uppercase">Target WPM</span>
+            <p id="statWpm" class="text-cyan-400 font-bold">150 WPM</p>
+          </div>
+          <div>
+            <span class="text-[9px] text-slate-500 uppercase">Retention Grade</span>
+            <p id="statGrade" class="text-amber-400 font-bold">S-Tier (75%+ Lock)</p>
           </div>
         </div>
 
-        <!-- Dual Column Table (Levi's Visuals & Memes vs Uta's Narration) -->
+        <!-- Dual Column Table with 1-Click Re-Write on Every Scene -->
         <div class="overflow-x-auto custom-scrollbar">
           <table class="w-full text-left text-xs border-collapse">
             <thead>
               <tr class="border-b border-slate-800 bg-slate-950/80 text-slate-400 font-mono-code">
-                <th class="p-3 w-16">Scene</th>
-                <th class="p-3 w-2/5 border-r border-slate-800">Visuals, Memes & SFX (For Levi - Editor)</th>
-                <th class="p-3">Spoken Narration & Tones (For Uta - Voice Artist)</th>
+                <th class="p-3 w-20">Scene & Pacing</th>
+                <th class="p-3 w-5/12 border-r border-slate-800">Visual Directives, Memes & SFX (Levi)</th>
+                <th class="p-3">Narration Script (Uta)</th>
+                <th class="p-3 w-20 text-center">Action</th>
               </tr>
             </thead>
             <tbody id="scriptTableBody" class="divide-y divide-slate-800/60 font-sans">
-              <!-- Rendered Dynamically -->
+              <!-- Dynamically Populated -->
             </tbody>
           </table>
         </div>
@@ -195,8 +210,8 @@
   <script>
     let activeApiKey = localStorage.getItem('ERWIN_API_KEY') || localStorage.getItem('GEMINI_KEY') || '';
     let currentScriptPayload = null;
-    let rohanLevel = parseInt(localStorage.getItem('ROHAN_LEVEL') || '1');
-    let rohanXp = parseInt(localStorage.getItem('ROHAN_XP') || '0');
+    let rohanLevel = parseInt(localStorage.getItem('ROHAN_LEVEL') || '2');
+    let rohanXp = parseInt(localStorage.getItem('ROHAN_XP') || '150');
 
     function updateRohanStats() {
       document.getElementById('rohanXp').innerText = `Level ${rohanLevel} (${rohanXp} XP)`;
@@ -206,7 +221,7 @@
       rohanXp += amount;
       if (rohanXp >= rohanLevel * 100) {
         rohanLevel += 1;
-        alert(`🔥 Rohan leveled up to Level ${rohanLevel}! His narrative intuition has become sharper.`);
+        alert(`🔥 Rohan Level Up! Ab Rohan Level ${rohanLevel} par operate kar raha hai!`);
       }
       localStorage.setItem('ROHAN_LEVEL', rohanLevel);
       localStorage.setItem('ROHAN_XP', rohanXp);
@@ -214,10 +229,10 @@
     }
 
     function autoImportFromL() {
-      const channel = document.getElementById('channelInput').value.trim() || 'CH_01_LUXURY';
+      const channel = document.getElementById('channelInput').value.trim() || 'CH_02_MYSTERY';
       const stored = localStorage.getItem(`PIPELINE_RESEARCH_${channel}`);
       if (!stored) {
-        alert(`"L" ka koi saved data nahi mila '${channel}' ke liye! Pehle L page par jakar research run karein.`);
+        alert(`"L" ka koi saved data nahi mila '${channel}' ke liye! Pehle L page par Jake research run karein.`);
         return;
       }
       try {
@@ -229,7 +244,7 @@
         }
         alert("✅ 'L' ka latest research successfully import ho gaya!");
       } catch (e) {
-        alert("Parse error in L's data.");
+        alert("Error importing L's data.");
       }
     }
 
@@ -241,8 +256,9 @@
 
       const title = document.getElementById('titleInput').value.trim();
       const channel = document.getElementById('channelInput').value.trim();
-      const tone = document.getElementById('toneSelect').value;
+      const accent = document.getElementById('accentSelect').value;
       const format = document.getElementById('formatSelect').value;
+      const sfxDensity = document.getElementById('sfxDensitySelect').value;
       const hook = document.getElementById('hookInput').value.trim();
 
       if (!title) {
@@ -256,61 +272,59 @@
       const telemetryProgress = document.getElementById('telemetryProgress');
       const telemetryPct = document.getElementById('telemetryPct');
       const outputArea = document.getElementById('scriptOutputArea');
-      const tableBody = document.getElementById('scriptTableBody');
 
       genBtn.disabled = true;
-      genBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Rohan is weaving storytelling magic...';
+      genBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Rohan is crafting master script...';
       telemetryBox.classList.remove('hidden');
       outputArea.classList.add('hidden');
 
-      telemetryStatus.innerText = "Injecting psychological hooks & meme placements...";
-      telemetryProgress.style.width = "35%";
-      telemetryPct.innerText = "35%";
+      telemetryStatus.innerText = "Aligning pacing, WPM & psychological retention traps...";
+      telemetryProgress.style.width = "40%";
+      telemetryPct.innerText = "40%";
 
-      const systemPrompt = `You are Rohan Kishibe, the legendary master storyteller, operating as the World Top 0.1% Chief YouTube Scriptwriter.
-Benchmark: Retention mastery (MrBeast pacing + Vox narrative depth + meme culture literacy). Current Rohan Mastery: Level ${rohanLevel}.
+      const systemPrompt = `You are Rohan Kishibe, legendary storytelling genius, operating as the World Top 0.1% YouTube Scriptwriter.
+Current Rohan Mastery: Level ${rohanLevel}.
 
-MISSION RULES:
-1. SCROLL-STOPPING HOOK: Start with an unforgettable 0-3s pattern interrupt.
-2. VISUAL DIRECTIVES & MEME CUES (FOR LEVI - VIDEO EDITOR):
-   - Every single scene MUST state exact visual footage (e.g. 4K Drone pan, Galaxy zoom-out, glitch cut).
-   - If Tone is Funny/Commentary: You MUST name exact trending memes and sound effects (e.g. 'Wait What meme', 'Vine boom SFX', 'Shocked cat meme', 'Dramatic record scratch', 'Minecraft parkour b-roll background').
-   - Visual pace must change every 4 to 6 seconds!
-3. WORD-FOR-WORD SPOKEN DIALOGUE (FOR UTA - VOICE ARTIST):
-   - Natural American spoken English with clear personality.
-   - Embed tone notations: [whisper], [dramatic pause 1s], [sarcastic laugh], [fast-paced], [explosive].
-4. NARRATIVE MOMENTUM: Every segment ends with an unresolved curiosity loop so the viewer never stops watching.
+MISSION REQUIREMENTS:
+1. SCROLL-STOPPING HOOK: Start with an unforgettable 0-3s pattern interrupt using the hook provided.
+2. ACCENT & SLANG ADAPTATION: Write spoken lines strictly tailored to: ${accent}.
+3. SFX & MEME DIRECTIVES FOR LEVI (VIDEO EDITOR):
+   - Density: ${sfxDensity}.
+   - Explicitly name memes, sound effects, B-roll footage (e.g. [Meme: Wait What], [SFX: Vine Boom], [B-Roll: 4K Drone Night Shot], [Meme: Shocked Cat Freeze]).
+4. WORD-FOR-WORD SPOKEN DIALOGUE FOR UTA (VOICE ARTIST):
+   - Include emotional tone markers: [whisper], [intense pause 1s], [sarcastic laugh], [explosive].
+5. PACING: Calculate approximate words per scene and duration based on target WPM (150-180 WPM).
 
 OUTPUT STRICT VALID JSON ONLY:
 {
   "script_title": "${title}",
   "channel_id": "${channel}",
   "video_format": "${format}",
-  "estimated_words": 1600,
+  "estimated_words": 1500,
   "estimated_duration": "10-12 mins",
+  "target_wpm": 160,
   "scenes": [
     {
       "scene_num": 1,
       "timing": "0:00 - 0:06",
-      "visual_directive": "Visual cue description with exact meme/SFX name (e.g. Quick zoom on face, Vine Boom SFX, meme cut)",
-      "audio_narration": "[Tone cue] Word-for-word spoken sentence."
+      "pacing_speed": "Fast (180 WPM)",
+      "visual_directive": "Visual cue with exact meme/SFX name (e.g. Quick zoom on face, [SFX: Vine Boom], [Meme: Shocked Face Cut])",
+      "audio_narration": "[Tone cue] Word-for-word spoken dialogue."
     }
   ],
-  "factual_claims_for_kurapika": [
-    "Claim 1 with context",
-    "Claim 2 with context"
-  ]
+  "factual_claims_for_kurapika": ["Claim 1", "Claim 2"]
 }`;
 
       const userMessage = `Title: ${title}
 Channel: ${channel}
-Tone: ${tone}
+Accent/Slang: ${accent}
 Format: ${format}
+SFX/Meme Density: ${sfxDensity}
 Mandatory 0-5s Hook: ${hook}`;
 
       try {
         setTimeout(() => {
-          telemetryStatus.innerText = "Calibrating Levi's meme cues & Uta's audio tone markers...";
+          telemetryStatus.innerText = "Injecting meme library & dual-column directives...";
           telemetryProgress.style.width = "75%";
           telemetryPct.innerText = "75%";
         }, 1500);
@@ -339,50 +353,101 @@ Mandatory 0-5s Hook: ${hook}`;
           }
         }
 
-        if (!rawText) throw new Error("API call failed. Kripya key aur internet check karein.");
+        if (!rawText) throw new Error("API response error. Kripya key check karein.");
 
-        telemetryStatus.innerText = "Polishing dual-column script & packaging for Kurapika...";
+        telemetryStatus.innerText = "Packaging master script for Kurapika...";
         telemetryProgress.style.width = "100%";
         telemetryPct.innerText = "100%";
 
         const data = JSON.parse(rawText);
         currentScriptPayload = data;
 
-        // Save script to LocalStorage for Kurapika, Levi & Uta
         localStorage.setItem(`PIPELINE_SCRIPT_${channel}`, JSON.stringify(data));
 
-        document.getElementById('scriptTitleDisp').innerText = data.script_title || title;
-        document.getElementById('statWords').innerText = (data.estimated_words || '1,600') + ' words';
-        document.getElementById('statTime').innerText = data.estimated_duration || '11m';
-
-        // Render Table Rows
-        tableBody.innerHTML = '';
-        (data.scenes || []).forEach(sc => {
-          const tr = document.createElement('tr');
-          tr.className = "hover:bg-slate-950/50 transition";
-          tr.innerHTML = `
-            <td class="p-3 font-mono-code text-slate-500 font-bold align-top">#${sc.scene_num}<br><span class="text-[9px] text-slate-600">${sc.timing || ''}</span></td>
-            <td class="p-3 border-r border-slate-800 text-slate-300 align-top font-mono-code text-[11px] leading-relaxed">
-              <span class="text-amber-400 font-bold block mb-1">🎬 Visuals, Memes & SFX:</span>
-              ${sc.visual_directive}
-            </td>
-            <td class="p-3 text-slate-100 align-top leading-relaxed text-[12px]">
-              <span class="text-purple-400 font-bold block mb-1">🎙️ Dialogue & Tone (Uta):</span>
-              ${sc.audio_narration}
-            </td>
-          `;
-          tableBody.appendChild(tr);
-        });
-
+        renderScriptCockpit(data);
         outputArea.classList.remove('hidden');
-        addRohanExperience(50);
+        addRohanExperience(60);
 
       } catch (err) {
         alert("Rohan Scriptwriting Error: " + err.message);
       } finally {
         genBtn.disabled = false;
-        genBtn.innerHTML = '<i class="fa-solid fa-feather-pointed"></i> Unleash Rohan\'s Retention Storytelling Engine';
+        genBtn.innerHTML = '<i class="fa-solid fa-feather-pointed"></i> Unleash Rohan\'s Full Production Script';
         telemetryBox.classList.add('hidden');
+      }
+    }
+
+    function renderScriptCockpit(data) {
+      document.getElementById('scriptTitleDisp').innerText = data.script_title || 'Untitled';
+      document.getElementById('statWords').innerText = (data.estimated_words || '1,500') + ' words';
+      document.getElementById('statTime').innerText = data.estimated_duration || '10m';
+      document.getElementById('statWpm').innerText = (data.target_wpm || '160') + ' WPM';
+
+      const tableBody = document.getElementById('scriptTableBody');
+      tableBody.innerHTML = '';
+
+      (data.scenes || []).forEach((sc, idx) => {
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-slate-950/50 transition";
+        tr.id = `scene_row_${idx}`;
+        tr.innerHTML = `
+          <td class="p-3 font-mono-code text-slate-500 font-bold align-top">
+            #${sc.scene_num}<br>
+            <span class="text-[9px] text-amber-400 font-bold">${sc.timing || ''}</span><br>
+            <span class="text-[8px] text-slate-600">${sc.pacing_speed || ''}</span>
+          </td>
+          <td class="p-3 border-r border-slate-800 text-slate-300 align-top font-mono-code text-[11px] leading-relaxed">
+            <span class="text-amber-400 font-bold block mb-1">🎬 Visual & Memes (Levi):</span>
+            <div contenteditable="true" class="outline-none hover:bg-slate-900/50 p-1 rounded" id="vis_${idx}">${sc.visual_directive}</div>
+          </td>
+          <td class="p-3 text-slate-100 align-top leading-relaxed text-[12px]">
+            <span class="text-purple-400 font-bold block mb-1">🎙️ Spoken Script (Uta):</span>
+            <div contenteditable="true" class="outline-none hover:bg-slate-900/50 p-1 rounded font-medium" id="aud_${idx}">${sc.audio_narration}</div>
+          </td>
+          <td class="p-3 align-top text-center">
+            <button onclick="reWriteScene(${idx})" title="Rewrite Scene with More Intensity / Humor" class="text-xs bg-slate-800 hover:bg-purple-600 text-purple-300 hover:text-white p-2 rounded-xl border border-slate-700 transition">
+              <i class="fa-solid fa-arrows-rotate"></i>
+            </button>
+          </td>
+        `;
+        tableBody.appendChild(tr);
+      });
+    }
+
+    async function reWriteScene(idx) {
+      if (!currentScriptPayload || !currentScriptPayload.scenes[idx]) return;
+      const targetScene = currentScriptPayload.scenes[idx];
+      const promptType = confirm("Kya aap is scene ko 'More Funny / Memes' banana chahte hain? (Cancel for 'More Suspense / Intense')") 
+        ? "Make this scene 10x funnier with explosive American Gen-Z memes and SFX" 
+        : "Make this scene 10x more chilling, dramatic and intense with psychological sub-bass pauses";
+
+      const btn = event.currentTarget;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+
+      try {
+        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${activeApiKey}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            system_instruction: { parts: [{ text: "You are Rohan Kishibe. Re-write this single scene with extreme viral retention. Output strict JSON with 'visual_directive' and 'audio_narration'." }] },
+            contents: [{ parts: [{ text: `Original Scene: ${JSON.stringify(targetScene)}\nRequirement: ${promptType}` }] }],
+            generationConfig: { response_mime_type: "application/json" }
+          })
+        });
+
+        const data = await res.json();
+        const updated = JSON.parse(data.candidates[0].content.parts[0].text);
+        
+        targetScene.visual_directive = updated.visual_directive;
+        targetScene.audio_narration = updated.audio_narration;
+
+        document.getElementById(`vis_${idx}`).innerText = updated.visual_directive;
+        document.getElementById(`aud_${idx}`).innerText = updated.audio_narration;
+        alert("✨ Scene rewritten with maximum impact!");
+      } catch (err) {
+        alert("Re-write error: " + err.message);
+      } finally {
+        btn.innerHTML = '<i class="fa-solid fa-arrows-rotate"></i>';
       }
     }
 
@@ -398,16 +463,16 @@ Mandatory 0-5s Hook: ${hook}`;
       alert("✅ Poora script visual directives aur memes ke sath copy ho gaya!");
     }
 
-    function copyPayloadForKurapika() {
+    function exportToKurapika() {
       if (currentScriptPayload) {
         navigator.clipboard.writeText(JSON.stringify(currentScriptPayload, null, 2));
-        alert("✅ Kurapika (Fact Checker) ke liye script payload copy ho gaya!");
+        alert("✅ Script locked and exported for Kurapika (Fact Checker)!");
       }
     }
 
     window.onload = () => {
       updateRohanStats();
-      const lastChannel = 'CH_03_FUNNY';
+      const lastChannel = 'CH_02_MYSTERY';
       if (localStorage.getItem(`PIPELINE_RESEARCH_${lastChannel}`)) {
         autoImportFromL();
       }

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Agent Uta | Master AI Voice Director & Vocal Artist Pro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #030712;
+      color: #f3f4f6;
+      overscroll-behavior: none;
+    }
+    .font-mono-code {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #374151;
+      border-radius: 4px;
+    }
+    @keyframes soundwave {
+      0%, 100% { height: 6px; }
+      50% { height: 28px; }
+    }
+    .wave-bar {
+      animation: soundwave 1.2s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col p-3 md:p-6 pb-24 select-none">
+
+  <!-- Header Console -->
+  <header class="w-full max-w-5xl mx-auto bg-slate-900/90 border border-slate-800 rounded-2xl p-4 mb-4 backdrop-blur shadow-2xl flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 via-rose-500 to-purple-600 flex items-center justify-center font-black text-white text-lg shadow-lg">
+        U
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <h1 class="text-base md:text-lg font-black tracking-wide text-white">AGENT 4: "UTA"</h1>
+          <span class="text-[9px] px-2 py-0.5 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/30 font-bold uppercase tracking-wider">
+            World Top-5 Vocal Seiyū
+          </span>
+        </div>
+        <p class="text-[11px] text-slate-400 font-mono-code">Master Voice Director • Emotion & Cadence Infusion • Studio Audio</p>
+      </div>
+    </div>
+
+    <!-- Quick Navigation & Mastery -->
+    <div class="flex items-center gap-2">
+      <div class="bg-slate-950 px-2.5 py-1 rounded-xl border border-slate-800 text-right hidden sm:block">
+        <span class="text-[8px] text-slate-500 uppercase font-mono-code block">Vocal Resonance</span>
+        <span id="utaLevelDisp" class="text-xs font-bold text-pink-400 font-mono-code">Seiyū Rank: S-Tier</span>
+      </div>
+      <a href="agent_kurapika_factchecker.html" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-2 rounded-xl border border-slate-700 text-emerald-300 font-bold flex items-center gap-1.5 transition">
+        🛡️ Kurapika
+      </a>
+      <a href="index.html" class="text-xs bg-amber-500 hover:bg-amber-400 active:scale-95 text-slate-950 font-extrabold px-3 py-2 rounded-xl shadow transition flex items-center gap-1.5">
+        <i class="fa-solid fa-crown"></i> Erwin Studio
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Cockpit -->
+  <main class="w-full max-w-5xl mx-auto space-y-4">
+
+    <!-- Mission Input Card -->
+    <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-xl space-y-4">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-slate-800 pb-3">
+        <span class="text-xs font-bold text-pink-400 uppercase tracking-wider font-mono-code flex items-center gap-2">
+          <i class="fa-solid fa-microphone-lines"></i> Vocal Directive & Script Ingestion
+        </span>
+        <button onclick="autoImportApprovedScript()" class="text-xs bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-3 py-1.5 rounded-xl font-mono-code font-bold flex items-center gap-1.5 transition">
+          <i class="fa-solid fa-bolt"></i> Auto-Import Verified Script from "Kurapika"
+        </button>
+      </div>
+
+      <!-- Script Textarea -->
+      <div class="space-y-1">
+        <div class="flex justify-between items-center">
+          <label class="text-xs font-semibold text-slate-300">Narration Script (With Tone Markers)</label>
+          <span class="text-[10px] text-slate-500 font-mono-code">e.g. [whisper], [intense pause], [sarcastic]</span>
+        </div>
+        <textarea id="narrationInput" rows="5" placeholder="Paste script or tap Auto-Import from Kurapika..." class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl p-3 text-xs text-slate-200 outline-none font-mono-code custom-scrollbar leading-relaxed"></textarea>
+      </div>
+
+      <!-- Voice Profiles & Emotion Engine -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div class="space-y-1">
+          <label class="text-xs font-semibold text-slate-300">Vocal Archetype & Accent</label>
+          <select id="voicePersonaSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none">
+            <option value="US_CINEMATIC_DEEP">🎙️ US Deep Cinematic Baritone (Luxury / Mystery)</option>
+            <option value="US_FAST_GENZ">⚡ US Gen-Z Fast & Punchy (Shorts / Meme Commentary)</option>
+            <option value="UK_NOIR_WHISPER">🇬🇧 Cold British BBC Noir (Investigative Crime)</option>
+            <option value="HINGLISH_PUNCHY">🇮🇳 Conversational Hinglish (Relatable Pop)</option>
+            <option value="ANIME_SEIYU_HIGH">🔥 High Emotional Anime Intensity (Dramatic Climax)</option>
+          </select>
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-xs font-semibold text-slate-300">Emotion Intensity</label>
+          <select id="emotionLevelSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none">
+            <option value="Adaptive Dynamic (Matches Scene Mood)">🎭 Adaptive Dynamic (Switches Whisper -> Intense)</option>
+            <option value="Full High-Octane Aggression">🔥 Full High-Octane Aggressive</option>
+            <option value="Chilling & Unsettling Suspense">👁️ Chilling & Unsettling Suspense</option>
+            <option value="Sarcastic & Witty">😂 Sarcastic & Mocking Irony</option>
+          </select>
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-xs font-semibold text-slate-300">Studio Audio Mastering FX</label>
+          <select id="studioMasterSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-pink-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none">
+            <option value="Studio Radio (Sub-Bass Warmth + Compressor)">📻 Studio Radio (Sub-Bass + Compressor)</option>
+            <option value="Cinematic Reverb (Ambient Chamber)">🌌 Cinematic Reverb (Late Night Mystery)</option>
+            <option value="Crisp Podcast Clean (Zero Resonance)">🎧 Crisp Podcast Clean (Zero Background Room)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Generate Audio Button -->
+      <button id="renderVoiceBtn" onclick="runUtaVocalMastery()" class="w-full bg-gradient-to-r from-pink-500 via-rose-500 to-purple-600 hover:from-pink-400 hover:to-purple-500 active:scale-[0.99] text-white font-black py-3.5 rounded-xl text-sm transition shadow-xl flex items-center justify-center gap-2">
+        <i class="fa-solid fa-wave-square"></i> Record & Master Vocal Performance with Uta
+      </button>
+    </div>
+
+    <!-- Live Telemetry -->
+    <div id="telemetryBox" class="hidden bg-slate-900 border border-pink-500/30 rounded-2xl p-4 shadow-xl space-y-2">
+      <div class="flex justify-between items-center text-xs font-mono-code text-pink-400">
+        <span class="flex items-center gap-2">
+          <i class="fa-solid fa-circle-notch fa-spin"></i>
+          <span id="telemetryStatus">Uta is mapping pitch contours and breathing pauses...</span>
+        </span>
+        <span id="telemetryPct">45%</span>
+      </div>
+      <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden border border-slate-800">
+        <div id="telemetryProgress" class="bg-gradient-to-r from-pink-500 to-purple-500 h-full w-[45%] transition-all duration-300"></div>
+      </div>
+    </div>
+
+    <!-- Vocal Studio Cockpit (Player & Audio Breakdown) -->
+    <div id="vocalCockpitArea" class="hidden space-y-4">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-2xl space-y-4">
+        
+        <!-- Live Visualizer & Playback Header -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-800 pb-4">
+          <div>
+            <span class="text-[10px] uppercase font-bold text-pink-400 font-mono-code">Master Vocal Track Loaded</span>
+            <h2 id="dispVocalTitle" class="text-base font-extrabold text-white mt-0.5">Performance Master Take #1</h2>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="downloadMasterAudio()" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-2 rounded-xl text-slate-200 border border-slate-700 flex items-center gap-1.5 transition">
+              <i class="fa-solid fa-download text-pink-400"></i> Download Audio
+            </button>
+            <button onclick="exportToLevi()" class="text-xs bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-black px-3.5 py-2 rounded-xl flex items-center gap-1.5 shadow transition">
+              <i class="fa-solid fa-film"></i> Pass to Levi (Editor)
+            </button>
+          </div>
+        </div>
+
+        <!-- Studio Master Deck -->
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4">
+          <!-- Play / Stop Button -->
+          <div class="flex items-center gap-3 w-full md:w-auto">
+            <button id="playBtn" onclick="togglePlayback()" class="w-12 h-12 rounded-2xl bg-pink-500 hover:bg-pink-400 active:scale-95 text-slate-950 font-black flex items-center justify-center text-lg shadow-lg transition flex-shrink-0">
+              <i id="playIcon" class="fa-solid fa-play"></i>
+            </button>
+            <div>
+              <span id="audioTrackStatus" class="text-xs font-bold text-white block">Ready to Play</span>
+              <span id="audioTimeLabel" class="text-[10px] text-slate-400 font-mono-code">00:00 / 00:00</span>
+            </div>
+          </div>
+
+          <!-- Animated Frequency Waveform -->
+          <div class="flex items-center gap-1.5 h-10 px-4 bg-slate-900/60 rounded-xl border border-slate-800 w-full md:w-auto justify-center">
+            <div class="w-1 bg-pink-500 rounded-full wave-bar" style="animation-delay: 0.1s"></div>
+            <div class="w-1 bg-rose-400 rounded-full wave-bar" style="animation-delay: 0.3s"></div>
+            <div class="w-1 bg-purple-500 rounded-full wave-bar" style="animation-delay: 0.2s"></div>
+            <div class="w-1 bg-pink-400 rounded-full wave-bar" style="animation-delay: 0.5s"></div>
+            <div class="w-1 bg-amber-400 rounded-full wave-bar" style="animation-delay: 0.4s"></div>
+            <div class="w-1 bg-cyan-400 rounded-full wave-bar" style="animation-delay: 0.2s"></div>
+            <div class="w-1 bg-pink-500 rounded-full wave-bar" style="animation-delay: 0.6s"></div>
+          </div>
+
+          <!-- Pacing & Delivery Metrics -->
+          <div class="flex gap-3 text-xs font-mono-code text-center w-full md:w-auto justify-around">
+            <div>
+              <span class="text-[9px] text-slate-500 block uppercase">Est. Words</span>
+              <span id="metricWords" class="text-pink-400 font-bold">0</span>
+            </div>
+            <div>
+              <span class="text-[9px] text-slate-500 block uppercase">Speech Cadence</span>
+              <span id="metricWpm" class="text-emerald-400 font-bold">160 WPM</span>
+            </div>
+            <div>
+              <span class="text-[9px] text-slate-500 block uppercase">Emotion Level</span>
+              <span id="metricEmotion" class="text-amber-400 font-bold">S-Class</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Line-by-Line Vocal Direction Sheet -->
+        <div class="space-y-2">
+          <span class="text-[10px] uppercase font-bold text-slate-400 font-mono-code">Uta's Line-by-Line Cadence & Pitch Map:</span>
+          <div id="vocalLinesList" class="space-y-2 max-h-80 overflow-y-auto custom-scrollbar"></div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+    let activeApiKey = localStorage.getItem('ERWIN_API_KEY') || localStorage.getItem('GEMINI_KEY') || '';
+    let currentVocalPayload = null;
+    let isPlaying = false;
+    let synth = window.speechSynthesis;
+    let currentUtteranceIndex = 0;
+    let speechQueue = [];
+
+    function autoImportApprovedScript() {
+      const channel = 'CH_02_MYSTERY';
+      const verified = localStorage.getItem(`PIPELINE_VERIFIED_SCRIPT_${channel}`) || localStorage.getItem(`PIPELINE_SCRIPT_${channel}`);
+      if (!verified) {
+        alert("Kurapika ya Rohan ka koi script data nahi mila! Pehle Kurapika page par jakar script audit/pass karein.");
+        return;
+      }
+
+      if (verified.startsWith('{')) {
+        try {
+          const parsed = JSON.parse(verified);
+          let text = '';
+          (parsed.scenes || []).forEach(sc => {
+            text += `[Scene ${sc.scene_num}] ${sc.audio_narration}\n`;
+          });
+          document.getElementById('narrationInput').value = text;
+        } catch (e) {
+          document.getElementById('narrationInput').value = verified;
+        }
+      } else {
+        document.getElementById('narrationInput').value = verified;
+      }
+      alert("✅ Kurapika se verified script successfully Uta ke paas import ho gayi!");
+    }
+
+    async function runUtaVocalMastery() {
+      if (!activeApiKey) {
+        alert("Gemini API Key missing hai! Kripya Erwin Studio par key set karein.");
+        return;
+      }
+
+      const scriptText = document.getElementById('narrationInput').value.trim();
+      const persona = document.getElementById('voicePersonaSelect').value;
+      const emotion = document.getElementById('emotionLevelSelect').value;
+      const masterFx = document.getElementById('studioMasterSelect').value;
+
+      if (!scriptText) {
+        alert("Pehle narration script paste karein ya Auto-Import dabayein!");
+        return;
+      }
+
+      const renderBtn = document.getElementById('renderVoiceBtn');
+      const telemetryBox = document.getElementById('telemetryBox');
+      const telemetryStatus = document.getElementById('telemetryStatus');
+      const telemetryProgress = document.getElementById('telemetryProgress');
+      const telemetryPct = document.getElementById('telemetryPct');
+      const cockpitArea = document.getElementById('vocalCockpitArea');
+
+      renderBtn.disabled = true;
+      renderBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Uta is conducting vocal performance...';
+      telemetryBox.classList.remove('hidden');
+      cockpitArea.classList.add('hidden');
+
+      telemetryStatus.innerText = "Analyzing emotion markers, breathing cues, and tempo...";
+      telemetryProgress.style.width = "40%";
+      telemetryPct.innerText = "40%";
+
+      const systemPrompt = `You are Uta, the legendary Voice Director & Vocal Seiyū Artist (World Top-5 Rank).
+Your duty is to transform a written YouTube script into a master vocal performance.
+
+DIRECTIVE RULES:
+1. Divide the script into vocal segments.
+2. For each segment, provide:
+   - clean_text: pure text without bracket markers for audio speech.
+   - emotion_cadence: exact delivery style (e.g. 'Cold whisper with slight breath', 'Fast explosive sarcasm', 'Deep authoritative pause').
+   - pitch: float between 0.8 (deep) and 1.3 (high/excited).
+   - rate: float between 0.85 (slow mystery) and 1.25 (rapid shorts).
+   - pause_after_ms: milliseconds of silence to hold suspense (e.g. 500 to 1200ms).
+
+OUTPUT STRICT VALID JSON ONLY:
+{
+  "performance_title": "Master Vocal Take",
+  "vocal_archetype": "${persona}",
+  "total_estimated_duration": "45s",
+  "total_words": 120,
+  "segments": [
+    {
+      "segment_num": 1,
+      "clean_text": "If a multi-billionaire died tonight, his family wouldn't inherit a single cent.",
+      "emotion_cadence": "Chilling cold whisper with sudden sub-bass drop",
+      "pitch": 0.9,
+      "rate": 0.95,
+      "pause_after_ms": 800
+    }
+  ]
+}`;
+
+      try {
+        setTimeout(() => {
+          telemetryStatus.innerText = "Calibrating Seiyū micro-pitch and studio acoustic model...";
+          telemetryProgress.style.width = "75%";
+          telemetryPct.innerText = "75%";
+        }, 1200);
+
+        const models = ['gemini-3.8-flash', 'gemini-3.5-flash-lite'];
+        let rawText = null;
+
+        for (const m of models) {
+          try {
+            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${activeApiKey}`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                system_instruction: { parts: [{ text: systemPrompt }] },
+                contents: [{ parts: [{ text: `Archetype: ${persona}\nEmotion: ${emotion}\nMaster FX: ${masterFx}\nScript:\n${scriptText}` }] }],
+                generationConfig: { response_mime_type: "application/json", temperature: 0.3 }
+              })
+            });
+            if (res.ok) {
+              const resData = await res.json();
+              rawText = resData.candidates[0].content.parts[0].text;
+              break;
+            }
+          } catch (e) {
+            console.warn(e);
+          }
+        }
+
+        if (!rawText) throw new Error("API call failed. Kripya API key confirm karein.");
+
+        telemetryStatus.innerText = "Mastering studio track...";
+        telemetryProgress.style.width = "100%";
+        telemetryPct.innerText = "100%";
+
+        const data = JSON.parse(rawText);
+        currentVocalPayload = data;
+
+        // Save to Shared LocalStorage for Levi (Video Editor)
+        localStorage.setItem(`PIPELINE_AUDIO_VOCAL_CH_02_MYSTERY`, JSON.stringify(data));
+
+        renderVocalCockpit(data);
+        cockpitArea.classList.remove('hidden');
+
+      } catch (err) {
+        alert("Uta Vocal Engine Error: " + err.message);
+      } finally {
+        renderBtn.disabled = false;
+        renderBtn.innerHTML = '<i class="fa-solid fa-wave-square"></i> Record & Master Vocal Performance with Uta';
+        telemetryBox.classList.add('hidden');
+      }
+    }
+
+    function renderVocalCockpit(data) {
+      document.getElementById('dispVocalTitle').innerText = `${data.performance_title} (${data.vocal_archetype})`;
+      document.getElementById('metricWords').innerText = data.total_words || '120';
+      document.getElementById('audioTimeLabel').innerText = `00:00 / ${data.total_estimated_duration || '00:45'}`;
+
+      const list = document.getElementById('vocalLinesList');
+      list.innerHTML = '';
+
+      (data.segments || []).forEach(seg => {
+        const item = document.createElement('div');
+        item.className = "p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-1.5 text-xs";
+        item.innerHTML = `
+          <div class="flex justify-between items-center">
+            <span class="text-pink-400 font-bold font-mono-code text-[11px]">Take #${seg.segment_num}</span>
+            <span class="text-[9px] px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-amber-300 font-mono-code">${seg.emotion_cadence}</span>
+          </div>
+          <p class="text-slate-200 font-medium leading-relaxed italic">"${seg.clean_text}"</p>
+          <div class="flex gap-3 text-[10px] text-slate-500 font-mono-code pt-0.5">
+            <span>Pitch: <b class="text-slate-300">${seg.pitch}</b></span>
+            <span>Speed: <b class="text-slate-300">${seg.rate}x</b></span>
+            <span>Post-Pause: <b class="text-slate-300">${seg.pause_after_ms}ms</b></span>
+          </div>
+        `;
+        list.appendChild(item);
+      });
+    }
+
+    function togglePlayback() {
+      if (!currentVocalPayload || !currentVocalPayload.segments) {
+        alert("Pehle Uta se audio performance generate karein!");
+        return;
+      }
+
+      if (isPlaying) {
+        synth.cancel();
+        isPlaying = false;
+        updatePlayState(false);
+      } else {
+        isPlaying = true;
+        updatePlayState(true);
+        currentUtteranceIndex = 0;
+        playNextSegment();
+      }
+    }
+
+    function playNextSegment() {
+      if (!isPlaying || currentUtteranceIndex >= currentVocalPayload.segments.length) {
+        isPlaying = false;
+        updatePlayState(false);
+        document.getElementById('audioTrackStatus').innerText = "Playback Finished";
+        return;
+      }
+
+      const seg = currentVocalPayload.segments[currentUtteranceIndex];
+      const utter = new SpeechSynthesisUtterance(seg.clean_text);
+      utter.pitch = seg.pitch || 1.0;
+      utter.rate = seg.rate || 1.0;
+
+      // Select natural English voice if available
+      const voices = synth.getVoices();
+      const naturalVoice = voices.find(v => v.lang.includes('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Samantha')));
+      if (naturalVoice) utter.voice = naturalVoice;
+
+      document.getElementById('audioTrackStatus').innerText = `Playing Segment #${seg.segment_num}...`;
+
+      utter.onend = () => {
+        setTimeout(() => {
+          currentUtteranceIndex++;
+          playNextSegment();
+        }, seg.pause_after_ms || 400);
+      };
+
+      utter.onerror = () => {
+        isPlaying = false;
+        updatePlayState(false);
+      };
+
+      synth.speak(utter);
+    }
+
+    function updatePlayState(playing) {
+      const icon = document.getElementById('playIcon');
+      const btn = document.getElementById('playBtn');
+      if (playing) {
+        icon.className = "fa-solid fa-pause";
+        btn.className = "w-12 h-12 rounded-2xl bg-amber-500 hover:bg-amber-400 active:scale-95 text-slate-950 font-black flex items-center justify-center text-lg shadow-lg transition flex-shrink-0";
+      } else {
+        icon.className = "fa-solid fa-play";
+        btn.className = "w-12 h-12 rounded-2xl bg-pink-500 hover:bg-pink-400 active:scale-95 text-slate-950 font-black flex items-center justify-center text-lg shadow-lg transition flex-shrink-0";
+      }
+    }
+
+    function downloadMasterAudio() {
+      if (!currentVocalPayload) return;
+      const blob = new Blob([JSON.stringify(currentVocalPayload, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `uta_master_vocal_take.json`;
+      a.click();
+      alert("✅ Uta's vocal direction & performance cue sheet downloaded!");
+    }
+
+    function exportToLevi() {
+      alert("✅ Vocal performance locked! Ready for Agent 5: Levi (Video Editor & VFX Master).");
+    }
+
+    window.onload = () => {
+      autoImportApprovedScript();
+    };
+  </script>
+</body>
+</html>

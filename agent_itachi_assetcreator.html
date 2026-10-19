@@ -24,10 +24,10 @@
         <div class="flex items-center gap-2">
           <h1 class="text-base md:text-lg font-black tracking-wide text-white">AGENT 5: "ITACHI"</h1>
           <span class="text-[9px] px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-bold uppercase font-mono-code">
-            Smooth Direct Studio v11.0
+            App Bridge Connected v12.0
           </span>
         </div>
-        <p class="text-[11px] text-slate-400 font-mono-code">Zero Paid Errors • Direct MP4 Asset Pipeline • Levi Ready</p>
+        <p class="text-[11px] text-slate-400 font-mono-code">Local Python Bridge Active • Direct MP4 Compiler • Levi Ready</p>
       </div>
     </div>
 
@@ -46,77 +46,36 @@
       
       <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-slate-800 pb-3">
         <div class="flex items-center gap-2">
-          <i class="fa-solid fa-wand-magic-sparkles text-red-500"></i>
+          <i class="fa-solid fa-bridge text-red-500"></i>
           <span class="text-xs font-bold text-red-400 uppercase tracking-wider font-mono-code">
-            Scene Video & Asset Generator Suite
+            Termux Local Bridge Video Synthesizer
           </span>
         </div>
         <div class="flex flex-wrap gap-2">
-          <button onclick="setPreset('jacket')" class="text-xs bg-slate-800 hover:bg-slate-700 text-amber-300 border border-slate-700 px-2.5 py-1.5 rounded-xl transition">
-            🧥 Jacket Ad Mode
-          </button>
-          <button onclick="setPreset('perfume')" class="text-xs bg-slate-800 hover:bg-slate-700 text-pink-300 border border-slate-700 px-2.5 py-1.5 rounded-xl transition">
-            💎 Perfume 3D
-          </button>
           <button onclick="autoImportScript()" class="text-xs bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 border border-purple-500/30 px-3 py-1.5 rounded-xl font-mono-code font-bold flex items-center gap-1.5 transition">
             <i class="fa-solid fa-bolt"></i> Auto-Import Script
           </button>
         </div>
       </div>
 
-      <!-- Reference Media Upload -->
-      <div class="p-3 bg-slate-950 rounded-xl border border-dashed border-slate-700 hover:border-red-500 transition">
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div class="flex items-center gap-3">
-            <label class="cursor-pointer bg-red-600/20 hover:bg-red-600/30 text-red-400 border border-red-500/40 px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition">
-              <i class="fa-solid fa-cloud-arrow-up"></i> Upload Product Image
-              <input type="file" id="mediaUploadInput" accept="image/*" class="hidden" onchange="handleImageUpload(event)">
-            </label>
-            <span id="uploadFileName" class="text-xs text-slate-400 font-mono-code">No image attached</span>
-          </div>
-          <button id="removeMediaBtn" onclick="removeImage()" class="hidden text-xs text-rose-400 hover:text-rose-300">
-            <i class="fa-solid fa-trash"></i> Remove
-          </button>
-        </div>
-        <div id="mediaPreviewArea" class="hidden mt-3 max-h-48 overflow-hidden rounded-xl border border-slate-800 flex justify-center bg-slate-900 p-2">
-          <img id="uploadedImagePreview" class="max-h-44 object-contain" src="">
-        </div>
-      </div>
-
       <!-- Prompt Input -->
       <div class="space-y-1">
-        <label class="text-xs font-semibold text-slate-300">Scene Directives / Custom Motion Prompt</label>
-        <textarea id="promptInput" rows="3" placeholder="Enter video prompt or scene visual cues..." class="w-full bg-slate-950 border border-slate-800 focus:border-red-400 rounded-xl p-3 text-xs text-slate-200 outline-none font-mono-code leading-relaxed"></textarea>
+        <label class="text-xs font-semibold text-slate-300">Scene Directives / Bridge Prompt</label>
+        <textarea id="promptInput" rows="3" placeholder="Enter video prompt to send to Termux worker..." class="w-full bg-slate-950 border border-slate-800 focus:border-red-400 rounded-xl p-3 text-xs text-slate-200 outline-none font-mono-code leading-relaxed">3D black tactical jacket macro cinematic push in</textarea>
       </div>
 
-      <!-- Controls -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-        <div>
-          <label class="text-xs font-semibold text-slate-300">Aspect Ratio</label>
-          <select id="ratioSelect" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-amber-300 font-semibold outline-none font-mono-code">
-            <option value="9:16">⚡ 9:16 Vertical (Shorts / Reels)</option>
-            <option value="16:9">🎬 16:9 Ultra-Wide (YouTube)</option>
-          </select>
+      <!-- Bridge Status Indicator -->
+      <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 flex items-center justify-between">
+        <div class="flex items-center gap-2 text-xs font-mono-code">
+          <span id="bridgeDot" class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"></span>
+          <span id="bridgeStatusText" class="text-slate-300">Checking Termux Bridge Connection (Port 5000)...</span>
         </div>
-        <div>
-          <label class="text-xs font-semibold text-slate-300">Motion Dynamic</label>
-          <select id="motionSelect" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white outline-none">
-            <option value="push_in">Macro Push-In + Studio Glow</option>
-            <option value="orbit">360-Degree Product Orbit</option>
-          </select>
-        </div>
-        <div>
-          <label class="text-xs font-semibold text-slate-300">Lighting FX</label>
-          <select id="lightingSelect" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white outline-none">
-            <option value="amber">Warm Amber Studio Softbox</option>
-            <option value="rim">Volumetric Rim Lighting</option>
-          </select>
-        </div>
+        <button onclick="checkBridgeStatus()" class="text-xs bg-slate-800 hover:bg-slate-700 px-2.5 py-1 rounded-lg text-amber-300">Ping Server</button>
       </div>
 
       <!-- Action Button -->
-      <button onclick="runSmoothStudioRender()" class="w-full bg-gradient-to-r from-red-600 via-rose-600 to-amber-600 hover:from-red-500 hover:to-amber-500 active:scale-[0.99] text-white font-black py-4 rounded-xl text-sm transition shadow-xl flex items-center justify-center gap-2">
-        <i class="fa-solid fa-play text-base"></i> Generate Smooth Master Video Clip
+      <button id="renderBtn" onclick="triggerTermuxBridgeRender()" class="w-full bg-gradient-to-r from-red-600 via-rose-600 to-amber-600 hover:from-red-500 hover:to-amber-500 active:scale-[0.99] text-white font-black py-4 rounded-xl text-sm transition shadow-xl flex items-center justify-center gap-2">
+        <i class="fa-solid fa-play text-base"></i> Trigger Local Bridge Video Compile
       </button>
     </div>
 
@@ -125,31 +84,34 @@
       <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-2xl space-y-4">
         <div class="flex justify-between items-center border-b border-slate-800 pb-3">
           <div>
-            <span class="text-[10px] uppercase font-bold text-emerald-400 font-mono-code">Render Complete ✓</span>
-            <h2 class="text-base font-extrabold text-white">Generated Master MP4 Video Clip</h2>
+            <span class="text-[10px] uppercase font-bold text-emerald-400 font-mono-code">Bridge Compilation Complete ✓</span>
+            <h2 id="resultMsg" class="text-base font-extrabold text-white">Video successfully compiled in Termux storage!</h2>
           </div>
           <button onclick="passToLevi()" class="text-xs bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black px-3.5 py-2 rounded-xl flex items-center gap-1.5 shadow transition">
             <i class="fa-solid fa-film"></i> Pass to Levi (Editor)
           </button>
-        </div>
-
-        <div class="flex justify-center bg-slate-950 p-4 rounded-xl border border-slate-800">
-          <video id="resultVideo" controls autoplay loop playsinline class="max-h-[480px] rounded-xl shadow-2xl"></video>
         </div>
       </div>
     </div>
   </main>
 
   <script>
-    let uploadedImgData = null;
+    const BRIDGE_URL = "http://127.0.0.1:5000";
 
-    function setPreset(type) {
-      if (type === 'jacket') {
-        document.getElementById('promptInput').value = "Tactical black fleece hoodie jacket rotating mid-air, studio macro 85mm lens, volumetric rim lighting.";
-        document.getElementById('ratioSelect').value = "9:16";
-      } else if (type === 'perfume') {
-        document.getElementById('promptInput').value = "Luxury dark amber glass perfume bottle rotating mid-air, studio macro lens, golden water splash droplets.";
-        document.getElementById('ratioSelect').value = "9:16";
+    async function checkBridgeStatus() {
+      const dot = document.getElementById('bridgeDot');
+      const text = document.getElementById('bridgeStatusText');
+      try {
+        const res = await fetch(`${BRIDGE_URL}/status`, { mode: 'cors' });
+        if (res.ok) {
+          dot.className = "w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse";
+          text.innerText = "Termux Bridge Connected Successfully (Port 5000)";
+        } else {
+          throw new Error();
+        }
+      } catch (e) {
+        dot.className = "w-2.5 h-2.5 rounded-full bg-rose-500";
+        text.innerText = "Bridge Offline. Make sure python agent_5_app_bridge.py is running in Termux!";
       }
     }
 
@@ -163,117 +125,43 @@
       }
     }
 
-    function handleImageUpload(e) {
-      const file = e.target.files[0];
-      if (!file) return;
-      document.getElementById('uploadFileName').innerText = file.name;
-      document.getElementById('removeMediaBtn').classList.remove('hidden');
-
-      const reader = new FileReader();
-      reader.onload = function(evt) {
-        uploadedImgData = evt.target.result;
-        const prev = document.getElementById('uploadedImagePreview');
-        prev.src = uploadedImgData;
-        prev.classList.remove('hidden');
-        document.getElementById('mediaPreviewArea').classList.remove('hidden');
-      };
-      reader.readAsDataURL(file);
-    }
-
-    function removeImage() {
-      uploadedImgData = null;
-      document.getElementById('mediaUploadInput').value = '';
-      document.getElementById('uploadFileName').innerText = 'No image attached';
-      document.getElementById('removeMediaBtn').classList.add('hidden');
-      document.getElementById('mediaPreviewArea').classList.add('hidden');
-    }
-
-    async function runSmoothStudioRender() {
+    async function triggerTermuxBridgeRender() {
       const prompt = document.getElementById('promptInput').value.trim();
-      const isVertical = document.getElementById('ratioSelect').value === '9:16';
-      if (!prompt && !uploadedImgData) return alert("Pehle prompt likhein ya image upload karein!");
+      if (!prompt) return alert("Pehle prompt likhein!");
 
+      const btn = document.getElementById('renderBtn');
       const cockpit = document.getElementById('outputCockpit');
-      const videoElem = document.getElementById('resultVideo');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Triggering Termux Bridge...';
       cockpit.classList.add('hidden');
 
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
-      const width = isVertical ? 720 : 1280;
-      const height = isVertical ? 1280 : 720;
-      canvas.width = width;
-      canvas.height = height;
+      try {
+        const res = await fetch(`${BRIDGE_URL}/render-scene`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ scene_num: 1, prompt: prompt })
+        });
 
-      let img = new Image();
-      img.crossOrigin = "anonymous";
-      img.src = uploadedImgData || `https://picsum.photos/seed/${Math.floor(Math.random()*9999)}/800/800`;
-      await new Promise(r => img.onload = r);
-
-      const stream = canvas.captureStream(30);
-      const recorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
-      const chunks = [];
-      recorder.ondataavailable = e => chunks.push(e.data);
-
-      recorder.onstop = () => {
-        const blob = new Blob(chunks, { type: 'video/webm' });
-        const url = URL.createObjectURL(blob);
-        videoElem.src = url;
-        cockpit.classList.remove('hidden');
-        alert("✅ Smooth Video Clip Rendered Successfully!");
-      };
-
-      recorder.start();
-
-      let frame = 0;
-      const totalFrames = 90; // 3 seconds clean clip
-
-      function render() {
-        if (frame >= totalFrames) {
-          recorder.stop();
-          return;
+        const data = await res.json();
+        if (data.success) {
+          document.getElementById('resultMsg').innerText = `Saved at: ${data.filepath}`;
+          cockpit.classList.remove('hidden');
+          alert("✅ Termux Bridge successfully compiled and saved the video!");
+        } else {
+          throw new Error(data.error || "Bridge execution failed.");
         }
-
-        const p = frame / totalFrames;
-        frame++;
-
-        // Studio BG
-        const grad = ctx.createRadialGradient(width/2, height/2, 40, width/2, height/2, width/1.2);
-        grad.addColorStop(0, '#78350f'); grad.addColorStop(1, '#020617');
-        ctx.fillStyle = grad;
-        ctx.fillRect(0, 0, width, height);
-
-        ctx.save();
-        ctx.translate(width/2, height/2);
-        const scale = 1.0 + (p * 0.18);
-        ctx.scale(scale, scale);
-
-        const maxDim = width > height ? height * 0.75 : width * 0.75;
-        const aspect = img.width / img.height;
-        let dw = maxDim, dh = maxDim;
-        if (aspect > 1) dh = dw / aspect; else dw = dh * aspect;
-
-        ctx.drawImage(img, -dw/2, -dh/2, dw, dh);
-        ctx.restore();
-
-        // Particles
-        for (let i = 0; i < 15; i++) {
-          const px = ((Math.sin(p * 3 + i) * 0.45 + 0.5) * width);
-          const py = ((Math.cos(p * 2.5 + i) * 0.45 + 0.5) * height);
-          ctx.beginPath();
-          ctx.arc(px, py, 2, 0, Math.PI*2);
-          ctx.fillStyle = 'rgba(251, 191, 36, 0.4)';
-          ctx.fill();
-        }
-
-        requestAnimationFrame(render);
+      } catch (err) {
+        alert("Bridge Connection Error: " + err.message + "\n\nEnsure python agent_5_app_bridge.py is running in Termux.");
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-play text-base"></i> Trigger Local Bridge Video Compile';
       }
-
-      render();
     }
 
-    function passToLevi() {
-      alert("✅ Video asset transferred to Agent 6: Levi (Video Editor)!");
-    }
+    window.onload = () => {
+      autoImportScript();
+      checkBridgeStatus();
+    };
   </script>
 </body>
 </html>

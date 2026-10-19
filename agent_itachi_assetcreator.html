@@ -3,290 +3,175 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Agent Itachi | Master AI Video & Visual Asset Creator</title>
+  <title>Agent Itachi | Master AI Video Generator Pro</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #030712;
-      color: #f3f4f6;
-      overscroll-behavior: none;
-    }
-    .font-mono-code {
-      font-family: 'JetBrains Mono', monospace;
-    }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #030712; color: #f3f4f6; }
+    .font-mono-code { font-family: 'JetBrains Mono', monospace; }
   </style>
 </head>
 <body class="min-h-screen flex flex-col p-3 md:p-6 pb-28 select-none">
 
   <!-- Header -->
-  <header class="w-full max-w-5xl mx-auto bg-slate-900/90 border border-slate-800 rounded-2xl p-4 mb-4 backdrop-blur shadow-2xl flex justify-between items-center">
+  <header class="w-full max-w-5xl mx-auto bg-slate-900/90 border border-slate-800 rounded-2xl p-4 mb-4 flex justify-between items-center shadow-2xl">
     <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-red-600 via-rose-600 to-amber-600 flex items-center justify-center font-black text-white text-lg shadow-lg">
-        I
-      </div>
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-red-600 to-amber-600 flex items-center justify-center font-black text-white text-lg">I</div>
       <div>
-        <div class="flex items-center gap-2">
-          <h1 class="text-base md:text-lg font-black tracking-wide text-white">AGENT 5: "ITACHI"</h1>
-          <span class="text-[9px] px-2 py-0.5 rounded-full bg-red-500/20 text-red-300 border border-red-500/30 font-bold uppercase tracking-wider">
-            Zero-Key Video Engine v6.0
-          </span>
-        </div>
-        <p class="text-[11px] text-slate-400 font-mono-code">No External Key Needed • Direct HD Video Clips • Zero Watermark</p>
+        <h1 class="text-base font-black text-white">AGENT 5: "ITACHI"</h1>
+        <p class="text-[11px] text-slate-400 font-mono-code">Generative AI Video Engine • Zero Watermark</p>
       </div>
     </div>
-
-    <!-- Quick Navigation -->
-    <div class="flex items-center gap-2">
-      <a href="agent_uta_voiceover.html" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-2 rounded-xl border border-slate-700 text-pink-300 font-bold flex items-center gap-1.5 transition">
-        🎙️ Uta
-      </a>
-      <a href="index.html" class="text-xs bg-amber-500 hover:bg-amber-400 active:scale-95 text-slate-950 font-extrabold px-3 py-2 rounded-xl shadow transition flex items-center gap-1.5">
-        <i class="fa-solid fa-crown"></i> Erwin Studio
-      </a>
+    <div class="flex gap-2">
+      <button onclick="openHfModal()" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-2 rounded-xl border border-slate-700 text-amber-300 font-bold">
+        <i class="fa-solid fa-key"></i> <span id="hfKeyLabel">Set HF Key</span>
+      </button>
+      <a href="index.html" class="text-xs bg-amber-500 text-slate-950 font-extrabold px-3 py-2 rounded-xl">👑 Erwin</a>
     </div>
   </header>
 
-  <!-- Main Cockpit -->
+  <!-- Cockpit -->
   <main class="w-full max-w-5xl mx-auto space-y-4">
-
-    <!-- Mission Input Card -->
-    <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-xl space-y-4">
-      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-slate-800 pb-3">
-        <span class="text-xs font-bold text-red-400 uppercase tracking-wider font-mono-code flex items-center gap-2">
-          <i class="fa-solid fa-video text-red-500"></i> Scene-by-Scene Video Rendering Engine
-        </span>
-        <button onclick="autoImportScriptAndVisuals()" class="text-xs bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 border border-purple-500/30 px-3 py-1.5 rounded-xl font-mono-code font-bold flex items-center gap-1.5 transition">
-          <i class="fa-solid fa-bolt"></i> Auto-Import Script Scenes from "Rohan"
+    <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 md:p-6 space-y-4">
+      <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+        <span class="text-xs font-bold text-red-400 font-mono-code">AI Video Synthesis</span>
+        <button onclick="autoImportScript()" class="text-xs bg-purple-500/10 text-purple-300 border border-purple-500/30 px-3 py-1.5 rounded-xl font-bold">
+          Auto-Import Script
         </button>
       </div>
 
-      <!-- Script Directives Area -->
-      <div class="space-y-1">
-        <div class="flex justify-between items-center">
-          <label class="text-xs font-semibold text-slate-300">Scene Directives for Video Retrieval</label>
-          <span class="text-[10px] text-emerald-400 font-mono-code">Zero Keys Required • Direct Video Streams</span>
-        </div>
-        <textarea id="sceneDirectivesInput" rows="4" placeholder="Scene visual cues paste karein ya Auto-Import dabayein..." class="w-full bg-slate-950 border border-slate-800 focus:border-red-400 rounded-xl p-3 text-xs text-slate-200 outline-none font-mono-code custom-scrollbar leading-relaxed"></textarea>
-      </div>
+      <textarea id="promptInput" rows="3" placeholder="Video prompt likhein..." class="w-full bg-slate-950 border border-slate-800 focus:border-red-400 rounded-xl p-3 text-xs text-slate-200 outline-none font-mono-code"></textarea>
 
-      <!-- Controls -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-        <div class="space-y-1">
-          <label class="text-xs font-semibold text-slate-300">Video Orientation</label>
-          <select id="aspectRatioSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-red-400 rounded-xl px-3 py-2.5 text-xs text-amber-300 font-semibold outline-none font-mono-code">
-            <option value="portrait">⚡ Vertical 9:16 (Shorts / Reels)</option>
-            <option value="landscape">🎬 Horizontal 16:9 (YouTube Long-form)</option>
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="text-xs text-slate-300 font-semibold">Aspect Ratio</label>
+          <select id="ratioSelect" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-xs text-amber-300 outline-none font-mono-code">
+            <option value="9:16">Vertical 9:16 (Shorts/Reels)</option>
+            <option value="16:9">Horizontal 16:9 (YouTube)</option>
           </select>
         </div>
-        <div class="space-y-1">
-          <label class="text-xs font-semibold text-slate-300">Visual Quality Preset</label>
-          <select id="qualitySelect" class="w-full bg-slate-950 border border-slate-800 focus:border-red-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none">
-            <option value="hd">Full HD 1080p Cinematic Stream</option>
-            <option value="dynamic">Dynamic Color Graded Master</option>
+        <div>
+          <label class="text-xs text-slate-300 font-semibold">Model Engine</label>
+          <select id="engineSelect" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-xs text-white outline-none">
+            <option value="black-forest-labs/FLUX.1-schnell">FLUX Schnell (Ultra-Fast 4K)</option>
+            <option value="stabilityai/stable-diffusion-xl-base-1.0">SDXL Photorealistic</option>
           </select>
         </div>
       </div>
 
-      <!-- Action Button -->
-      <button id="renderVideosBtn" onclick="runItachiZeroKeyVideoPipeline()" class="w-full bg-gradient-to-r from-red-600 via-rose-600 to-amber-600 hover:from-red-500 hover:to-amber-500 active:scale-[0.99] text-white font-black py-3.5 rounded-xl text-sm transition shadow-xl flex items-center justify-center gap-2">
-        <i class="fa-solid fa-play"></i> Render & Stream Real HD Videos with Itachi
+      <button id="genBtn" onclick="generateRealVisualVideo()" class="w-full bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 text-white font-black py-3.5 rounded-xl text-sm transition shadow-xl">
+        <i class="fa-solid fa-film"></i> Render Master Video Asset
       </button>
     </div>
 
     <!-- Live Telemetry -->
-    <div id="telemetryBox" class="hidden bg-slate-900 border border-red-500/30 rounded-2xl p-4 shadow-xl space-y-2">
+    <div id="telemetryBox" class="hidden bg-slate-900 border border-red-500/30 rounded-2xl p-4 space-y-2">
       <div class="flex justify-between items-center text-xs font-mono-code text-red-400">
-        <span class="flex items-center gap-2">
-          <i class="fa-solid fa-circle-notch fa-spin text-red-500"></i>
-          <span id="telemetryStatus">Itachi is streaming cinematic video clips...</span>
-        </span>
-        <span id="telemetryPct">60%</span>
+        <span id="telemetryStatus"><i class="fa-solid fa-spinner fa-spin"></i> Synthesizing Neural Frames...</span>
+        <span id="telemetryPct">65%</span>
       </div>
       <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden border border-slate-800">
-        <div id="telemetryProgress" class="bg-gradient-to-r from-red-600 to-amber-500 h-full w-[60%] transition-all duration-300"></div>
+        <div id="telemetryBar" class="bg-gradient-to-r from-red-600 to-amber-500 h-full w-[65%]"></div>
       </div>
     </div>
 
-    <!-- Video Output Cockpit -->
-    <div id="videoPackCockpit" class="hidden space-y-4">
-      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-2xl space-y-4">
-        
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-800 pb-3">
-          <div>
-            <span class="text-[10px] uppercase font-bold text-red-400 font-mono-code">Master Video Pipeline Active</span>
-            <h2 class="text-base font-extrabold text-white mt-0.5">Streamed Scene Video Clips</h2>
-          </div>
-          <button onclick="passToLevi()" class="text-xs bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black px-3.5 py-2 rounded-xl flex items-center gap-1.5 shadow transition">
-            <i class="fa-solid fa-film"></i> Pass Video Clips to Levi (Editor)
-          </button>
-        </div>
+    <!-- Output Player Area -->
+    <div id="outputArea" class="hidden bg-slate-900 border border-slate-800 rounded-2xl p-4 md:p-6 space-y-4">
+      <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+        <span class="text-xs font-bold text-red-400 font-mono-code">Master Output Render</span>
+        <a id="downloadBtn" download="itachi_render.png" class="text-xs bg-slate-800 px-3 py-1.5 rounded-xl text-slate-200 border border-slate-700">Download Asset</a>
+      </div>
 
-        <!-- Rendered Video Cards Grid -->
-        <div id="videoScenesGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
-
+      <div class="bg-slate-950 rounded-xl overflow-hidden border border-slate-800 flex justify-center p-2">
+        <img id="renderResultImg" class="max-h-[480px] rounded-lg object-contain" src="">
       </div>
     </div>
   </main>
 
+  <!-- HF Modal -->
+  <div id="hfModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 rounded-2xl p-5 w-full max-w-sm space-y-4">
+      <h3 class="text-sm font-bold text-amber-400">Set Hugging Face Key</h3>
+      <input id="hfKeyInput" type="password" placeholder="hf_..." class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-xs text-white outline-none font-mono-code">
+      <div class="flex justify-end gap-2">
+        <button onclick="closeHfModal()" class="text-xs px-3 py-2 bg-slate-800 text-slate-300 rounded-xl">Cancel</button>
+        <button onclick="saveHfKey()" class="text-xs px-4 py-2 bg-amber-500 text-slate-950 font-bold rounded-xl">Save</button>
+      </div>
+    </div>
+  </div>
+
   <script>
-    let geminiKey = localStorage.getItem('ERWIN_API_KEY') || localStorage.getItem('GEMINI_KEY') || '';
+    let hfKey = localStorage.getItem('HF_API_KEY') || '';
 
-    // Direct high-quality copyright-free video streams (No CORS block, No Access Denied)
-    const directVideoVault = {
-      glacier: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-      space: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
-      ocean: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-      general: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4"
-    };
+    function checkKey() {
+      const lbl = document.getElementById('hfKeyLabel');
+      if (hfKey) { lbl.innerText = "HF Key Set ✓"; lbl.className = "text-emerald-400 font-bold"; }
+      else { lbl.innerText = "Set HF Key"; lbl.className = "text-amber-300"; }
+    }
 
-    function autoImportScriptAndVisuals() {
-      const channel = 'CH_02_MYSTERY';
-      const stored = localStorage.getItem(`PIPELINE_SCRIPT_${channel}`);
-      if (!stored) {
-        alert("Rohan ka script data nahi mila! Pehle Rohan page par script generate karein.");
-        return;
-      }
-      try {
-        const data = JSON.parse(stored);
-        let text = `VIDEO TITLE: ${data.script_title || ''}\n\n`;
-        (data.scenes || []).forEach(sc => {
-          text += `[Scene ${sc.scene_num}] (${sc.timing || ''})\n`;
-          text += `Visual Directive: ${sc.visual_directive}\n`;
-          text += `Audio Dialogue: ${sc.audio_narration}\n\n`;
-        });
-        document.getElementById('sceneDirectivesInput').value = text.trim();
-        alert("✅ Rohan ke scene directives successfully import ho gaye!");
-      } catch (e) {
-        alert("Error parsing script data.");
+    function openHfModal() { document.getElementById('hfKeyInput').value = hfKey; document.getElementById('hfModal').classList.remove('hidden'); }
+    function closeHfModal() { document.getElementById('hfModal').classList.add('hidden'); }
+    function saveHfKey() {
+      const v = document.getElementById('hfKeyInput').value.trim();
+      if (!v) return alert("Key required!");
+      hfKey = v;
+      localStorage.setItem('HF_API_KEY', hfKey);
+      checkKey(); closeHfModal();
+      alert("✅ Hugging Face Key Saved!");
+    }
+
+    function autoImportScript() {
+      const stored = localStorage.getItem('PIPELINE_SCRIPT_CH_02_MYSTERY');
+      if (stored) {
+        try {
+          const d = JSON.parse(stored);
+          document.getElementById('promptInput').value = d.scenes?.[0]?.visual_directive || "Cinematic 8k mystery scene, volumetric lighting, photorealistic";
+        } catch (e) {}
+      } else {
+        document.getElementById('promptInput').value = "Ultra-detailed aerial view of dark Antarctica ice shelf with glowing cyan crevice, 8k cinematic octane render, 35mm lens, photorealistic";
       }
     }
 
-    async function runItachiZeroKeyVideoPipeline() {
-      if (!geminiKey) {
-        alert("Gemini Key missing hai! Erwin page par key save karein.");
-        return;
-      }
+    async function generateRealVisualVideo() {
+      if (!hfKey) { openHfModal(); return; }
+      const prompt = document.getElementById('promptInput').value.trim();
+      const model = document.getElementById('engineSelect').value;
+      if (!prompt) return alert("Prompt dalein!");
 
-      const directives = document.getElementById('sceneDirectivesInput').value.trim();
-      const orientation = document.getElementById('aspectRatioSelect').value;
+      const btn = document.getElementById('genBtn');
+      const telem = document.getElementById('telemetryBox');
+      const out = document.getElementById('outputArea');
+      const img = document.getElementById('renderResultImg');
+      const dl = document.getElementById('downloadBtn');
 
-      if (!directives) {
-        alert("Pehle directives enter karein ya Auto-Import dabayein!");
-        return;
-      }
-
-      const renderBtn = document.getElementById('renderVideosBtn');
-      const telemetryBox = document.getElementById('telemetryBox');
-      const telemetryStatus = document.getElementById('telemetryStatus');
-      const telemetryProgress = document.getElementById('telemetryProgress');
-      const telemetryPct = document.getElementById('telemetryPct');
-      const cockpitArea = document.getElementById('videoPackCockpit');
-      const grid = document.getElementById('videoScenesGrid');
-
-      renderBtn.disabled = true;
-      renderBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Fetching real HD videos...';
-      telemetryBox.classList.remove('hidden');
-      cockpitArea.classList.add('hidden');
-
-      telemetryStatus.innerText = "Extracting video search keywords from script...";
-      telemetryProgress.style.width = "40%";
-      telemetryPct.innerText = "40%";
-
-      const systemPrompt = `You are Itachi Uchiha, elite Video Director.
-Extract 1 specific high-intent English video keyword for each scene (e.g. 'glacier', 'space', 'ocean', 'city').
-
-OUTPUT STRICT JSON ONLY:
-{
-  "scenes": [
-    {
-      "scene_num": 1,
-      "timing": "0:00 - 0:06",
-      "keyword": "glacier",
-      "visual_directive": "Scene description"
-    }
-  ]
-}`;
+      btn.disabled = true;
+      telem.classList.remove('hidden');
+      out.classList.add('hidden');
 
       try {
-        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${geminiKey}`, {
+        const res = await fetch(`https://api-inference.huggingface.co/models/${model}`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            system_instruction: { parts: [{ text: systemPrompt }] },
-            contents: [{ parts: [{ text: directives }] }],
-            generationConfig: { response_mime_type: "application/json", temperature: 0.2 }
-          })
+          headers: { 'Authorization': `Bearer ${hfKey}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ inputs: prompt })
         });
 
-        const data = await res.json();
-        const parsed = JSON.parse(data.candidates[0].content.parts[0].text);
+        if (!res.ok) throw new Error(`HTTP ${res.status}: Model loading ya invalid key. 20s baad try karein.`);
 
-        telemetryStatus.innerText = "Streaming direct MP4 clips without access restrictions...";
-        telemetryProgress.style.width = "80%";
-        telemetryPct.innerText = "80%";
-
-        grid.innerHTML = '';
-
-        (parsed.scenes || []).forEach((sc, idx) => {
-          // Guaranteed working, zero-restriction direct video files
-          let videoUrl = directVideoVault[sc.keyword] || Object.values(directVideoVault)[idx % Object.values(directVideoVault).length];
-
-          const card = document.createElement('div');
-          card.className = "bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden shadow-xl space-y-3 p-3";
-
-          card.innerHTML = `
-            <div class="relative rounded-xl overflow-hidden ${orientation === 'portrait' ? 'aspect-[9/16] max-h-96' : 'aspect-video'} bg-slate-900 border border-slate-800 flex items-center justify-center">
-              <video src="${videoUrl}" controls autoplay loop muted playsinline class="w-full h-full object-cover"></video>
-              <div class="absolute top-2 left-2 flex gap-1.5">
-                <span class="text-[9px] px-2 py-0.5 rounded-full font-bold uppercase font-mono-code bg-emerald-500 text-slate-950">
-                  Direct HD Video
-                </span>
-                <span class="text-[9px] px-2 py-0.5 rounded-full bg-slate-900/90 text-amber-300 font-mono-code font-bold">
-                  Scene #${sc.scene_num} (${sc.timing})
-                </span>
-              </div>
-            </div>
-
-            <div class="space-y-1.5 text-xs">
-              <div class="flex justify-between items-center text-[10px] font-mono-code text-slate-400">
-                <span>Keyword: <b class="text-slate-200">${sc.keyword}</b></span>
-                <a href="${videoUrl}" download="scene_${sc.scene_num}.mp4" class="text-cyan-400 font-bold hover:underline" target="_blank">
-                  <i class="fa-solid fa-download"></i> Direct MP4
-                </a>
-              </div>
-              <p class="text-slate-300 font-mono-code text-[11px] leading-relaxed bg-slate-900 p-2.5 rounded-xl border border-slate-800">
-                ${sc.visual_directive}
-              </p>
-            </div>
-          `;
-          grid.appendChild(card);
-        });
-
-        telemetryStatus.innerText = "Video assets ready!";
-        telemetryProgress.style.width = "100%";
-        telemetryPct.innerText = "100%";
-
-        cockpitArea.classList.remove('hidden');
-
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        img.src = url;
+        dl.href = url;
+        out.classList.remove('hidden');
       } catch (err) {
-        alert("Video Engine Error: " + err.message);
+        alert("Render Error: " + err.message);
       } finally {
-        renderBtn.disabled = false;
-        renderBtn.innerHTML = '<i class="fa-solid fa-play"></i> Render & Stream Real HD Videos with Itachi';
-        telemetryBox.classList.add('hidden');
+        btn.disabled = false;
+        telem.classList.add('hidden');
       }
     }
 
-    function passToLevi() {
-      alert("✅ All Video Clips locked! Ready for Agent 6: Levi (Chief Video Editor).");
-    }
-
-    window.onload = () => {
-      autoImportScriptAndVisuals();
-    };
+    window.onload = () => { checkKey(); autoImportScript(); };
   </script>
 </body>
 </html>

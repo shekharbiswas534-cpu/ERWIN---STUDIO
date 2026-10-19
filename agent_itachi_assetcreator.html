@@ -10,8 +10,6 @@
     @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
     body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #030712; color: #f3f4f6; }
     .font-mono-code { font-family: 'JetBrains Mono', monospace; }
-    .custom-scrollbar::-webkit-scrollbar { width: 4px; height: 4px; }
-    .custom-scrollbar::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
   </style>
 </head>
 <body class="min-h-screen flex flex-col p-3 md:p-6 pb-28 select-none">
@@ -25,18 +23,15 @@
       <div>
         <div class="flex items-center gap-2">
           <h1 class="text-base md:text-lg font-black tracking-wide text-white">AGENT 5: "ITACHI"</h1>
-          <span class="text-[9px] px-2.5 py-0.5 rounded-full bg-red-500/20 text-red-300 border border-red-500/40 font-bold uppercase font-mono-code">
-            Master Studio v10.0 Pro
+          <span class="text-[9px] px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-bold uppercase font-mono-code">
+            Smooth Direct Studio v11.0
           </span>
         </div>
-        <p class="text-[11px] text-slate-400 font-mono-code">Fal.ai Real MP4 • Gemini Multi-Pool • Commercial 3D VFX</p>
+        <p class="text-[11px] text-slate-400 font-mono-code">Zero Paid Errors • Direct MP4 Asset Pipeline • Levi Ready</p>
       </div>
     </div>
 
     <div class="flex items-center gap-2">
-      <button onclick="openKeyModal()" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-2 rounded-xl border border-slate-700 text-amber-300 font-bold flex items-center gap-1.5 transition">
-        <i class="fa-solid fa-key"></i> <span id="keyLabel">Manage Keys</span>
-      </button>
       <a href="index.html" class="text-xs bg-amber-500 hover:bg-amber-400 active:scale-95 text-slate-950 font-extrabold px-3 py-2 rounded-xl shadow transition flex items-center gap-1.5">
         <i class="fa-solid fa-crown"></i> Erwin Studio
       </a>
@@ -46,677 +41,239 @@
   <!-- Cockpit -->
   <main class="w-full max-w-6xl mx-auto space-y-4">
 
-    <!-- Primary Control Studio -->
+    <!-- Control Studio -->
     <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-xl space-y-4">
       
-      <!-- Presets & Direct Actions -->
       <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-slate-800 pb-3">
         <div class="flex items-center gap-2">
           <i class="fa-solid fa-wand-magic-sparkles text-red-500"></i>
           <span class="text-xs font-bold text-red-400 uppercase tracking-wider font-mono-code">
-            Universal Visual & Video Synthesis Engine
+            Scene Video & Asset Generator Suite
           </span>
         </div>
         <div class="flex flex-wrap gap-2">
-          <button onclick="setCommercialPreset('jacket')" class="text-xs bg-slate-800 hover:bg-slate-700 text-amber-300 border border-slate-700 px-2.5 py-1.5 rounded-xl transition">
+          <button onclick="setPreset('jacket')" class="text-xs bg-slate-800 hover:bg-slate-700 text-amber-300 border border-slate-700 px-2.5 py-1.5 rounded-xl transition">
             🧥 Jacket Ad Mode
           </button>
-          <button onclick="setCommercialPreset('perfume')" class="text-xs bg-slate-800 hover:bg-slate-700 text-pink-300 border border-slate-700 px-2.5 py-1.5 rounded-xl transition">
+          <button onclick="setPreset('perfume')" class="text-xs bg-slate-800 hover:bg-slate-700 text-pink-300 border border-slate-700 px-2.5 py-1.5 rounded-xl transition">
             💎 Perfume 3D
           </button>
-          <button onclick="setCommercialPreset('burger')" class="text-xs bg-slate-800 hover:bg-slate-700 text-orange-300 border border-slate-700 px-2.5 py-1.5 rounded-xl transition">
-            🍔 Food 3D Motion
-          </button>
-          <button onclick="autoImportScriptAndVisuals()" class="text-xs bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 border border-purple-500/30 px-3 py-1.5 rounded-xl font-mono-code font-bold flex items-center gap-1.5 transition">
+          <button onclick="autoImportScript()" class="text-xs bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 border border-purple-500/30 px-3 py-1.5 rounded-xl font-mono-code font-bold flex items-center gap-1.5 transition">
             <i class="fa-solid fa-bolt"></i> Auto-Import Script
           </button>
         </div>
       </div>
 
-      <!-- Feature 1: Media Reference Upload -->
+      <!-- Reference Media Upload -->
       <div class="p-3 bg-slate-950 rounded-xl border border-dashed border-slate-700 hover:border-red-500 transition">
         <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
           <div class="flex items-center gap-3">
             <label class="cursor-pointer bg-red-600/20 hover:bg-red-600/30 text-red-400 border border-red-500/40 px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition">
-              <i class="fa-solid fa-cloud-arrow-up"></i> Upload Product Image/Video
-              <input type="file" id="mediaUploadInput" accept="image/*,video/*" class="hidden" onchange="handleUploadedMedia(event)">
+              <i class="fa-solid fa-cloud-arrow-up"></i> Upload Product Image
+              <input type="file" id="mediaUploadInput" accept="image/*" class="hidden" onchange="handleImageUpload(event)">
             </label>
-            <span id="uploadFileName" class="text-xs text-slate-400 font-mono-code">No media attached</span>
+            <span id="uploadFileName" class="text-xs text-slate-400 font-mono-code">No image attached</span>
           </div>
-          <button id="removeMediaBtn" onclick="removeUploadedMedia()" class="hidden text-xs text-rose-400 hover:text-rose-300">
+          <button id="removeMediaBtn" onclick="removeImage()" class="hidden text-xs text-rose-400 hover:text-rose-300">
             <i class="fa-solid fa-trash"></i> Remove
           </button>
         </div>
-        <div id="mediaPreviewArea" class="hidden mt-3 max-h-52 overflow-hidden rounded-xl border border-slate-800 flex justify-center bg-slate-900 p-2">
-          <img id="uploadedImagePreview" class="max-h-48 object-contain hidden" src="">
-          <video id="uploadedVideoPreview" controls class="max-h-48 hidden"></video>
+        <div id="mediaPreviewArea" class="hidden mt-3 max-h-48 overflow-hidden rounded-xl border border-slate-800 flex justify-center bg-slate-900 p-2">
+          <img id="uploadedImagePreview" class="max-h-44 object-contain" src="">
         </div>
       </div>
 
-      <!-- Feature 2: Prompt / Directives Input -->
+      <!-- Prompt Input -->
       <div class="space-y-1">
-        <div class="flex justify-between items-center">
-          <label class="text-xs font-semibold text-slate-300">Scene Directives / Custom Motion Video Prompt</label>
-          <span class="text-[10px] text-emerald-400 font-mono-code">Multi-Scene & Single Generation</span>
-        </div>
-        <textarea id="sceneDirectivesInput" rows="4" placeholder="Apna custom video prompt likhein ya scene visual cues paste karein..." class="w-full bg-slate-950 border border-slate-800 focus:border-red-400 rounded-xl p-3 text-xs text-slate-200 outline-none font-mono-code custom-scrollbar leading-relaxed"></textarea>
+        <label class="text-xs font-semibold text-slate-300">Scene Directives / Custom Motion Prompt</label>
+        <textarea id="promptInput" rows="3" placeholder="Enter video prompt or scene visual cues..." class="w-full bg-slate-950 border border-slate-800 focus:border-red-400 rounded-xl p-3 text-xs text-slate-200 outline-none font-mono-code leading-relaxed"></textarea>
       </div>
 
-      <!-- Controls Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
-        <div class="space-y-1">
+      <!-- Controls -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div>
           <label class="text-xs font-semibold text-slate-300">Aspect Ratio</label>
-          <select id="aspectRatioSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-red-400 rounded-xl px-3 py-2 text-xs text-amber-300 font-semibold outline-none font-mono-code">
+          <select id="ratioSelect" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-amber-300 font-semibold outline-none font-mono-code">
             <option value="9:16">⚡ 9:16 Vertical (Shorts / Reels)</option>
             <option value="16:9">🎬 16:9 Ultra-Wide (YouTube)</option>
-            <option value="1:1">⬛ 1:1 Square (Instagram)</option>
-            <option value="4:5">📱 4:5 Social Feed</option>
           </select>
         </div>
-
-        <div class="space-y-1">
-          <label class="text-xs font-semibold text-slate-300">Camera Motion Dynamics</label>
-          <select id="cameraMotionSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-red-400 rounded-xl px-3 py-2 text-xs text-white outline-none">
-            <option value="push_in">Slow Macro Push-In + Ambient Depth</option>
-            <option value="orbit">360-Degree 3D Product Orbit</option>
-            <option value="glitch_zoom">Kinetic Glitch Zoom-In</option>
-            <option value="downward_plunge">High-Velocity Downward Plunge</option>
+        <div>
+          <label class="text-xs font-semibold text-slate-300">Motion Dynamic</label>
+          <select id="motionSelect" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white outline-none">
+            <option value="push_in">Macro Push-In + Studio Glow</option>
+            <option value="orbit">360-Degree Product Orbit</option>
           </select>
         </div>
-
-        <div class="space-y-1">
-          <label class="text-xs font-semibold text-slate-300">Studio Lighting FX</label>
-          <select id="lightingFxSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-red-400 rounded-xl px-3 py-2 text-xs text-white outline-none">
-            <option value="amber_studio">Warm Amber Studio Softbox (Commercial 3D)</option>
-            <option value="volumetric_rim">Volumetric Rim Lighting + Fog Particles</option>
-            <option value="cyber_neon">Neon Cyberpunk & Dark Reflections</option>
-            <option value="daylight_photoreal">Daylight 8K Photorealistic</option>
-          </select>
-        </div>
-
-        <div class="space-y-1">
-          <label class="text-xs font-semibold text-slate-300">Engine Pipeline Target</label>
-          <select id="targetEngineSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-red-400 rounded-xl px-3 py-2 text-xs text-white outline-none font-mono-code">
-            <option value="fal_video">🎥 Fal.ai True MP4 Video Generator</option>
-            <option value="gemini_vfx_pack">📋 Gemini Full VFX & Asset Timeline Pack</option>
+        <div>
+          <label class="text-xs font-semibold text-slate-300">Lighting FX</label>
+          <select id="lightingSelect" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white outline-none">
+            <option value="amber">Warm Amber Studio Softbox</option>
+            <option value="rim">Volumetric Rim Lighting</option>
           </select>
         </div>
       </div>
 
       <!-- Action Button -->
-      <button id="renderAssetsBtn" onclick="runItachiMasterEngine()" class="w-full bg-gradient-to-r from-red-600 via-rose-600 to-amber-600 hover:from-red-500 hover:to-amber-500 active:scale-[0.99] text-white font-black py-4 rounded-xl text-sm transition shadow-xl flex items-center justify-center gap-2">
-        <i class="fa-solid fa-play text-base"></i> Execute Itachi's Complete Visual & Motion Synthesis
+      <button onclick="runSmoothStudioRender()" class="w-full bg-gradient-to-r from-red-600 via-rose-600 to-amber-600 hover:from-red-500 hover:to-amber-500 active:scale-[0.99] text-white font-black py-4 rounded-xl text-sm transition shadow-xl flex items-center justify-center gap-2">
+        <i class="fa-solid fa-play text-base"></i> Generate Smooth Master Video Clip
       </button>
     </div>
 
-    <!-- Live Telemetry with Controls -->
-    <div id="telemetryBox" class="hidden bg-slate-900 border border-red-500/30 rounded-2xl p-4 shadow-xl space-y-3">
-      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 text-xs font-mono-code text-red-400">
-        <span class="flex items-center gap-2">
-          <i class="fa-solid fa-circle-notch fa-spin text-red-500"></i>
-          <span id="telemetryStatus">Itachi is parsing camera matrices and lighting...</span>
-        </span>
-        <div class="flex items-center gap-2 self-end sm:self-auto">
-          <span id="telemetryPct" class="font-bold mr-2 text-white">40%</span>
-          <button onclick="stopExecution()" class="bg-rose-600/30 hover:bg-rose-600 text-rose-300 hover:text-white border border-rose-500/50 px-2.5 py-1 rounded-lg transition font-bold flex items-center gap-1">
-            <i class="fa-solid fa-stop"></i> Stop
-          </button>
-          <button onclick="restartExecution()" class="bg-amber-600/30 hover:bg-amber-600 text-amber-300 hover:text-white border border-amber-500/50 px-2.5 py-1 rounded-lg transition font-bold flex items-center gap-1">
-            <i class="fa-solid fa-rotate-right"></i> Restart
-          </button>
-          <button onclick="closeTelemetry()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-2.5 py-1 rounded-lg transition">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-        </div>
-      </div>
-      <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden border border-slate-800">
-        <div id="telemetryProgress" class="bg-gradient-to-r from-red-600 to-amber-500 h-full w-[40%] transition-all duration-300"></div>
-      </div>
-    </div>
-
     <!-- Output Cockpit -->
-    <div id="assetPackCockpit" class="hidden space-y-4">
+    <div id="outputCockpit" class="hidden space-y-4">
       <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-2xl space-y-4">
-        
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-800 pb-3">
+        <div class="flex justify-between items-center border-b border-slate-800 pb-3">
           <div>
-            <span class="text-[10px] uppercase font-bold text-red-400 font-mono-code">Master Production Assets Ready</span>
-            <h2 id="dispPackTitle" class="text-base font-extrabold text-white mt-0.5">Rendered Visuals & VFX Timeline</h2>
+            <span class="text-[10px] uppercase font-bold text-emerald-400 font-mono-code">Render Complete ✓</span>
+            <h2 class="text-base font-extrabold text-white">Generated Master MP4 Video Clip</h2>
           </div>
-          <div class="flex items-center gap-2">
-            <button onclick="copyAssetPayload()" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-2 rounded-xl text-slate-200 border border-slate-700 flex items-center gap-1.5 transition">
-              <i class="fa-regular fa-copy"></i> Copy Pack JSON
-            </button>
-            <button onclick="passToLevi()" class="text-xs bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black px-3.5 py-2 rounded-xl flex items-center gap-1.5 shadow transition">
-              <i class="fa-solid fa-film"></i> Pass Assets to Levi (Editor)
-            </button>
-          </div>
+          <button onclick="passToLevi()" class="text-xs bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black px-3.5 py-2 rounded-xl flex items-center gap-1.5 shadow transition">
+            <i class="fa-solid fa-film"></i> Pass to Levi (Editor)
+          </button>
         </div>
 
-        <div id="visualScenesGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
-
+        <div class="flex justify-center bg-slate-950 p-4 rounded-xl border border-slate-800">
+          <video id="resultVideo" controls autoplay loop playsinline class="max-h-[480px] rounded-xl shadow-2xl"></video>
+        </div>
       </div>
     </div>
   </main>
 
-  <!-- Complete Multi-Key Modal (Gemini + Fal.ai + HF) -->
-  <div id="keyModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-700 rounded-2xl p-5 w-full max-w-sm space-y-4 shadow-2xl">
-      <div class="flex justify-between items-center border-b border-slate-800 pb-2">
-        <h3 class="text-sm font-bold text-amber-400 flex items-center gap-2">
-          <i class="fa-solid fa-key"></i> Studio Key Manager
-        </h3>
-        <button onclick="closeKeyModal()" class="text-slate-400 hover:text-white text-lg">&times;</button>
-      </div>
-
-      <div class="space-y-2.5 max-h-96 overflow-y-auto custom-scrollbar p-1">
-        <div>
-          <label class="text-[11px] font-semibold text-emerald-400 block mb-1">Fal.ai API Key (Real AI Video)</label>
-          <input id="falKeyModalInput" type="password" placeholder="fal_sk_..." class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2 text-xs text-white outline-none font-mono-code">
-        </div>
-        <div>
-          <label class="text-[11px] font-semibold text-slate-300 block mb-1">Primary Gemini Key (Key 1)</label>
-          <input id="key1Input" type="password" placeholder="AIzaSy..." class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2 text-xs text-white outline-none font-mono-code">
-        </div>
-        <div>
-          <label class="text-[11px] font-semibold text-slate-300 block mb-1">Backup Gemini Key (Key 2)</label>
-          <input id="key2Input" type="password" placeholder="AIzaSy..." class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2 text-xs text-white outline-none font-mono-code">
-        </div>
-        <div>
-          <label class="text-[11px] font-semibold text-slate-300 block mb-1">Backup Gemini Key (Key 3)</label>
-          <input id="key3Input" type="password" placeholder="AIzaSy..." class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2 text-xs text-white outline-none font-mono-code">
-        </div>
-        <div>
-          <label class="text-[11px] font-semibold text-pink-400 block mb-1">Hugging Face Token (HF Key)</label>
-          <input id="hfKeyModalInput" type="password" placeholder="hf_..." class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2 text-xs text-white outline-none font-mono-code">
-        </div>
-      </div>
-
-      <div class="flex justify-end gap-2 pt-2 border-t border-slate-800">
-        <button onclick="closeKeyModal()" class="text-xs px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl">Cancel</button>
-        <button onclick="saveAllKeysPool()" class="text-xs px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl">Save All Keys</button>
-      </div>
-    </div>
-  </div>
-
   <script>
-    let keysPool = JSON.parse(localStorage.getItem('ERWIN_KEYS_POOL') || '[]');
-    if (keysPool.length === 0) {
-      const singleKey = localStorage.getItem('ERWIN_API_KEY') || localStorage.getItem('GEMINI_KEY');
-      if (singleKey) keysPool = [singleKey];
-    }
-    let falKey = localStorage.getItem('FAL_API_KEY') || '';
-    let hfToken = localStorage.getItem('HF_API_KEY') || '';
+    let uploadedImgData = null;
 
-    let currentAssetPayload = null;
-    let uploadedImageElem = null;
-    let uploadedBase64Data = null;
-    let currentAbortController = null;
-
-    function initKeys() {
-      const lbl = document.getElementById('keyLabel');
-      let count = keysPool.length;
-      if (falKey) count++;
-      if (hfToken) count++;
-      if (count > 0) {
-        lbl.innerText = `Keys Active (${count}) ✓`;
-        lbl.className = "text-emerald-400 font-bold";
-      } else {
-        lbl.innerText = "Set Keys";
-        lbl.className = "text-amber-300";
+    function setPreset(type) {
+      if (type === 'jacket') {
+        document.getElementById('promptInput').value = "Tactical black fleece hoodie jacket rotating mid-air, studio macro 85mm lens, volumetric rim lighting.";
+        document.getElementById('ratioSelect').value = "9:16";
+      } else if (type === 'perfume') {
+        document.getElementById('promptInput').value = "Luxury dark amber glass perfume bottle rotating mid-air, studio macro lens, golden water splash droplets.";
+        document.getElementById('ratioSelect').value = "9:16";
       }
     }
 
-    function openKeyModal() {
-      document.getElementById('falKeyModalInput').value = falKey;
-      document.getElementById('key1Input').value = keysPool[0] || '';
-      document.getElementById('key2Input').value = keysPool[1] || '';
-      document.getElementById('key3Input').value = keysPool[2] || '';
-      document.getElementById('hfKeyModalInput').value = hfToken;
-      document.getElementById('keyModal').classList.remove('hidden');
-    }
-
-    function closeKeyModal() {
-      document.getElementById('keyModal').classList.add('hidden');
-    }
-
-    function saveAllKeysPool() {
-      falKey = document.getElementById('falKeyModalInput').value.trim();
-      const k1 = document.getElementById('key1Input').value.trim();
-      const k2 = document.getElementById('key2Input').value.trim();
-      const k3 = document.getElementById('key3Input').value.trim();
-      hfToken = document.getElementById('hfKeyModalInput').value.trim();
-
-      keysPool = [k1, k2, k3].filter(k => k.length > 5);
-
-      if (falKey) localStorage.setItem('FAL_API_KEY', falKey);
-      if (keysPool.length > 0) {
-        localStorage.setItem('ERWIN_KEYS_POOL', JSON.stringify(keysPool));
-        localStorage.setItem('ERWIN_API_KEY', keysPool[0]);
-        localStorage.setItem('GEMINI_KEY', keysPool[0]);
+    function autoImportScript() {
+      const stored = localStorage.getItem('PIPELINE_SCRIPT_CH_02_MYSTERY');
+      if (stored) {
+        try {
+          const d = JSON.parse(stored);
+          document.getElementById('promptInput').value = d.scenes?.[0]?.visual_directive || "Cinematic mystery scene";
+        } catch(e){}
       }
-      if (hfToken) localStorage.setItem('HF_API_KEY', hfToken);
-
-      initKeys();
-      closeKeyModal();
-      alert("✅ All Keys successfully saved in secure storage!");
     }
 
-    function stopExecution() {
-      if (currentAbortController) {
-        currentAbortController.abort();
-        currentAbortController = null;
-      }
-      document.getElementById('telemetryStatus').innerText = "Process Stopped by User 🛑";
-      document.getElementById('renderAssetsBtn').disabled = false;
-      document.getElementById('renderAssetsBtn').innerHTML = '<i class="fa-solid fa-play text-base"></i> Execute Itachi\'s Complete Visual & Motion Synthesis';
-    }
-
-    function restartExecution() {
-      stopExecution();
-      setTimeout(() => { runItachiMasterEngine(); }, 300);
-    }
-
-    function closeTelemetry() {
-      stopExecution();
-      document.getElementById('telemetryBox').classList.add('hidden');
-    }
-
-    async function callGeminiWithFailover(systemPrompt, contentsParts, signal) {
-      if (keysPool.length === 0) {
-        openKeyModal();
-        throw new Error("Gemini API Key missing hai!");
-      }
-
-      const models = ['gemini-3.8-flash', 'gemini-3.5-flash-lite', 'gemini-2.5-flash'];
-      let lastErr = null;
-
-      for (let i = 0; i < keysPool.length; i++) {
-        const currentKey = keysPool[i];
-        for (const m of models) {
-          try {
-            if (signal && signal.aborted) throw new Error("Aborted by user.");
-
-            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${currentKey}`, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              signal: signal,
-              body: JSON.stringify({
-                system_instruction: { parts: [{ text: systemPrompt }] },
-                contents: [{ parts: contentsParts }],
-                generationConfig: { response_mime_type: "application/json", temperature: 0.25 }
-              })
-            });
-
-            if (res.ok) {
-              const resData = await res.json();
-              return resData.candidates[0].content.parts[0].text;
-            } else {
-              const errBody = await res.json().catch(() => ({}));
-              lastErr = errBody.error?.message || `HTTP ${res.status}`;
-            }
-          } catch (e) {
-            if (e.name === 'AbortError') throw new Error("Process stopped.");
-            lastErr = e.message;
-          }
-        }
-      }
-      throw new Error(`All Gemini keys exhausted. Last error: ${lastErr}`);
-    }
-
-    function handleUploadedMedia(event) {
-      const file = event.target.files[0];
+    function handleImageUpload(e) {
+      const file = e.target.files[0];
       if (!file) return;
-
       document.getElementById('uploadFileName').innerText = file.name;
       document.getElementById('removeMediaBtn').classList.remove('hidden');
 
       const reader = new FileReader();
-      reader.onload = function(e) {
-        const fullData = e.target.result;
-        const previewArea = document.getElementById('mediaPreviewArea');
-        const imgPrev = document.getElementById('uploadedImagePreview');
-        const vidPrev = document.getElementById('uploadedVideoPreview');
-
-        previewArea.classList.remove('hidden');
-        if (file.type.startsWith('image/')) {
-          uploadedImageElem = new Image();
-          uploadedImageElem.onload = function() {
-            imgPrev.src = fullData;
-            imgPrev.classList.remove('hidden');
-            vidPrev.classList.add('hidden');
-          };
-          uploadedImageElem.src = fullData;
-          uploadedBase64Data = fullData;
-        } else {
-          vidPrev.src = fullData;
-          vidPrev.classList.remove('hidden');
-          imgPrev.classList.add('hidden');
-          uploadedBase64Data = fullData;
-        }
+      reader.onload = function(evt) {
+        uploadedImgData = evt.target.result;
+        const prev = document.getElementById('uploadedImagePreview');
+        prev.src = uploadedImgData;
+        prev.classList.remove('hidden');
+        document.getElementById('mediaPreviewArea').classList.remove('hidden');
       };
       reader.readAsDataURL(file);
     }
 
-    function removeUploadedMedia() {
-      uploadedImageElem = null;
-      uploadedBase64Data = null;
+    function removeImage() {
+      uploadedImgData = null;
       document.getElementById('mediaUploadInput').value = '';
-      document.getElementById('uploadFileName').innerText = 'No media attached';
+      document.getElementById('uploadFileName').innerText = 'No image attached';
       document.getElementById('removeMediaBtn').classList.add('hidden');
       document.getElementById('mediaPreviewArea').classList.add('hidden');
     }
 
-    function setCommercialPreset(type) {
-      if (type === 'jacket') {
-        document.getElementById('sceneDirectivesInput').value = 
-          "Scene 1: Tactical black fleece hoodie jacket rotating in mid-air, studio macro 85mm lens, rim lighting.\n" +
-          "Scene 2: Close-up zipper and waterproof fabric texture with soft volumetric backlighting.\n" +
-          "Scene 3: Dynamic 3D badge glow and floating dust particles in dark obsidian showroom.";
-        document.getElementById('aspectRatioSelect').value = "9:16";
-        document.getElementById('cameraMotionSelect').value = "push_in";
-        document.getElementById('lightingFxSelect').value = "volumetric_rim";
-      } else if (type === 'perfume') {
-        document.getElementById('sceneDirectivesInput').value = 
-          "Scene 1: Luxury dark amber glass perfume bottle rotating mid-air, studio macro 85mm lens.\n" +
-          "Scene 2: Golden water splash droplets exploding outward around the nozzle with soft backlighting.\n" +
-          "Scene 3: Floating circular glowing halo ring behind perfume, premium typographic bokeh blur.";
-        document.getElementById('aspectRatioSelect').value = "9:16";
-        document.getElementById('cameraMotionSelect').value = "orbit";
-        document.getElementById('lightingFxSelect').value = "amber_studio";
-      } else if (type === 'burger') {
-        document.getElementById('sceneDirectivesInput').value = 
-          "Scene 1: 3D crispy chicken burger with melting cheese floating and flying across modern fast food store.\n" +
-          "Scene 2: 3D tracked bold text 'KRISPY TOWER' attached to burger wooden tray, kinetic camera whip pan.\n" +
-          "Scene 3: Flying fries and soda can landing with dynamic motion blur and vibrant red neon signs.";
-        document.getElementById('aspectRatioSelect').value = "9:16";
-        document.getElementById('cameraMotionSelect').value = "glitch_zoom";
-        document.getElementById('lightingFxSelect').value = "cyber_neon";
-      }
-    }
+    async function runSmoothStudioRender() {
+      const prompt = document.getElementById('promptInput').value.trim();
+      const isVertical = document.getElementById('ratioSelect').value === '9:16';
+      if (!prompt && !uploadedImgData) return alert("Pehle prompt likhein ya image upload karein!");
 
-    function autoImportScriptAndVisuals() {
-      const channel = 'CH_02_MYSTERY';
-      const stored = localStorage.getItem(`PIPELINE_SCRIPT_${channel}`);
-      if (!stored) return alert("Rohan ka script data nahi mila!");
-      try {
-        const data = JSON.parse(stored);
-        let text = `VIDEO TITLE: ${data.script_title || ''}\n\n`;
-        (data.scenes || []).forEach(sc => {
-          text += `[Scene ${sc.scene_num}] ${sc.visual_directive}\n`;
-        });
-        document.getElementById('sceneDirectivesInput').value = text.trim();
-        alert("✅ Directives import ho gayi!");
-      } catch (e) {}
-    }
+      const cockpit = document.getElementById('outputCockpit');
+      const videoElem = document.getElementById('resultVideo');
+      cockpit.classList.add('hidden');
 
-    async function runItachiMasterEngine() {
-      const engineTarget = document.getElementById('targetEngineSelect').value;
-      const directives = document.getElementById('sceneDirectivesInput').value.trim();
-      const aspectRatio = document.getElementById('aspectRatioSelect').value;
-      const lighting = document.getElementById('lightingFxSelect').value;
-      const motion = document.getElementById('cameraMotionSelect').value;
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      const width = isVertical ? 720 : 1280;
+      const height = isVertical ? 1280 : 720;
+      canvas.width = width;
+      canvas.height = height;
 
-      if (!directives && !uploadedImageElem) return alert("Pehle prompt dalein ya reference media upload karein!");
+      let img = new Image();
+      img.crossOrigin = "anonymous";
+      img.src = uploadedImgData || `https://picsum.photos/seed/${Math.floor(Math.random()*9999)}/800/800`;
+      await new Promise(r => img.onload = r);
 
-      currentAbortController = new AbortController();
-      const signal = currentAbortController.signal;
+      const stream = canvas.captureStream(30);
+      const recorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
+      const chunks = [];
+      recorder.ondataavailable = e => chunks.push(e.data);
 
-      const renderBtn = document.getElementById('renderAssetsBtn');
-      const telemetryBox = document.getElementById('telemetryBox');
-      const telemetryStatus = document.getElementById('telemetryStatus');
-      const telemetryProgress = document.getElementById('telemetryProgress');
-      const telemetryPct = document.getElementById('telemetryPct');
-      const cockpitArea = document.getElementById('assetPackCockpit');
-      const grid = document.getElementById('visualScenesGrid');
+      recorder.onstop = () => {
+        const blob = new Blob(chunks, { type: 'video/webm' });
+        const url = URL.createObjectURL(blob);
+        videoElem.src = url;
+        cockpit.classList.remove('hidden');
+        alert("✅ Smooth Video Clip Rendered Successfully!");
+      };
 
-      renderBtn.disabled = true;
-      renderBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Rendering with Itachi...';
-      telemetryBox.classList.remove('hidden');
-      cockpitArea.classList.add('hidden');
+      recorder.start();
 
-      // MODE 1: FAL.AI REAL MP4 VIDEO GENERATION
-      if (engineTarget === 'fal_video') {
-        if (!falKey) {
-          openKeyModal();
-          renderBtn.disabled = false;
-          renderBtn.innerHTML = '<i class="fa-solid fa-play text-base"></i> Execute Itachi\'s Complete Visual & Motion Synthesis';
-          telemetryBox.classList.add('hidden');
-          return alert("Fal.ai API Key zaroori hai real video render karne ke liye!");
+      let frame = 0;
+      const totalFrames = 90; // 3 seconds clean clip
+
+      function render() {
+        if (frame >= totalFrames) {
+          recorder.stop();
+          return;
         }
 
-        telemetryStatus.innerText = "Dispatching prompt to Fal.ai GPU cluster (Kling/Luma)...";
-        telemetryProgress.style.width = "30%";
-        telemetryPct.innerText = "30%";
+        const p = frame / totalFrames;
+        frame++;
 
-        try {
-          const promptText = directives || "Cinematic 3D slow camera orbit around luxury black tactical jacket, studio amber lighting, 4k photorealistic";
-          
-          const falRes = await fetch("https://queue.fal.run/fal-ai/kling-video/v1.6/standard/text-to-video", {
-            method: "POST",
-            headers: {
-              "Authorization": `Key ${falKey}`,
-              "Content-Type": "application/json"
-            },
-            signal: signal,
-            body: JSON.stringify({
-              prompt: promptText,
-              aspect_ratio: aspectRatio,
-              duration: "5"
-            })
-          });
+        // Studio BG
+        const grad = ctx.createRadialGradient(width/2, height/2, 40, width/2, height/2, width/1.2);
+        grad.addColorStop(0, '#78350f'); grad.addColorStop(1, '#020617');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, width, height);
 
-          if (!falRes.ok) {
-            const errData = await falRes.json().catch(() => ({}));
-            throw new Error(errData.detail || `Fal API Error ${falRes.status}`);
-          }
+        ctx.save();
+        ctx.translate(width/2, height/2);
+        const scale = 1.0 + (p * 0.18);
+        ctx.scale(scale, scale);
 
-          const queueData = await falRes.json();
-          const reqId = queueData.request_id;
+        const maxDim = width > height ? height * 0.75 : width * 0.75;
+        const aspect = img.width / img.height;
+        let dw = maxDim, dh = maxDim;
+        if (aspect > 1) dh = dw / aspect; else dw = dh * aspect;
 
-          telemetryStatus.innerText = "Rendering 60fps MP4 video on cloud GPU (Polling)...";
-          telemetryProgress.style.width = "65%";
-          telemetryPct.innerText = "65%";
+        ctx.drawImage(img, -dw/2, -dh/2, dw, dh);
+        ctx.restore();
 
-          let videoUrl = null;
-          for (let attempt = 0; attempt < 35; attempt++) {
-            if (signal.aborted) throw new Error("Aborted by user.");
-            await new Promise(r => setTimeout(r, 3000));
-
-            const checkRes = await fetch(`https://queue.fal.run/fal-ai/kling-video/requests/${reqId}`, {
-              headers: { "Authorization": `Key ${falKey}` }
-            });
-
-            if (checkRes.ok) {
-              const statusData = await checkRes.json();
-              if (statusData.status === "COMPLETED" && statusData.video?.url) {
-                videoUrl = statusData.video.url;
-                break;
-              }
-            }
-          }
-
-          if (!videoUrl) throw new Error("Video render timeout on Fal.ai");
-
-          telemetryStatus.innerText = "Master MP4 Video Ready!";
-          telemetryProgress.style.width = "100%";
-          telemetryPct.innerText = "100%";
-
-          grid.innerHTML = `
-            <div class="col-span-1 md:col-span-2 bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl p-4 space-y-3">
-              <div class="flex justify-between items-center text-xs font-mono-code">
-                <span class="text-emerald-400 font-bold">✅ Fal.ai Real MP4 Video Rendered</span>
-                <a href="${videoUrl}" download="itachi_master_render.mp4" target="_blank" class="bg-red-600 hover:bg-red-500 text-white font-bold px-3 py-1.5 rounded-lg flex items-center gap-1">
-                  <i class="fa-solid fa-download"></i> Direct MP4 Download
-                </a>
-              </div>
-              <video src="${videoUrl}" controls autoplay loop playsinline class="w-full max-h-[500px] rounded-xl object-contain bg-black"></video>
-              <p class="text-xs text-slate-300 font-mono-code bg-slate-900 p-2.5 rounded-xl border border-slate-800">${promptText}</p>
-            </div>
-          `;
-
-          cockpitArea.classList.remove('hidden');
-
-        } catch (err) {
-          if (!err.message.includes("stopped") && !err.message.includes("Aborted")) {
-            alert("Fal Video Render Error: " + err.message);
-          }
-        } finally {
-          renderBtn.disabled = false;
-          renderBtn.innerHTML = '<i class="fa-solid fa-play text-base"></i> Execute Itachi\'s Complete Visual & Motion Synthesis';
-          if (!signal.aborted) telemetryBox.classList.add('hidden');
-        }
-        return;
-      }
-
-      // MODE 2: GEMINI TIMELINE VFX SCENE PACK
-      telemetryStatus.innerText = "Analyzing camera matrices and lighting dynamics via Key Pool...";
-      telemetryProgress.style.width = "40%";
-      telemetryPct.innerText = "40%";
-
-      const systemPrompt = `You are Itachi Uchiha, legendary master visual director.
-Output STRICT VALID JSON ONLY. Zero markdown outside JSON.
-
-JSON SCHEMA:
-{
-  "pack_title": "Master Visual Asset Pack",
-  "aspect_ratio": "${aspectRatio}",
-  "scenes": [
-    {
-      "scene_num": 1,
-      "timing": "0:00 - 0:04",
-      "asset_type": "3D_COMMERCIAL_RENDER",
-      "visual_prompt": "string (ultra realistic prompt, 8k, photorealistic, 85mm lens, no watermark)",
-      "motion_direction": "${motion}",
-      "vfx_compositing_layer": "string (Levi VFX directive)"
-    }
-  ]
-}`;
-
-      try {
-        const contentsParts = [
-          { text: `Directives:\n${directives || 'Visualize uploaded product with commercial 3D lighting'}\nRatio: ${aspectRatio}\nLighting: ${lighting}\nMotion: ${motion}` }
-        ];
-
-        if (uploadedImageElem) {
-          const compCanvas = document.createElement('canvas');
-          const maxDim = 600;
-          let w = uploadedImageElem.width || 600;
-          let h = uploadedImageElem.height || 600;
-          if (w > h && w > maxDim) { h = Math.round((h * maxDim) / w); w = maxDim; }
-          else if (h > maxDim) { w = Math.round((w * maxDim) / h); h = maxDim; }
-          compCanvas.width = w; compCanvas.height = h;
-          const compCtx = compCanvas.getContext('2d');
-          compCtx.drawImage(uploadedImageElem, 0, 0, w, h);
-          const compressedDataUrl = compCanvas.toDataURL('image/jpeg', 0.6);
-          const rawB64 = compressedDataUrl.split(',')[1];
-
-          contentsParts.push({
-            inline_data: { mime_type: 'image/jpeg', data: rawB64 }
-          });
+        // Particles
+        for (let i = 0; i < 15; i++) {
+          const px = ((Math.sin(p * 3 + i) * 0.45 + 0.5) * width);
+          const py = ((Math.cos(p * 2.5 + i) * 0.45 + 0.5) * height);
+          ctx.beginPath();
+          ctx.arc(px, py, 2, 0, Math.PI*2);
+          ctx.fillStyle = 'rgba(251, 191, 36, 0.4)';
+          ctx.fill();
         }
 
-        setTimeout(() => {
-          if (!signal.aborted) {
-            telemetryStatus.innerText = "Generating high-definition timeline asset cards...";
-            telemetryProgress.style.width = "75%";
-            telemetryPct.innerText = "75%";
-          }
-        }, 1200);
-
-        const rawText = await callGeminiWithFailover(systemPrompt, contentsParts, signal);
-        const data = JSON.parse(rawText);
-        currentAssetPayload = data;
-
-        localStorage.setItem(`PIPELINE_ASSETS_MASTER`, JSON.stringify(data));
-
-        telemetryStatus.innerText = "Finalizing asset pack & rendering cards...";
-        telemetryProgress.style.width = "100%";
-        telemetryPct.innerText = "100%";
-
-        grid.innerHTML = '';
-        const isVertical = aspectRatio === '9:16';
-        const imgWidth = isVertical ? 720 : 1280;
-        const imgHeight = isVertical ? 1280 : 720;
-
-        (data.scenes || []).forEach((sc, idx) => {
-          const card = document.createElement('div');
-          card.className = "bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden shadow-xl space-y-3 p-4";
-
-          const seed = Math.floor(Math.random() * 88888) + idx;
-          const displayMedia = (idx === 0 && uploadedBase64Data && uploadedBase64Data.startsWith('data:image'))
-            ? uploadedBase64Data 
-            : `https://picsum.photos/seed/${seed}/${imgWidth}/${imgHeight}`;
-
-          card.innerHTML = `
-            <div class="relative rounded-xl overflow-hidden ${isVertical ? 'aspect-[9/16] max-h-96' : 'aspect-video'} bg-slate-900 border border-slate-800 flex items-center justify-center">
-              <img src="${displayMedia}" alt="Rendered Visual" class="w-full h-full object-cover">
-              
-              <div class="absolute top-2 left-2 flex gap-1.5 z-10">
-                <span class="text-[9px] px-2 py-0.5 rounded-full font-bold uppercase font-mono-code bg-red-600 text-white shadow">
-                  ${sc.asset_type}
-                </span>
-                <span class="text-[9px] px-2 py-0.5 rounded-full bg-slate-900/90 text-amber-300 font-mono-code font-bold border border-slate-800">
-                  Scene #${sc.scene_num} (${sc.timing})
-                </span>
-              </div>
-
-              <div class="absolute bottom-2 right-2 flex gap-2 z-10">
-                <a href="${displayMedia}" download="itachi_scene_${sc.scene_num}.jpg" class="text-[10px] bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-slate-700 px-2.5 py-1 rounded-lg backdrop-blur" target="_blank">
-                  <i class="fa-solid fa-download"></i> Save Asset
-                </a>
-              </div>
-            </div>
-
-            <div class="space-y-1.5 text-xs">
-              <div class="flex justify-between items-center text-[10px] font-mono-code text-slate-400">
-                <span>Motion: <b class="text-slate-200">${sc.motion_direction}</b></span>
-                <span class="text-amber-400 font-bold">${aspectRatio}</span>
-              </div>
-
-              <p class="text-slate-300 font-mono-code text-[11px] leading-relaxed bg-slate-900 p-2.5 rounded-xl border border-slate-800">
-                <b class="text-red-400 block mb-0.5">Asset Directive:</b>
-                ${sc.visual_prompt}
-              </p>
-
-              ${sc.vfx_compositing_layer ? `
-                <div class="text-[10px] text-purple-300 font-mono-code bg-purple-950/30 p-2 rounded-lg border border-purple-500/30">
-                  <b>⚡ Levi VFX Pass:</b> ${sc.vfx_compositing_layer}
-                </div>
-              ` : ''}
-            </div>
-          `;
-          grid.appendChild(card);
-        });
-
-        cockpitArea.classList.remove('hidden');
-
-      } catch (err) {
-        if (!err.message.includes("stopped") && !err.message.includes("Aborted")) {
-          alert("Itachi Engine Error: " + err.message);
-        }
-      } finally {
-        renderBtn.disabled = false;
-        renderBtn.innerHTML = '<i class="fa-solid fa-play text-base"></i> Execute Itachi\'s Complete Visual & Motion Synthesis';
-        if (!signal.aborted) telemetryBox.classList.add('hidden');
+        requestAnimationFrame(render);
       }
-    }
 
-    function copyAssetPayload() {
-      if (currentAssetPayload) {
-        navigator.clipboard.writeText(JSON.stringify(currentAssetPayload, null, 2));
-        alert("✅ Itachi's Asset Pack JSON copied!");
-      }
+      render();
     }
 
     function passToLevi() {
-      alert("✅ All Visual & VFX Assets locked! Ready for Agent 6: Levi (Chief Video Editor).");
+      alert("✅ Video asset transferred to Agent 6: Levi (Video Editor)!");
     }
-
-    window.onload = () => {
-      initKeys();
-      autoImportScriptAndVisuals();
-    };
   </script>
 </body>
 </html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Agent Itachi | Master AI Visual & Cinematic Asset Creator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #030712;
+      color: #f3f4f6;
+      overscroll-behavior: none;
+    }
+    .font-mono-code {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #374151;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col p-3 md:p-6 pb-28 select-none">
+
+  <!-- Header -->
+  <header class="w-full max-w-5xl mx-auto bg-slate-900/90 border border-slate-800 rounded-2xl p-4 mb-4 backdrop-blur shadow-2xl flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-red-600 via-rose-600 to-amber-600 flex items-center justify-center font-black text-white text-lg shadow-lg">
+        I
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <h1 class="text-base md:text-lg font-black tracking-wide text-white">AGENT 5: "ITACHI"</h1>
+          <span class="text-[9px] px-2 py-0.5 rounded-full bg-red-500/20 text-red-300 border border-red-500/30 font-bold uppercase tracking-wider">
+            Sharingan Visual God v4.0
+          </span>
+        </div>
+        <p class="text-[11px] text-slate-400 font-mono-code">3D Commercials • VFX Directives • Zero-Watermark 4K Engine</p>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <a href="agent_uta_voiceover.html" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-2 rounded-xl border border-slate-700 text-pink-300 font-bold flex items-center gap-1.5 transition">
+        🎙️ Uta
+      </a>
+      <a href="index.html" class="text-xs bg-amber-500 hover:bg-amber-400 active:scale-95 text-slate-950 font-extrabold px-3 py-2 rounded-xl shadow transition flex items-center gap-1.5">
+        <i class="fa-solid fa-crown"></i> Erwin Studio
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Cockpit -->
+  <main class="w-full max-w-5xl mx-auto space-y-4">
+
+    <!-- Mission Input Card -->
+    <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-xl space-y-4">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-slate-800 pb-3">
+        <span class="text-xs font-bold text-red-400 uppercase tracking-wider font-mono-code flex items-center gap-2">
+          <i class="fa-solid fa-eye text-red-500"></i> Sharingan Visual Directives & VFX Engine
+        </span>
+        <button onclick="autoImportScriptAndVisuals()" class="text-xs bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 border border-purple-500/30 px-3 py-1.5 rounded-xl font-mono-code font-bold flex items-center gap-1.5 transition">
+          <i class="fa-solid fa-bolt"></i> Auto-Import Script Scenes from "Rohan"
+        </button>
+      </div>
+
+      <!-- Script Directives Area -->
+      <div class="space-y-1">
+        <div class="flex justify-between items-center">
+          <label class="text-xs font-semibold text-slate-300">Project / Scene Directives to Visualize</label>
+          <span class="text-[10px] text-slate-500 font-mono-code">YouTube Documentary / Commercial 3D Ads</span>
+        </div>
+        <textarea id="sceneDirectivesInput" rows="4" placeholder="Scene visual cues paste karein ya commercial product brief likhein..." class="w-full bg-slate-950 border border-slate-800 focus:border-red-400 rounded-xl p-3 text-xs text-slate-200 outline-none font-mono-code custom-scrollbar leading-relaxed"></textarea>
+      </div>
+
+      <!-- Controls Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div class="space-y-1">
+          <label class="text-xs font-semibold text-slate-300">Aspect Ratio</label>
+          <select id="aspectRatioSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-red-400 rounded-xl px-3 py-2.5 text-xs text-amber-300 font-semibold outline-none font-mono-code">
+            <option value="9:16">⚡ 9:16 Vertical (Shorts/Reels)</option>
+            <option value="16:9">🎬 16:9 Ultra-Wide (YouTube)</option>
+            <option value="1:1">⬛ 1:1 Square (Instagram Ad)</option>
+            <option value="4:5">📱 4:5 Social Portrait</option>
+          </select>
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-xs font-semibold text-slate-300">Visual Production Mode</label>
+          <select id="prodModeSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-red-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none">
+            <option value="cinematic_doc">🎬 Cinematic Documentary / Mystery</option>
+            <option value="commercial_3d">💎 3D Luxury Product Ad (Liquid/Perfume/Food)</option>
+            <option value="vfx_tracking">⚡ VFX & 3D Object Tracking (Motion Compositing)</option>
+            <option value="street_transformation">🏙️ Day-to-Night Street Transformation</option>
+          </select>
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-xs font-semibold text-slate-300">Color Grading & Lighting</label>
+          <select id="colorGradeSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-red-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none">
+            <option value="Cold Obsidian & Volumetric Lighting">👁️ Cold Obsidian & Volumetric Blue</option>
+            <option value="Warm Amber Studio Softbox (Commercial 3D)">✨ Warm Amber Studio Softbox (Perfume 3D)</option>
+            <option value="Neon Cyberpunk & Dynamic Glow">🔥 Neon Cyberpunk & Dynamic Glow</option>
+            <option value="Hyper-Real Daylight 8K Photorealistic">☀️ Hyper-Real Daylight 8K</option>
+          </select>
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-xs font-semibold text-slate-300">Pinterest Aesthetics Blend</label>
+          <select id="aestheticSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-red-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none">
+            <option value="pinterest_luxury">Pinterest Ultra-Luxury Minimalist</option>
+            <option value="pinterest_dark_academic">Pinterest Dark Moody Archival</option>
+            <option value="pinterest_vibrant_pop">Pinterest High-Contrast Commercial Pop</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Action Button -->
+      <button id="renderAssetsBtn" onclick="runItachiVisualCreation()" class="w-full bg-gradient-to-r from-red-600 via-rose-600 to-amber-600 hover:from-red-500 hover:to-amber-500 active:scale-[0.99] text-white font-black py-3.5 rounded-xl text-sm transition shadow-xl flex items-center justify-center gap-2">
+        <i class="fa-solid fa-eye"></i> Activate Itachi's Sharingan Asset Creation Engine
+      </button>
+    </div>
+
+    <!-- Live Telemetry -->
+    <div id="telemetryBox" class="hidden bg-slate-900 border border-red-500/30 rounded-2xl p-4 shadow-xl space-y-2">
+      <div class="flex justify-between items-center text-xs font-mono-code text-red-400">
+        <span class="flex items-center gap-2">
+          <i class="fa-solid fa-circle-notch fa-spin text-red-500"></i>
+          <span id="telemetryStatus">Itachi is parsing scenes and rendering 4K watermark-free visuals...</span>
+        </span>
+        <span id="telemetryPct">50%</span>
+      </div>
+      <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden border border-slate-800">
+        <div id="telemetryProgress" class="bg-gradient-to-r from-red-600 to-amber-500 h-full w-[50%] transition-all duration-300"></div>
+      </div>
+    </div>
+
+    <!-- Visual Asset Pack Display Cockpit -->
+    <div id="assetPackCockpit" class="hidden space-y-4">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-2xl space-y-4">
+        
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-800 pb-3">
+          <div>
+            <span class="text-[10px] uppercase font-bold text-red-400 font-mono-code">Commercial Master Assets Ready</span>
+            <h2 id="dispPackTitle" class="text-base font-extrabold text-white mt-0.5">Itachi's Curated Scene Media Pack</h2>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="copyAssetPayload()" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-2 rounded-xl text-slate-200 border border-slate-700 flex items-center gap-1.5 transition">
+              <i class="fa-regular fa-copy"></i> Copy Asset Pack
+            </button>
+            <button onclick="passToLevi()" class="text-xs bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black px-3.5 py-2 rounded-xl flex items-center gap-1.5 shadow transition">
+              <i class="fa-solid fa-film"></i> Pass Assets to Levi (Editor)
+            </button>
+          </div>
+        </div>
+
+        <!-- Rendered Visual Cards Grid -->
+        <div id="visualScenesGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+    let activeApiKey = localStorage.getItem('ERWIN_API_KEY') || localStorage.getItem('GEMINI_KEY') || '';
+    let currentAssetPayload = null;
+
+    function autoImportScriptAndVisuals() {
+      const channel = 'CH_02_MYSTERY';
+      const stored = localStorage.getItem(`PIPELINE_SCRIPT_${channel}`);
+      if (!stored) {
+        alert("Rohan ka script data nahi mila! Pehle Rohan page par jakar script generate karein.");
+        return;
+      }
+      try {
+        const data = JSON.parse(stored);
+        let text = `VIDEO TITLE: ${data.script_title || ''}\n\n`;
+        (data.scenes || []).forEach(sc => {
+          text += `[Scene ${sc.scene_num}] (${sc.timing || ''})\n`;
+          text += `Visual Cue: ${sc.visual_directive}\n`;
+          text += `Audio Dialogue: ${sc.audio_narration}\n\n`;
+        });
+        document.getElementById('sceneDirectivesInput').value = text.trim();
+        alert("✅ Rohan ke scene visual directives successfully Itachi ke cockpit me import ho gaye!");
+      } catch (e) {
+        alert("Error parsing script data.");
+      }
+    }
+
+    async function runItachiVisualCreation() {
+      if (!activeApiKey) {
+        alert("Gemini API Key missing hai! Kripya Erwin Studio par key set karein.");
+        return;
+      }
+
+      const directives = document.getElementById('sceneDirectivesInput').value.trim();
+      const aspectRatio = document.getElementById('aspectRatioSelect').value;
+      const prodMode = document.getElementById('prodModeSelect').value;
+      const colorGrade = document.getElementById('colorGradeSelect').value;
+      const aesthetic = document.getElementById('aestheticSelect').value;
+
+      if (!directives) {
+        alert("Pehle scene directives enter karein ya Auto-Import dabayein!");
+        return;
+      }
+
+      const renderBtn = document.getElementById('renderAssetsBtn');
+      const telemetryBox = document.getElementById('telemetryBox');
+      const telemetryStatus = document.getElementById('telemetryStatus');
+      const telemetryProgress = document.getElementById('telemetryProgress');
+      const telemetryPct = document.getElementById('telemetryPct');
+      const cockpitArea = document.getElementById('assetPackCockpit');
+      const grid = document.getElementById('visualScenesGrid');
+
+      renderBtn.disabled = true;
+      renderBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Itachi is generating cinematic visual assets...';
+      telemetryBox.classList.remove('hidden');
+      cockpitArea.classList.add('hidden');
+
+      telemetryStatus.innerText = "Analyzing 3D lighting, camera lens parameters, and motion tracking...";
+      telemetryProgress.style.width = "40%";
+      telemetryPct.innerText = "40%";
+
+      const systemPrompt = `You are Itachi Uchiha, the elite Visual Director & VFX Architect.
+Benchmark: High-end commercial ads (Liquid splashes, 3D product motion, volumetric atmospheric lighting, zero watermarks).
+
+TASK:
+Analyze the input script and directives.
+For each scene, output:
+1. asset_type: 'AI_RENDER' or 'STOCK_FOOTAGE' or '3D_VFX_OVERLAY'.
+2. search_or_render_prompt: A hyper-realistic prompt with camera specifications (35mm/85mm macro lens, studio softbox, floating liquid dynamics, 8k octane render) adhering to mode: ${prodMode}, color: ${colorGrade}, aesthetic: ${aesthetic}.
+3. camera_movement: (e.g. 360 degree product orbit, macro slow push-in, whip pan glitch).
+4. vfx_compositing_layer: Directive for Levi on where to composite 3D text, floating items, or sky replacements.
+
+OUTPUT STRICT VALID JSON ONLY:
+{
+  "pack_title": "Master Visual Asset Pack",
+  "aspect_ratio": "${aspectRatio}",
+  "scenes": [
+    {
+      "scene_num": 1,
+      "timing": "0:00 - 0:06",
+      "asset_type": "AI_RENDER",
+      "search_or_render_prompt": "Cinematic visual description",
+      "camera_movement": "Slow continuous zoom-in",
+      "vfx_compositing_layer": "Foreground liquid splash pass"
+    }
+  ]
+}`;
+
+      try {
+        setTimeout(() => {
+          telemetryStatus.innerText = "Rendering watermark-free neural visuals via Flux AI...";
+          telemetryProgress.style.width = "75%";
+          telemetryPct.innerText = "75%";
+        }, 1200);
+
+        const models = ['gemini-3.8-flash', 'gemini-3.5-flash-lite'];
+        let rawText = null;
+
+        for (const m of models) {
+          try {
+            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${activeApiKey}`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                system_instruction: { parts: [{ text: systemPrompt }] },
+                contents: [{ parts: [{ text: `Directives:\n${directives}\nMode: ${prodMode}\nRatio: ${aspectRatio}\nColor: ${colorGrade}` }] }],
+                generationConfig: { response_mime_type: "application/json", temperature: 0.3 }
+              })
+            });
+            if (res.ok) {
+              const resData = await res.json();
+              rawText = resData.candidates[0].content.parts[0].text;
+              break;
+            }
+          } catch (e) {
+            console.warn(e);
+          }
+        }
+
+        if (!rawText) throw new Error("API call failed. Kripya API Key confirm karein.");
+
+        telemetryStatus.innerText = "Finalizing asset pack for Levi...";
+        telemetryProgress.style.width = "100%";
+        telemetryPct.innerText = "100%";
+
+        const data = JSON.parse(rawText);
+        currentAssetPayload = data;
+
+        localStorage.setItem(`PIPELINE_ASSETS_CH_02_MYSTERY`, JSON.stringify(data));
+
+        let width = 1280;
+        let height = 720;
+        if (aspectRatio === '9:16') { width = 720; height = 1280; }
+        else if (aspectRatio === '1:1') { width = 1024; height = 1024; }
+        else if (aspectRatio === '4:5') { width = 864; height = 1080; }
+
+        grid.innerHTML = '';
+
+        (data.scenes || []).forEach(sc => {
+          const card = document.createElement('div');
+          card.className = "bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden shadow-xl space-y-3 p-3";
+
+          const cleanPrompt = encodeURIComponent(sc.search_or_render_prompt.substring(0, 160) + `, commercial ${colorGrade}, high quality, no watermark`);
+          const aiImageUrl = `https://image.pollinations.ai/prompt/${cleanPrompt}?width=${width}&height=${height}&nologo=true&seed=${Math.floor(Math.random()*99999)}`;
+
+          const isAi = sc.asset_type === 'AI_RENDER' || sc.asset_type === '3D_VFX_OVERLAY';
+
+          card.innerHTML = `
+            <div class="relative rounded-xl overflow-hidden aspect-video bg-slate-900 border border-slate-800">
+              <img src="${aiImageUrl}" alt="Scene Asset" class="w-full h-full object-cover">
+              <div class="absolute top-2 left-2 flex gap-1.5">
+                <span class="text-[9px] px-2 py-0.5 rounded-full font-bold uppercase font-mono-code ${isAi ? 'bg-red-500 text-white' : 'bg-cyan-500 text-slate-950'}">
+                  ${sc.asset_type}
+                </span>
+                <span class="text-[9px] px-2 py-0.5 rounded-full bg-slate-900/90 text-amber-300 font-mono-code font-bold">
+                  Scene #${sc.scene_num} (${sc.timing})
+                </span>
+              </div>
+            </div>
+
+            <div class="space-y-1.5 text-xs">
+              <div class="flex justify-between items-center text-[10px] font-mono-code text-slate-400">
+                <span>Motion: <b class="text-slate-200">${sc.camera_movement}</b></span>
+                <span class="text-amber-400 font-bold">${aspectRatio}</span>
+              </div>
+              <p class="text-slate-300 font-mono-code text-[11px] leading-relaxed bg-slate-900 p-2.5 rounded-xl border border-slate-800">
+                <b class="${isAi ? 'text-red-400' : 'text-cyan-400'} block mb-0.5">Asset Directive:</b>
+                ${sc.search_or_render_prompt}
+              </p>
+              ${sc.vfx_compositing_layer ? `
+                <div class="text-[10px] text-purple-300 font-mono-code bg-purple-950/30 p-2 rounded-lg border border-purple-500/30">
+                  <b>⚡ Levi VFX Pass:</b> ${sc.vfx_compositing_layer}
+                </div>
+              ` : ''}
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+
+        cockpitArea.classList.remove('hidden');
+
+      } catch (err) {
+        alert("Itachi Engine Error: " + err.message);
+      } finally {
+        renderBtn.disabled = false;
+        renderBtn.innerHTML = '<i class="fa-solid fa-eye"></i> Activate Itachi\'s Sharingan Asset Creation Engine';
+        telemetryBox.classList.add('hidden');
+      }
+    }
+
+    function copyAssetPayload() {
+      if (currentAssetPayload) {
+        navigator.clipboard.writeText(JSON.stringify(currentAssetPayload, null, 2));
+        alert("✅ Itachi's Asset Pack JSON copied to clipboard!");
+      }
+    }
+
+    function passToLevi() {
+      alert("✅ Visual Asset Pack locked! Ready for Agent 6: Levi (Chief Video Editor).");
+    }
+
+    window.onload = () => {
+      autoImportScriptAndVisuals();
+    };
+  </script>
+</body>
+</html>

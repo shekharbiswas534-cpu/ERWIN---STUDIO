@@ -26,10 +26,10 @@
         <div class="flex items-center gap-2">
           <h1 class="text-base md:text-lg font-black tracking-wide text-white">AGENT 5: "ITACHI"</h1>
           <span class="text-[9px] px-2.5 py-0.5 rounded-full bg-red-500/20 text-red-300 border border-red-500/40 font-bold uppercase font-mono-code">
-            Multi-Key Failover Engine v7.0
+            Multi-Key Failover Engine v7.5
           </span>
         </div>
-        <p class="text-[11px] text-slate-400 font-mono-code">3 API Keys Pool • Zero Downtime • Custom Media & Prompts</p>
+        <p class="text-[11px] text-slate-400 font-mono-code">Gemini Pool + Hugging Face • Live Stop/Restart • Custom Media</p>
       </div>
     </div>
 
@@ -145,14 +145,25 @@
       </button>
     </div>
 
-    <!-- Live Telemetry -->
-    <div id="telemetryBox" class="hidden bg-slate-900 border border-red-500/30 rounded-2xl p-4 shadow-xl space-y-2">
-      <div class="flex justify-between items-center text-xs font-mono-code text-red-400">
+    <!-- Live Telemetry with Stop / Restart / Close Controls -->
+    <div id="telemetryBox" class="hidden bg-slate-900 border border-red-500/30 rounded-2xl p-4 shadow-xl space-y-3">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 text-xs font-mono-code text-red-400">
         <span class="flex items-center gap-2">
           <i class="fa-solid fa-circle-notch fa-spin text-red-500"></i>
           <span id="telemetryStatus">Itachi is parsing camera matrices and lighting...</span>
         </span>
-        <span id="telemetryPct">40%</span>
+        <div class="flex items-center gap-2 self-end sm:self-auto">
+          <span id="telemetryPct" class="font-bold mr-2 text-white">40%</span>
+          <button onclick="stopExecution()" class="bg-rose-600/30 hover:bg-rose-600 text-rose-300 hover:text-white border border-rose-500/50 px-2.5 py-1 rounded-lg transition font-bold flex items-center gap-1">
+            <i class="fa-solid fa-stop"></i> Stop
+          </button>
+          <button onclick="restartExecution()" class="bg-amber-600/30 hover:bg-amber-600 text-amber-300 hover:text-white border border-amber-500/50 px-2.5 py-1 rounded-lg transition font-bold flex items-center gap-1">
+            <i class="fa-solid fa-rotate-right"></i> Restart
+          </button>
+          <button onclick="closeTelemetry()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-2.5 py-1 rounded-lg transition">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
       </div>
       <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden border border-slate-800">
         <div id="telemetryProgress" class="bg-gradient-to-r from-red-600 to-amber-500 h-full w-[40%] transition-all duration-300"></div>
@@ -184,38 +195,42 @@
     </div>
   </main>
 
-  <!-- Multi-Key Modal -->
+  <!-- Multi-Key & HF Modal -->
   <div id="keyModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
     <div class="bg-slate-900 border border-slate-700 rounded-2xl p-5 w-full max-w-sm space-y-4 shadow-2xl">
       <div class="flex justify-between items-center border-b border-slate-800 pb-2">
         <h3 class="text-sm font-bold text-amber-400 flex items-center gap-2">
-          <i class="fa-solid fa-key"></i> Multi-Key Failover Pool
+          <i class="fa-solid fa-key"></i> Multi-Key & HF Pool
         </h3>
         <button onclick="closeKeyModal()" class="text-slate-400 hover:text-white text-lg">&times;</button>
       </div>
 
       <p class="text-[11px] text-slate-300 leading-relaxed">
-        Yahan aap up to 3 Gemini API keys daal sakte hain. Agar ek key busy ya rate-limited hogi, toh Itachi automatic doosri key par switch ho jayega!
+        Gemini failover keys aur Hugging Face token ko ek sath manage karein:
       </p>
 
       <div class="space-y-2.5">
         <div>
-          <label class="text-[11px] font-semibold text-slate-300 block mb-1">Primary Key (Key 1)</label>
+          <label class="text-[11px] font-semibold text-slate-300 block mb-1">Primary Gemini Key (Key 1)</label>
           <input id="key1Input" type="password" placeholder="AIzaSy..." class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-xs text-white outline-none font-mono-code">
         </div>
         <div>
-          <label class="text-[11px] font-semibold text-slate-300 block mb-1">Backup Key 1 (Key 2)</label>
+          <label class="text-[11px] font-semibold text-slate-300 block mb-1">Backup Gemini Key (Key 2)</label>
           <input id="key2Input" type="password" placeholder="AIzaSy..." class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-xs text-white outline-none font-mono-code">
         </div>
         <div>
-          <label class="text-[11px] font-semibold text-slate-300 block mb-1">Backup Key 2 (Key 3)</label>
+          <label class="text-[11px] font-semibold text-slate-300 block mb-1">Backup Gemini Key (Key 3)</label>
           <input id="key3Input" type="password" placeholder="AIzaSy..." class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-xs text-white outline-none font-mono-code">
+        </div>
+        <div class="border-t border-slate-800 pt-2">
+          <label class="text-[11px] font-semibold text-pink-400 block mb-1">Hugging Face Token (HF Key)</label>
+          <input id="hfKeyModalInput" type="password" placeholder="hf_..." class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-xs text-white outline-none font-mono-code">
         </div>
       </div>
 
       <div class="flex justify-end gap-2 pt-2">
         <button onclick="closeKeyModal()" class="text-xs px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl">Cancel</button>
-        <button onclick="saveMultiKeys()" class="text-xs px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl">Save Keys Pool</button>
+        <button onclick="saveAllKeysPool()" class="text-xs px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl">Save Keys Pool</button>
       </div>
     </div>
   </div>
@@ -226,15 +241,18 @@
       const singleKey = localStorage.getItem('ERWIN_API_KEY') || localStorage.getItem('GEMINI_KEY');
       if (singleKey) keysPool = [singleKey];
     }
+    let hfToken = localStorage.getItem('HF_API_KEY') || '';
 
     let currentAssetPayload = null;
     let uploadedBase64 = null;
     let uploadedFileType = null;
+    let currentAbortController = null;
 
     function initKeys() {
       const lbl = document.getElementById('keyLabel');
-      if (keysPool.length > 0) {
-        lbl.innerText = `Keys Pool (${keysPool.length}) ✓`;
+      const count = keysPool.length + (hfToken ? 1 : 0);
+      if (count > 0) {
+        lbl.innerText = `Keys Active (${count}) ✓`;
         lbl.className = "text-emerald-400 font-bold";
       } else {
         lbl.innerText = "Set Keys";
@@ -246,6 +264,7 @@
       document.getElementById('key1Input').value = keysPool[0] || '';
       document.getElementById('key2Input').value = keysPool[1] || '';
       document.getElementById('key3Input').value = keysPool[2] || '';
+      document.getElementById('hfKeyModalInput').value = hfToken;
       document.getElementById('keyModal').classList.remove('hidden');
     }
 
@@ -253,10 +272,11 @@
       document.getElementById('keyModal').classList.add('hidden');
     }
 
-    function saveMultiKeys() {
+    function saveAllKeysPool() {
       const k1 = document.getElementById('key1Input').value.trim();
       const k2 = document.getElementById('key2Input').value.trim();
       const k3 = document.getElementById('key3Input').value.trim();
+      const hf = document.getElementById('hfKeyModalInput').value.trim();
 
       keysPool = [k1, k2, k3].filter(k => k.length > 5);
       if (keysPool.length === 0) return alert("Kam se kam ek valid Gemini API key zaroori hai!");
@@ -265,12 +285,40 @@
       localStorage.setItem('ERWIN_API_KEY', keysPool[0]);
       localStorage.setItem('GEMINI_KEY', keysPool[0]);
 
+      if (hf) {
+        hfToken = hf;
+        localStorage.setItem('HF_API_KEY', hfToken);
+      }
+
       initKeys();
       closeKeyModal();
-      alert(`✅ Successfully saved ${keysPool.length} keys in failover pool!`);
+      alert(`✅ Keys Pool Saved! (Gemini: ${keysPool.length}, HF: ${hfToken ? 'Set' : 'None'})`);
     }
 
-    async function callGeminiWithFailover(systemPrompt, contentsParts) {
+    function stopExecution() {
+      if (currentAbortController) {
+        currentAbortController.abort();
+        currentAbortController = null;
+      }
+      const telemStatus = document.getElementById('telemetryStatus');
+      telemStatus.innerText = "Process Stopped by User 🛑";
+      document.getElementById('renderAssetsBtn').disabled = false;
+      document.getElementById('renderAssetsBtn').innerHTML = '<i class="fa-solid fa-play text-base"></i> Execute Itachi\'s Complete Visual & Motion Synthesis';
+    }
+
+    function restartExecution() {
+      stopExecution();
+      setTimeout(() => {
+        runItachiMasterEngine();
+      }, 300);
+    }
+
+    function closeTelemetry() {
+      stopExecution();
+      document.getElementById('telemetryBox').classList.add('hidden');
+    }
+
+    async function callGeminiWithFailover(systemPrompt, contentsParts, signal) {
       if (keysPool.length === 0) {
         openKeyModal();
         throw new Error("Koi API Key set nahi hai!");
@@ -283,9 +331,12 @@
         const currentKey = keysPool[i];
         for (const m of models) {
           try {
+            if (signal.aborted) throw new Error("Aborted by user.");
+
             const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${currentKey}`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
+              signal: signal,
               body: JSON.stringify({
                 system_instruction: { parts: [{ text: systemPrompt }] },
                 contents: [{ parts: contentsParts }],
@@ -301,11 +352,12 @@
               lastErr = errBody.error?.message || `HTTP ${res.status}`;
             }
           } catch (e) {
+            if (e.name === 'AbortError') throw new Error("Process stopped.");
             lastErr = e.message;
           }
         }
       }
-      throw new Error(`All keys and models exhausted. Last error: ${lastErr}`);
+      throw new Error(`All keys exhausted. Last error: ${lastErr}`);
     }
 
     function handleUploadedMedia(event) {
@@ -404,6 +456,9 @@
 
       if (!directives && !uploadedBase64) return alert("Pehle prompt dalein ya reference upload karein!");
 
+      currentAbortController = new AbortController();
+      const signal = currentAbortController.signal;
+
       const renderBtn = document.getElementById('renderAssetsBtn');
       const telemetryBox = document.getElementById('telemetryBox');
       const telemetryStatus = document.getElementById('telemetryStatus');
@@ -413,7 +468,7 @@
       const grid = document.getElementById('visualScenesGrid');
 
       renderBtn.disabled = true;
-      renderBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Itachi is generating authentic cinematic visuals...';
+      renderBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Rendering with Itachi...';
       telemetryBox.classList.remove('hidden');
       cockpitArea.classList.add('hidden');
 
@@ -453,12 +508,14 @@ JSON SCHEMA:
         }
 
         setTimeout(() => {
-          telemetryStatus.innerText = "Executing failover synthesis across multi-key pool...";
-          telemetryProgress.style.width = "75%";
-          telemetryPct.innerText = "75%";
+          if (!signal.aborted) {
+            telemetryStatus.innerText = "Executing failover synthesis across multi-key pool...";
+            telemetryProgress.style.width = "75%";
+            telemetryPct.innerText = "75%";
+          }
         }, 1200);
 
-        const rawText = await callGeminiWithFailover(systemPrompt, contentsParts);
+        const rawText = await callGeminiWithFailover(systemPrompt, contentsParts, signal);
         const data = JSON.parse(rawText);
         currentAssetPayload = data;
 
@@ -526,18 +583,24 @@ JSON SCHEMA:
         cockpitArea.classList.remove('hidden');
 
       } catch (err) {
-        alert("Itachi Engine Failover Error: " + err.message);
+        if (err.message.includes("stopped") || err.message.includes("Aborted")) {
+          // Handled smoothly
+        } else {
+          alert("Itachi Engine Failover Error: " + err.message);
+        }
       } finally {
         renderBtn.disabled = false;
         renderBtn.innerHTML = '<i class="fa-solid fa-play text-base"></i> Execute Itachi\'s Complete Visual & Motion Synthesis';
-        telemetryBox.classList.add('hidden');
+        if (!signal.aborted) {
+          telemetryBox.classList.add('hidden');
+        }
       }
     }
 
     function copyAssetPayload() {
       if (currentAssetPayload) {
         navigator.clipboard.writeText(JSON.stringify(currentAssetPayload, null, 2));
-        alert("✅ Itachi's Asset Pack JSON copied to clipboard!");
+        alert("✅ Itachi's Asset Pack JSON copied!");
       }
     }
 

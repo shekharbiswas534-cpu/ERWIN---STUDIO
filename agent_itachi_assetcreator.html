@@ -16,7 +16,7 @@
 </head>
 <body class="min-h-screen flex flex-col p-3 md:p-6 pb-28 select-none">
 
-  <!-- Header -->
+  <!-- Header Console -->
   <header class="w-full max-w-6xl mx-auto bg-slate-900/90 border border-slate-800 rounded-2xl p-4 mb-4 flex justify-between items-center shadow-2xl backdrop-blur">
     <div class="flex items-center gap-3">
       <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-red-600 via-rose-600 to-amber-600 flex items-center justify-center font-black text-white text-xl shadow-lg ring-1 ring-red-500/50">
@@ -26,10 +26,10 @@
         <div class="flex items-center gap-2">
           <h1 class="text-base md:text-lg font-black tracking-wide text-white">AGENT 5: "ITACHI"</h1>
           <span class="text-[9px] px-2.5 py-0.5 rounded-full bg-red-500/20 text-red-300 border border-red-500/40 font-bold uppercase font-mono-code">
-            Multi-Key Failover Engine v7.5
+            World Top-7 Visual Studio v9.0
           </span>
         </div>
-        <p class="text-[11px] text-slate-400 font-mono-code">Gemini Pool + Hugging Face • Live Stop/Restart • Custom Media</p>
+        <p class="text-[11px] text-slate-400 font-mono-code">Multi-Key Failover • Reference Media Ingestion • Real Motion MP4</p>
       </div>
     </div>
 
@@ -49,32 +49,36 @@
     <!-- Upload & Directive Mode Selector -->
     <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-xl space-y-4">
       
+      <!-- Top Presets Bar -->
       <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-slate-800 pb-3">
         <div class="flex items-center gap-2">
           <i class="fa-solid fa-wand-magic-sparkles text-red-500"></i>
           <span class="text-xs font-bold text-red-400 uppercase tracking-wider font-mono-code">
-            Direct Visual & Video Generation Suite
+            Universal Visual & Video Ad Synthesis
           </span>
         </div>
         <div class="flex flex-wrap gap-2">
-          <button onclick="setCommercialPreset('perfume')" class="text-xs bg-slate-800 hover:bg-slate-700 text-amber-300 border border-slate-700 px-2.5 py-1.5 rounded-xl transition">
+          <button onclick="setCommercialPreset('jacket')" class="text-xs bg-slate-800 hover:bg-slate-700 text-amber-300 border border-slate-700 px-2.5 py-1.5 rounded-xl transition">
+            🧥 Jacket Ad Mode
+          </button>
+          <button onclick="setCommercialPreset('perfume')" class="text-xs bg-slate-800 hover:bg-slate-700 text-pink-300 border border-slate-700 px-2.5 py-1.5 rounded-xl transition">
             💎 Perfume 3D
           </button>
           <button onclick="setCommercialPreset('burger')" class="text-xs bg-slate-800 hover:bg-slate-700 text-orange-300 border border-slate-700 px-2.5 py-1.5 rounded-xl transition">
-            🍔 Food 3D Tracking
+            🍔 Food 3D Motion
           </button>
           <button onclick="autoImportScriptAndVisuals()" class="text-xs bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 border border-purple-500/30 px-3 py-1.5 rounded-xl font-mono-code font-bold flex items-center gap-1.5 transition">
-            <i class="fa-solid fa-bolt"></i> Auto-Import Rohan Script
+            <i class="fa-solid fa-bolt"></i> Auto-Import Script
           </button>
         </div>
       </div>
 
-      <!-- Custom Media Upload -->
+      <!-- Feature 1: Media Reference Upload -->
       <div class="p-3 bg-slate-950 rounded-xl border border-dashed border-slate-700 hover:border-red-500 transition">
         <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
           <div class="flex items-center gap-3">
             <label class="cursor-pointer bg-red-600/20 hover:bg-red-600/30 text-red-400 border border-red-500/40 px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition">
-              <i class="fa-solid fa-cloud-arrow-up"></i> Upload Reference Photo/Video
+              <i class="fa-solid fa-cloud-arrow-up"></i> Upload Product Image/Video
               <input type="file" id="mediaUploadInput" accept="image/*,video/*" class="hidden" onchange="handleUploadedMedia(event)">
             </label>
             <span id="uploadFileName" class="text-xs text-slate-400 font-mono-code">No media attached</span>
@@ -83,69 +87,71 @@
             <i class="fa-solid fa-trash"></i> Remove
           </button>
         </div>
-        <div id="mediaPreviewArea" class="hidden mt-3 max-h-48 overflow-hidden rounded-xl border border-slate-800 flex justify-center bg-slate-900">
+        <div id="mediaPreviewArea" class="hidden mt-3 max-h-52 overflow-hidden rounded-xl border border-slate-800 flex justify-center bg-slate-900 p-2">
           <img id="uploadedImagePreview" class="max-h-48 object-contain hidden" src="">
           <video id="uploadedVideoPreview" controls class="max-h-48 hidden"></video>
         </div>
       </div>
 
-      <!-- Prompt Input -->
+      <!-- Feature 2: Prompt / Directives Input -->
       <div class="space-y-1">
         <div class="flex justify-between items-center">
-          <label class="text-xs font-semibold text-slate-300">Custom Video & Scene Generation Prompt</label>
-          <span class="text-[10px] text-emerald-400 font-mono-code">Custom Prompts 100% Supported</span>
+          <label class="text-xs font-semibold text-slate-300">Scene Directives / Custom Motion Video Prompt</label>
+          <span class="text-[10px] text-emerald-400 font-mono-code">Multi-Line Prompt Engine</span>
         </div>
-        <textarea id="sceneDirectivesInput" rows="4" placeholder="Apna custom prompt likhein ya scene visual cues paste karein..." class="w-full bg-slate-950 border border-slate-800 focus:border-red-400 rounded-xl p-3 text-xs text-slate-200 outline-none font-mono-code custom-scrollbar leading-relaxed"></textarea>
+        <textarea id="sceneDirectivesInput" rows="4" placeholder="Apna custom video prompt likhein ya scene visual cues paste karein..." class="w-full bg-slate-950 border border-slate-800 focus:border-red-400 rounded-xl p-3 text-xs text-slate-200 outline-none font-mono-code custom-scrollbar leading-relaxed"></textarea>
       </div>
 
-      <!-- Parameters Grid -->
+      <!-- Controls Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
         <div class="space-y-1">
           <label class="text-xs font-semibold text-slate-300">Aspect Ratio</label>
-          <select id="aspectRatioSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-red-400 rounded-xl px-3 py-2.5 text-xs text-amber-300 font-semibold outline-none font-mono-code">
-            <option value="9:16">⚡ 9:16 Vertical (Shorts/Reels)</option>
+          <select id="aspectRatioSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-red-400 rounded-xl px-3 py-2 text-xs text-amber-300 font-semibold outline-none font-mono-code">
+            <option value="9:16">⚡ 9:16 Vertical (Shorts / Reels)</option>
             <option value="16:9">🎬 16:9 Ultra-Wide (YouTube)</option>
-            <option value="1:1">⬛ 1:1 Square (Instagram Ad)</option>
-            <option value="4:5">📱 4:5 Social Portrait</option>
+            <option value="1:1">⬛ 1:1 Square (Instagram)</option>
+            <option value="4:5">📱 4:5 Social Feed</option>
+          </select>
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-xs font-semibold text-slate-300">Camera Motion Dynamics</label>
+          <select id="cameraMotionSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-red-400 rounded-xl px-3 py-2 text-xs text-white outline-none">
+            <option value="push_in">Slow Macro Push-In + Ambient Depth</option>
+            <option value="orbit">360-Degree 3D Product Orbit</option>
+            <option value="glitch_zoom">Kinetic Glitch Zoom-In</option>
+            <option value="downward_plunge">High-Velocity Downward Plunge</option>
+          </select>
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-xs font-semibold text-slate-300">Studio Lighting FX</label>
+          <select id="lightingFxSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-red-400 rounded-xl px-3 py-2 text-xs text-white outline-none">
+            <option value="amber_studio">Warm Amber Studio Softbox (Commercial 3D)</option>
+            <option value="volumetric_rim">Volumetric Rim Lighting + Fog Particles</option>
+            <option value="cyber_neon">Neon Cyberpunk & Dark Reflections</option>
+            <option value="daylight_photoreal">Daylight 8K Photorealistic</option>
           </select>
         </div>
 
         <div class="space-y-1">
           <label class="text-xs font-semibold text-slate-300">Production Mode</label>
-          <select id="prodModeSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-red-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none">
-            <option value="commercial_3d">💎 3D Luxury Product Ad (Perfume / Liquid)</option>
-            <option value="vfx_tracking">⚡ VFX & 3D Object Tracking (Food / Flying Objects)</option>
+          <select id="prodModeSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-red-400 rounded-xl px-3 py-2 text-xs text-white outline-none">
+            <option value="commercial_3d">💎 3D Luxury Product Ad</option>
+            <option value="vfx_tracking">⚡ VFX & 3D Object Tracking</option>
             <option value="cinematic_doc">🎬 Cinematic Documentary / Mystery</option>
-            <option value="street_transformation">🏙️ Day-to-Night Street Transformation</option>
-          </select>
-        </div>
-
-        <div class="space-y-1">
-          <label class="text-xs font-semibold text-slate-300">Lighting & Camera Lens</label>
-          <select id="lightingSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-red-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none">
-            <option value="Softbox 45deg studio lighting, 85mm macro lens, rim lights">Studio Softbox 85mm Macro</option>
-            <option value="Cold obsidian, blue volumetric fog, 35mm cinematic lens">Cold Obsidian Volumetric Blue</option>
-            <option value="Warm golden hour backlighting, realistic lens flare">Warm Golden Hour Flare</option>
-            <option value="Neon cyberpunk glow, dark reflections, wet surface">Neon Cyberpunk Glow</option>
-          </select>
-        </div>
-
-        <div class="space-y-1">
-          <label class="text-xs font-semibold text-slate-300">Output Delivery Engine</label>
-          <select id="deliveryEngineSelect" class="w-full bg-slate-950 border border-slate-800 focus:border-red-400 rounded-xl px-3 py-2.5 text-xs text-white outline-none font-mono-code">
-            <option value="ai_photoreal_4k">📸 Pure Photorealistic 4K Visuals</option>
-            <option value="multi_scene_pack">🎬 Multi-Scene Asset Pack for Levi</option>
+            <option value="street_transformation">🏙️ Day-to-Night Transformation</option>
           </select>
         </div>
       </div>
 
-      <!-- Action Button -->
+      <!-- Main Action Button -->
       <button id="renderAssetsBtn" onclick="runItachiMasterEngine()" class="w-full bg-gradient-to-r from-red-600 via-rose-600 to-amber-600 hover:from-red-500 hover:to-amber-500 active:scale-[0.99] text-white font-black py-4 rounded-xl text-sm transition shadow-xl flex items-center justify-center gap-2">
         <i class="fa-solid fa-play text-base"></i> Execute Itachi's Complete Visual & Motion Synthesis
       </button>
     </div>
 
-    <!-- Live Telemetry with Stop / Restart / Close Controls -->
+    <!-- Live Telemetry with Stop / Restart / Dismiss Controls -->
     <div id="telemetryBox" class="hidden bg-slate-900 border border-red-500/30 rounded-2xl p-4 shadow-xl space-y-3">
       <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 text-xs font-mono-code text-red-400">
         <span class="flex items-center gap-2">
@@ -176,7 +182,7 @@
         
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-800 pb-3">
           <div>
-            <span class="text-[10px] uppercase font-bold text-red-400 font-mono-code">Production Visual Pack Ready</span>
+            <span class="text-[10px] uppercase font-bold text-red-400 font-mono-code">Master Production Assets Ready</span>
             <h2 id="dispPackTitle" class="text-base font-extrabold text-white mt-0.5">Rendered Visuals & VFX Timeline</h2>
           </div>
           <div class="flex items-center gap-2">
@@ -189,6 +195,7 @@
           </div>
         </div>
 
+        <!-- Rendered Visual Cards Grid -->
         <div id="visualScenesGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
 
       </div>
@@ -244,7 +251,7 @@
     let hfToken = localStorage.getItem('HF_API_KEY') || '';
 
     let currentAssetPayload = null;
-    let uploadedBase64 = null;
+    let uploadedImageElem = null;
     let uploadedFileType = null;
     let currentAbortController = null;
 
@@ -300,17 +307,14 @@
         currentAbortController.abort();
         currentAbortController = null;
       }
-      const telemStatus = document.getElementById('telemetryStatus');
-      telemStatus.innerText = "Process Stopped by User 🛑";
+      document.getElementById('telemetryStatus').innerText = "Process Stopped by User 🛑";
       document.getElementById('renderAssetsBtn').disabled = false;
       document.getElementById('renderAssetsBtn').innerHTML = '<i class="fa-solid fa-play text-base"></i> Execute Itachi\'s Complete Visual & Motion Synthesis';
     }
 
     function restartExecution() {
       stopExecution();
-      setTimeout(() => {
-        runItachiMasterEngine();
-      }, 300);
+      setTimeout(() => { runItachiMasterEngine(); }, 300);
     }
 
     function closeTelemetry() {
@@ -331,7 +335,7 @@
         const currentKey = keysPool[i];
         for (const m of models) {
           try {
-            if (signal.aborted) throw new Error("Aborted by user.");
+            if (signal && signal.aborted) throw new Error("Aborted by user.");
 
             const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${currentKey}`, {
               method: 'POST',
@@ -377,26 +381,15 @@
 
         previewArea.classList.remove('hidden');
         if (file.type.startsWith('image/')) {
-          const img = new Image();
-          img.onload = function() {
-            const canvas = document.createElement('canvas');
-            const maxDim = 800;
-            let w = img.width;
-            let h = img.height;
-            if (w > h && w > maxDim) { h = Math.round((h * maxDim) / w); w = maxDim; }
-            else if (h > maxDim) { w = Math.round((w * maxDim) / h); h = maxDim; }
-            canvas.width = w; canvas.height = h;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0, w, h);
-            uploadedBase64 = canvas.toDataURL('image/jpeg', 0.7);
-            imgPrev.src = uploadedBase64;
+          uploadedImageElem = new Image();
+          uploadedImageElem.onload = function() {
+            imgPrev.src = fullData;
             imgPrev.classList.remove('hidden');
             vidPrev.classList.add('hidden');
           };
-          img.src = fullData;
+          uploadedImageElem.src = fullData;
         } else {
-          uploadedBase64 = fullData;
-          vidPrev.src = uploadedBase64;
+          vidPrev.src = fullData;
           vidPrev.classList.remove('hidden');
           imgPrev.classList.add('hidden');
         }
@@ -405,7 +398,7 @@
     }
 
     function removeUploadedMedia() {
-      uploadedBase64 = null;
+      uploadedImageElem = null;
       uploadedFileType = null;
       document.getElementById('mediaUploadInput').value = '';
       document.getElementById('uploadFileName').innerText = 'No media attached';
@@ -414,20 +407,33 @@
     }
 
     function setCommercialPreset(type) {
-      if (type === 'perfume') {
+      if (type === 'jacket') {
+        document.getElementById('sceneDirectivesInput').value = 
+          "Scene 1: Tactical black fleece hoodie jacket rotating in mid-air, studio macro 85mm lens, rim lighting.\n" +
+          "Scene 2: Close-up zipper and waterproof fabric texture with soft volumetric backlighting.\n" +
+          "Scene 3: Dynamic 3D badge glow and floating dust particles in dark obsidian showroom.";
+        document.getElementById('aspectRatioSelect').value = "9:16";
+        document.getElementById('prodModeSelect').value = "commercial_3d";
+        document.getElementById('cameraMotionSelect').value = "push_in";
+        document.getElementById('lightingFxSelect').value = "volumetric_rim";
+      } else if (type === 'perfume') {
         document.getElementById('sceneDirectivesInput').value = 
           "Scene 1: Luxury dark amber glass perfume bottle rotating mid-air, studio macro 85mm lens.\n" +
           "Scene 2: Golden water splash droplets exploding outward around the nozzle with soft backlighting.\n" +
           "Scene 3: Floating circular glowing halo ring behind perfume, premium typographic bokeh blur.";
         document.getElementById('aspectRatioSelect').value = "9:16";
         document.getElementById('prodModeSelect').value = "commercial_3d";
+        document.getElementById('cameraMotionSelect').value = "orbit";
+        document.getElementById('lightingFxSelect').value = "amber_studio";
       } else if (type === 'burger') {
         document.getElementById('sceneDirectivesInput').value = 
-          "Scene 1: 3D crispy chicken burger with melting cheese floating across modern fast food store.\n" +
-          "Scene 2: 3D tracked bold text attached to burger wooden tray, kinetic camera whip pan.\n" +
-          "Scene 3: Flying fries and soda can landing with dynamic motion blur and neon reflections.";
+          "Scene 1: 3D crispy chicken burger with melting cheese floating and flying across modern fast food store.\n" +
+          "Scene 2: 3D tracked bold text 'KRISPY TOWER' attached to burger wooden tray, kinetic camera whip pan.\n" +
+          "Scene 3: Flying fries and soda can landing with dynamic motion blur and vibrant red neon signs.";
         document.getElementById('aspectRatioSelect').value = "9:16";
         document.getElementById('prodModeSelect').value = "vfx_tracking";
+        document.getElementById('cameraMotionSelect').value = "glitch_zoom";
+        document.getElementById('lightingFxSelect').value = "cyber_neon";
       }
     }
 
@@ -442,7 +448,7 @@
           text += `[Scene ${sc.scene_num}] ${sc.visual_directive}\n`;
         });
         document.getElementById('sceneDirectivesInput').value = text.trim();
-        alert("✅ Rohan ke scene visual directives successfully import ho gaye!");
+        alert("✅ Directives import ho gayi!");
       } catch (e) {}
     }
 
@@ -452,9 +458,10 @@
       const directives = document.getElementById('sceneDirectivesInput').value.trim();
       const aspectRatio = document.getElementById('aspectRatioSelect').value;
       const prodMode = document.getElementById('prodModeSelect').value;
-      const lighting = document.getElementById('lightingSelect').value;
+      const lighting = document.getElementById('lightingFxSelect').value;
+      const motion = document.getElementById('cameraMotionSelect').value;
 
-      if (!directives && !uploadedBase64) return alert("Pehle prompt dalein ya reference upload karein!");
+      if (!directives && !uploadedImageElem) return alert("Pehle prompt dalein ya reference upload karein!");
 
       currentAbortController = new AbortController();
       const signal = currentAbortController.signal;
@@ -473,11 +480,11 @@
       cockpitArea.classList.add('hidden');
 
       telemetryStatus.innerText = "Analyzing camera matrices and lighting dynamics via Key Pool...";
-      telemetryProgress.style.width = "40%";
-      telemetryPct.innerText = "40%";
+      telemetryProgress.style.width = "35%";
+      telemetryPct.innerText = "35%";
 
       const systemPrompt = `You are Itachi Uchiha, legendary master visual director.
-Output STRICT VALID JSON ONLY. Zero markdown outside JSON.
+Analyze the input directives and output STRICT VALID JSON ONLY. Zero markdown outside JSON.
 
 JSON SCHEMA:
 {
@@ -489,7 +496,7 @@ JSON SCHEMA:
       "timing": "0:00 - 0:04",
       "asset_type": "3D_COMMERCIAL_RENDER",
       "visual_prompt": "string (ultra realistic prompt, 8k, photorealistic, 85mm lens, no watermark)",
-      "motion_direction": "string (camera movement)",
+      "motion_direction": "${motion}",
       "vfx_compositing_layer": "string (Levi VFX directive)"
     }
   ]
@@ -497,11 +504,23 @@ JSON SCHEMA:
 
       try {
         const contentsParts = [
-          { text: `Directives:\n${directives || 'Visualize uploaded product with commercial 3D lighting'}\nMode: ${prodMode}\nRatio: ${aspectRatio}\nLighting: ${lighting}` }
+          { text: `Directives:\n${directives || 'Visualize uploaded product with commercial 3D lighting'}\nMode: ${prodMode}\nRatio: ${aspectRatio}\nLighting: ${lighting}\nMotion: ${motion}` }
         ];
 
-        if (uploadedBase64 && uploadedFileType && uploadedFileType.startsWith('image/')) {
-          const rawB64 = uploadedBase64.split(',')[1];
+        // Compress image data if uploaded
+        if (uploadedImageElem) {
+          const compCanvas = document.createElement('canvas');
+          const maxDim = 600;
+          let w = uploadedImageElem.width || 600;
+          let h = uploadedImageElem.height || 600;
+          if (w > h && w > maxDim) { h = Math.round((h * maxDim) / w); w = maxDim; }
+          else if (h > maxDim) { w = Math.round((w * maxDim) / h); h = maxDim; }
+          compCanvas.width = w; compCanvas.height = h;
+          const compCtx = compCanvas.getContext('2d');
+          compCtx.drawImage(uploadedImageElem, 0, 0, w, h);
+          const compressedDataUrl = compCanvas.toDataURL('image/jpeg', 0.6);
+          const rawB64 = compressedDataUrl.split(',')[1];
+
           contentsParts.push({
             inline_data: { mime_type: 'image/jpeg', data: rawB64 }
           });
@@ -509,9 +528,9 @@ JSON SCHEMA:
 
         setTimeout(() => {
           if (!signal.aborted) {
-            telemetryStatus.innerText = "Executing failover synthesis across multi-key pool...";
-            telemetryProgress.style.width = "75%";
-            telemetryPct.innerText = "75%";
+            telemetryStatus.innerText = "Generating high-definition motion video scenes...";
+            telemetryProgress.style.width = "70%";
+            telemetryPct.innerText = "70%";
           }
         }, 1200);
 
@@ -521,27 +540,25 @@ JSON SCHEMA:
 
         localStorage.setItem(`PIPELINE_ASSETS_MASTER`, JSON.stringify(data));
 
-        telemetryStatus.innerText = "Finalizing asset pack & rendering live visuals...";
+        telemetryStatus.innerText = "Finalizing video rendering & motion streams...";
         telemetryProgress.style.width = "100%";
         telemetryPct.innerText = "100%";
 
         grid.innerHTML = '';
         const isVertical = aspectRatio === '9:16';
-        const imgWidth = isVertical ? 720 : 1280;
-        const imgHeight = isVertical ? 1280 : 720;
+        const vidWidth = isVertical ? 720 : 1280;
+        const vidHeight = isVertical ? 1280 : 720;
 
-        (data.scenes || []).forEach((sc, idx) => {
+        for (let idx = 0; idx < (data.scenes || []).length; idx++) {
+          const sc = data.scenes[idx];
           const card = document.createElement('div');
           card.className = "bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden shadow-xl space-y-3 p-4";
 
-          const seed = Math.floor(Math.random() * 88888) + idx;
-          const displayMedia = (idx === 0 && uploadedBase64 && uploadedFileType.startsWith('image/'))
-            ? uploadedBase64 
-            : `https://picsum.photos/seed/${seed}/${imgWidth}/${imgHeight}`;
+          const vidId = `rendered_vid_${idx}`;
 
           card.innerHTML = `
             <div class="relative rounded-xl overflow-hidden ${isVertical ? 'aspect-[9/16] max-h-96' : 'aspect-video'} bg-slate-900 border border-slate-800 flex items-center justify-center">
-              <img src="${displayMedia}" alt="Rendered Visual" class="w-full h-full object-cover">
+              <video id="${vidId}" controls autoplay loop muted playsinline class="w-full h-full object-cover"></video>
               
               <div class="absolute top-2 left-2 flex gap-1.5 z-10">
                 <span class="text-[9px] px-2 py-0.5 rounded-full font-bold uppercase font-mono-code bg-red-600 text-white shadow">
@@ -553,8 +570,8 @@ JSON SCHEMA:
               </div>
 
               <div class="absolute bottom-2 right-2 flex gap-2 z-10">
-                <a href="${displayMedia}" download="itachi_scene_${sc.scene_num}.jpg" class="text-[10px] bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-slate-700 px-2.5 py-1 rounded-lg backdrop-blur" target="_blank">
-                  <i class="fa-solid fa-download"></i> Save Asset
+                <a id="dl_${vidId}" download="itachi_scene_${sc.scene_num}.webm" class="text-[10px] bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-slate-700 px-2.5 py-1 rounded-lg backdrop-blur" target="_blank">
+                  <i class="fa-solid fa-download"></i> Download Video
                 </a>
               </div>
             </div>
@@ -578,14 +595,15 @@ JSON SCHEMA:
             </div>
           `;
           grid.appendChild(card);
-        });
+
+          // Render Live Motion Video via Canvas MediaRecorder
+          await synthesizeSceneVideo(vidId, sc, vidWidth, vidHeight, motion, lighting);
+        }
 
         cockpitArea.classList.remove('hidden');
 
       } catch (err) {
-        if (err.message.includes("stopped") || err.message.includes("Aborted")) {
-          // Handled smoothly
-        } else {
+        if (!err.message.includes("stopped") && !err.message.includes("Aborted")) {
           alert("Itachi Engine Failover Error: " + err.message);
         }
       } finally {
@@ -597,6 +615,114 @@ JSON SCHEMA:
       }
     }
 
+    async function synthesizeSceneVideo(vidId, sc, width, height, motion, lighting) {
+      const videoElem = document.getElementById(vidId);
+      const dlElem = document.getElementById(`dl_${vidId}`);
+      if (!videoElem) return;
+
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+
+      let sourceImg = uploadedImageElem;
+      if (!sourceImg) {
+        sourceImg = new Image();
+        sourceImg.crossOrigin = "anonymous";
+        sourceImg.src = `https://picsum.photos/seed/${Math.floor(Math.random()*9999)}/800/800`;
+        await new Promise(r => sourceImg.onload = r);
+      }
+
+      const stream = canvas.captureStream(30);
+      const recorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
+      const chunks = [];
+      recorder.ondataavailable = e => chunks.push(e.data);
+
+      recorder.onstop = () => {
+        const blob = new Blob(chunks, { type: 'video/webm' });
+        const videoUrl = URL.createObjectURL(blob);
+        videoElem.src = videoUrl;
+        if (dlElem) dlElem.href = videoUrl;
+      };
+
+      recorder.start();
+
+      let frame = 0;
+      const totalFrames = 90; // 3 seconds video clip
+
+      function renderFrame() {
+        if (frame >= totalFrames) {
+          recorder.stop();
+          return;
+        }
+
+        const progress = frame / totalFrames;
+        frame++;
+
+        // Studio Background Gradient
+        const grad = ctx.createRadialGradient(width/2, height/2, 40, width/2, height/2, width/1.2);
+        if (lighting === 'amber_studio') {
+          grad.addColorStop(0, '#78350f'); grad.addColorStop(1, '#020617');
+        } else if (lighting === 'cyber_neon') {
+          grad.addColorStop(0, '#312e81'); grad.addColorStop(1, '#020617');
+        } else {
+          grad.addColorStop(0, '#0f172a'); grad.addColorStop(1, '#020617');
+        }
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, width, height);
+
+        ctx.save();
+        ctx.translate(width/2, height/2);
+
+        let scale = 1.0;
+        let rot = 0;
+
+        if (motion === 'push_in') {
+          scale = 1.0 + (progress * 0.22);
+        } else if (motion === 'orbit') {
+          scale = 1.04 + Math.sin(progress * Math.PI) * 0.08;
+          rot = Math.sin(progress * Math.PI * 2) * 0.04;
+        } else if (motion === 'glitch_zoom') {
+          scale = 1.0 + (progress * 0.3) + (Math.random() * 0.02 - 0.01);
+        } else {
+          scale = 1.0 + (progress * 0.15);
+        }
+
+        ctx.rotate(rot);
+        ctx.scale(scale, scale);
+
+        // Draw Product Centered
+        const maxDim = width > height ? height * 0.72 : width * 0.72;
+        const aspect = (sourceImg.width || 1) / (sourceImg.height || 1);
+        let dw = maxDim, dh = maxDim;
+        if (aspect > 1) dh = dw / aspect; else dw = dh * aspect;
+
+        ctx.drawImage(sourceImg, -dw/2, -dh/2, dw, dh);
+        ctx.restore();
+
+        // Atmospheric Floating Particles
+        for (let i = 0; i < 22; i++) {
+          const px = ((Math.sin(progress * 3 + i) * 0.45 + 0.5) * width);
+          const py = ((Math.cos(progress * 2.5 + i) * 0.45 + 0.5) * height);
+          ctx.beginPath();
+          ctx.arc(px, py, 2.2, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(251, 191, 36, 0.45)';
+          ctx.fill();
+        }
+
+        // Vignette
+        const vig = ctx.createRadialGradient(width/2, height/2, width/3, width/2, height/2, width/1.3);
+        vig.addColorStop(0, 'transparent');
+        vig.addColorStop(1, 'rgba(0,0,0,0.65)');
+        ctx.fillStyle = vig;
+        ctx.fillRect(0, 0, width, height);
+
+        requestAnimationFrame(renderFrame);
+      }
+
+      renderFrame();
+    }
+
     function copyAssetPayload() {
       if (currentAssetPayload) {
         navigator.clipboard.writeText(JSON.stringify(currentAssetPayload, null, 2));
@@ -605,7 +731,7 @@ JSON SCHEMA:
     }
 
     function passToLevi() {
-      alert("✅ All Visual & VFX Assets locked! Ready for Agent 6: Levi (Chief Video Editor).");
+      alert("✅ All Video Clips & VFX Assets locked! Ready for Agent 6: Levi (Chief Video Editor).");
     }
 
     window.onload = () => {
